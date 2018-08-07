@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
     if gamer && gamer.authenticate(params[:session][:password])
       # Log the user in and redirect to the user's show page.
       log_in gamer    #metodo preso da sessionhelper
+      params[:session][:remember_me] == '1' ? remember(gamer) : forget(gamer)     #verifica la  checkbox
       redirect_to gamer
 
     else
@@ -17,7 +18,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    log_out
+    log_out if logged_in?
     redirect_to root_url
   end
 end
