@@ -19,9 +19,12 @@ gem 'uglifier', '>= 1.3.0'
 #aggiunte da me
 
 gem 'bootstrap-sass' , '3.3.7'
-gem 'bcrypt',         '3.1.12'
+gem 'bcrypt',         '3.1.12'             #password sicura
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'   #per finestra account
 gem 'rails-ujs', '~> 0.1.0'                #per finestra account
+gem 'will_paginate',           '3.1.6'     #paginazione
+gem 'bootstrap-will_paginate', '1.0.0'     #paginazione
+
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

@@ -8,7 +8,8 @@ class SessionsController < ApplicationController
       # Log the user in and redirect to the user's show page.
       log_in gamer    #metodo preso da sessionhelper
       params[:session][:remember_me] == '1' ? remember(gamer) : forget(gamer)     #verifica la  checkbox
-      redirect_to gamer
+      redirect_back_or gamer
+
 
     else
       # Create an error message.

@@ -1,10 +1,13 @@
 class GamersController < ApplicationController
   before_action :set_gamer, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_gamer, only: [:index,:edit, :update]   #richiama la funzione logged in use nel caso ci sia il richiamo di edit o update (funzione di sotto)
+  before_action :correct_gamer,   only: [:edit, :update]
+
 
   # GET /gamers
   # GET /gamers.json
   def index
-    @gamers = Gamer.all
+    @gamers = Gamer.paginate(page: params[:page])
   end
 
   # GET /gamers/1
@@ -20,6 +23,7 @@ class GamersController < ApplicationController
 
   # GET /gamers/1/edit
   def edit
+    @gamer = Gamer.find(params[:id])
   end
 
   # POST /gamers
@@ -72,5 +76,19 @@ class GamersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def gamer_params
       params.require(:gamer).permit(:username, :email, :password , :password_confirmation)   #aggiunto gli ultimi 2  MANCAVA QUESTO (SENZA L AGGIUNTA NON VENIVANO INSERITI E VEDEVA PASSWORD VUOTE
+    end
+
+    # Confirms a logged-in gamer.
+    def logged_in_gamer
+      unless logged_in?
+        store_location    #VEDI SESSION HELPER
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
+    end
+    # Confirms the correct gamer.
+    def correct_gamer
+      @Gamer = Gamer.find(params[:id])
+      redirect_to(root_url) unless @gamer == current_gamer
     end
 end
