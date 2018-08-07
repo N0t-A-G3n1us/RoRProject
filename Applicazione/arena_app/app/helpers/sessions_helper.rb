@@ -43,4 +43,20 @@ module SessionsHelper
     @current_gamer = nil
   end
 
+  # Returns true if the given user is the current user.
+  def current_gamer?(gamer)
+    gamer == current_gamer
+  end
+
+  # Redirects to stored location (or to the default).             REINDIRIZZA DOPO UN LOGIN ALLA PAGINA DI INTERESSE
+  def redirect_back_or(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)
+  end
+
+  # Stores the URL trying to be accessed.                          REINDIRIZZA DOPO UN LOGIN ALLA PAGINA DI INTERESSE
+  def store_location
+    session[:forwarding_url] = request.original_url if request.get?
+  end
+
 end
