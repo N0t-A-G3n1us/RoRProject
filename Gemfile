@@ -24,6 +24,7 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.3'   #per finestra account
 gem 'rails-ujs', '~> 0.1.0'                #per finestra account
 gem 'will_paginate',           '3.1.6'     #paginazione
 gem 'bootstrap-will_paginate', '1.0.0'     #paginazione
+gem 'rails_12factor', group: :production   #heroku
 
 
 # Use CoffeeScript for .coffee assets and views
