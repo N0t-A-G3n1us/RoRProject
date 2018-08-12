@@ -7,15 +7,14 @@ class GamersController < ApplicationController
   # GET /gamers
   # GET /gamers.json
   def index
-    @gamers = Gamer.where(activated: FILL_IN).paginate(page: params[:page])
+    @gamers = Gamer.where(activated: true ).paginate(page: params[:page])
   end
 
   # GET /gamers/1
   # GET /gamers/1.json
   def show
     @gamer = Gamer.find(params[:id])
-    redirect_to root_url and return unless FILL_IN
-
+    redirect_to root_url and return unless @gamer.activated        #REINDIRIZZA A ROOT_URL FINCHE NON È ATTIVO L ACCOUNT
   end
 
   # GET /gamers/new
