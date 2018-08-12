@@ -44,7 +44,7 @@ class Gamer < ApplicationRecord
 
 
     # Returns true if the given token matches the digest.
-    def authenticated?(attribute ,remember_token)
+    def authenticated?(attribute ,token)
         digest = send("#{attribute}_digest")
         return false if digest.nil?
         BCrypt::Password.new(digest).is_password?(token)    #remeber_token variabile locale non della classe

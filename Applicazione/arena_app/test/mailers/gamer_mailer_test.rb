@@ -7,6 +7,7 @@ class GamerMailerTest < ActionMailer::TestCase
     assert_equal ["to@example.org"], mail.to
     assert_equal ["noreply@example.com"], mail.from
     assert_match "Hi", mail.body.encoded
+
   end
 
   test "password_reset" do
