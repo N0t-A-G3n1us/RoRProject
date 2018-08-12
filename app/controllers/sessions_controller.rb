@@ -5,11 +5,16 @@ class SessionsController < ApplicationController
   def create
     gamer = Gamer.find_by(email: params[:session][:email].downcase)
     if gamer && gamer.authenticate(params[:session][:password])
-      # Log the user in and redirect to the user's show page.
-      log_in gamer    #metodo preso da sessionhelper
-      params[:session][:remember_me] == '1' ? remember(gamer) : forget(gamer)     #verifica la  checkbox
-      redirect_back_or gamer
-
+      if gamer.activated?
+        log_in gamer
+        params[:session][:remember_me] == '1' ? remember(gamer) : forget(gamer)
+        redirect_back_or gamer
+      else
+        message  = "Account not activated. "
+        message += "Check your email for the activation link."
+        flash[:warning] = message
+        redirect_to root_url
+      end
 
     else
       # Create an error message.

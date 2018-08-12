@@ -7,13 +7,15 @@ class GamersController < ApplicationController
   # GET /gamers
   # GET /gamers.json
   def index
-    @gamers = Gamer.paginate(page: params[:page])
+    @gamers = Gamer.where(activated: FILL_IN).paginate(page: params[:page])
   end
 
   # GET /gamers/1
   # GET /gamers/1.json
   def show
     @gamer = Gamer.find(params[:id])
+    redirect_to root_url and return unless FILL_IN
+
   end
 
   # GET /gamers/new
@@ -31,16 +33,17 @@ class GamersController < ApplicationController
   def create
     @gamer = Gamer.new(gamer_params)
 
-    respond_to do |format|
+
       if @gamer.save
-        log_in @gamer
-        format.html { redirect_to @gamer, notice: 'Gamer was successfully created.' }
-        format.json { render :show, status: :created, location: @gamer }
+          @gamer.send_activation_email
+          flash[:info] = "Please check your email to activate your account."
+          redirect_to root_url
       else
-        format.html { render :new }
-        format.json { render json: @gamer.errors, status: :unprocessable_entity }
+
+        render 'new'
+
       end
-    end
+
   end
 
   # PATCH/PUT /gamers/1
