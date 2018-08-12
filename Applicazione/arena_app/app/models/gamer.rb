@@ -1,6 +1,7 @@
 class Gamer < ApplicationRecord
 
-    attr_accessor :remember_token  # aggiunge attributo alla classe Gamer
+    attr_accessor :remember_token,:activation_token  # aggiunge attributo alla classe Gamer
+    before_create :create_activation_digest
 
 
 
@@ -11,7 +12,7 @@ class Gamer < ApplicationRecord
 
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
-    validates :username, length: {maximum: 10},
+    validates :username, length: {minimum: 6},
                          presence: true #ATTENZIONE AGLI ERRORI COMPILA SEMPRE PER OGNI COSA SCRITTA PERCHE QUI NON AVEVO MESSO  ':' E MI RICHIAMAVA UN ALTRA PAGINA
     validates :email, length:{maximum:255},
                       presence: true,
@@ -43,14 +44,32 @@ class Gamer < ApplicationRecord
 
 
     # Returns true if the given token matches the digest.
-    def authenticated?(remember_token)
-        return false if remember_digest.nil?
-        BCrypt::Password.new(remember_digest).is_password?(remember_token)    #remeber_token variabile locale non della classe
+    def authenticated?(attribute ,remember_token)
+        digest = send("#{attribute}_digest")
+        return false if digest.nil?
+        BCrypt::Password.new(digest).is_password?(token)    #remeber_token variabile locale non della classe
     end   #remeber digest riprende l'attributo interno al db aggiunto
 
     def forget
         update_attribute(:remember_digest, nil)
     end
+
+    # Creates and assigns the activation token and digest.
+    def create_activation_digest
+      self.activation_token  = Gamer.new_token
+      self.activation_digest = Gamer.digest(activation_token)
+    end
+
+        # Activates an account.
+      def activate
+        update_attribute(:activated,    true)
+        update_attribute(:activated_at, Time.zone.now)
+      end
+
+      # Sends activation email.
+      def send_activation_email
+        GamerMailer.account_activation(self).deliver_now
+      end
 
 
 end

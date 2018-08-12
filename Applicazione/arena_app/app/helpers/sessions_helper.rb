@@ -11,7 +11,7 @@ module SessionsHelper
       @current_gamer ||= Gamer.find_by(id: gamer_id)
     elsif (gamer_id = cookies.signed[:gamer_id])
       gamer = Gamer.find_by(id: gamer_id)
-      if gamer && gamer.authenticated?(cookies[:remember_token])
+      if gamer && gamer.authenticated?(:remember,cookies[:remember_token])
         log_in gamer
         @current_gamer = gamer
       end
