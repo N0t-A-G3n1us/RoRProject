@@ -4,9 +4,6 @@ class Gamer < ApplicationRecord
     before_create :create_activation_digest
 
 
-
-
-
     #attr_accessor :username, :email, :password, :password_confirmation    già lo fa da solo
 
     before_save { self.email = email.downcase }
@@ -46,6 +43,11 @@ class Gamer < ApplicationRecord
 
 
     # Returns true if the given token matches the digest.
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 717e8971f954fa264bd6eb208a5559768ac0f9bf
     def authenticated?(attribute ,token)
         digest = send("#{attribute}_digest")
         return false if digest.nil?
@@ -73,6 +75,7 @@ class Gamer < ApplicationRecord
         GamerMailer.account_activation(self).deliver_now
       end
 
+<<<<<<< HEAD
       # Sets the password reset attributes.
 
     def create_reset_digest
@@ -92,6 +95,8 @@ class Gamer < ApplicationRecord
        reset_sent_at < 2.hours.ago
      end
 
+=======
+>>>>>>> 717e8971f954fa264bd6eb208a5559768ac0f9bf
 
 end
 

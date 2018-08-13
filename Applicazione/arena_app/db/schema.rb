@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2018_08_13_085402) do
 
+
   create_table "gamers", force: :cascade do |t|
     t.string "username"
     t.string "email"
