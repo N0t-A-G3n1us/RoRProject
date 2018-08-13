@@ -9,9 +9,12 @@ class GamerMailerPreview < ActionMailer::Preview
 
   end
 
-  # Preview this email at http://localhost:3000/rails/mailers/gamer_mailer/password_reset
+  # Preview this email at
+  # http://localhost:3000/rails/mailers/gamer_mailer/password_reset
   def password_reset
-    GamerMailer.password_reset
+    gamer = Gamer.first
+    gamer.reset_token = Gamer.new_token
+    GamerMailer.password_reset(gamer)
   end
 
 end
