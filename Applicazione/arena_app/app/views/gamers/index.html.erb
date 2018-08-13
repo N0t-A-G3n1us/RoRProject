@@ -23,6 +23,7 @@
 
 
   <tbody>
+    <ul class="users">
     <% @gamers.each do |gamer| %>
       <tr>
         <td><%= gamer.username %></td>
@@ -32,6 +33,7 @@
          <td><%= link_to 'Destroy', gamer, method: :delete, data: { confirm: 'Are you sure?' } %></td>   DOBBIAMO GESTIRE LA CONDIZIONE DI ELIMINAZIONE UTENTI SE LA VOGLIAMO METTERE-->
       </tr>
     <% end %>
+    </ul>
   </tbody>
 
 
