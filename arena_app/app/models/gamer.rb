@@ -99,11 +99,13 @@ class Gamer < ApplicationRecord
       find_by(email: auth['info']['email']) || create_from_auth(auth)
     end
 
-    def create_from_auth(auth)
-      create( 
-        id: auth['uid'],
-        email: auth['info']['email'],
-        username: auth['info']['name'])
+    def self.create_from_auth(auth)
+      where(email: auth.info.email).first_or_initialize do |gamer|
+        gamer.username = auth.info.name
+        gamer.email = auth.info.email
+        gamer.password= Gamer.digest(Gamer.new_token) #get a random password
+        gamer.save!
+      end
     end
 end
 
