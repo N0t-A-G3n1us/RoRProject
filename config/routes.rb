@@ -14,6 +14,12 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
+  #oauth
+  get 'loginGoogle', to: redirect('/auth/google_oauth2') # , as: 'login'
+  get 'logoutGoogle', to: 'sessions#destroy' # , as: 'logout'
+  get 'auth/:provider/callback', to: 'sessions#create_by_google_oauth'
+  get 'auth/failure', to: redirect('/')
+  
   resources :gamers
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]

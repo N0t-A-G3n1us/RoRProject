@@ -94,7 +94,17 @@ class Gamer < ApplicationRecord
        reset_sent_at < 2.hours.ago
      end
 
+    def self.signin_from_auth(auth)
+      
+      find_by(email: auth['info']['email']) || create_from_auth(auth)
+    end
 
+    def create_from_auth(auth)
+      create( 
+        id: auth['uid'],
+        email: auth['info']['email'],
+        username: auth['info']['name'])
+    end
 end
 
 
