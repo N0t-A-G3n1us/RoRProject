@@ -6,6 +6,14 @@ michael:
   password_digest: <%= Gamer.digest('password') %>
   activated: true
   activated_at: <%= Time.zone.now %>
+  admin: true
 
+archer:
+  username: Archer Example
+  email: archer@example.com
+  password_digest: <%= Gamer.digest('password') %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
+  
 
 #empty

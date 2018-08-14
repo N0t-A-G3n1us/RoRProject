@@ -1,7 +1,8 @@
 class GamersController < ApplicationController
   before_action :set_gamer, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_gamer, only: [:index,:edit, :update]   #richiama la funzione logged in use nel caso ci sia il richiamo di edit o update (funzione di sotto)
+  before_action :logged_in_gamer, only: [:index,:edit, :update, :destroy]   #richiama la funzione logged in use nel caso ci sia il richiamo di edit o update (funzione di sotto)
   before_action :correct_gamer,   only: [:edit, :update]
+  before_action :admin_user,     only: :destroy
 
 
   # GET /gamers
@@ -92,5 +93,9 @@ class GamersController < ApplicationController
     def correct_gamer
       @Gamer = Gamer.find(params[:id])
       redirect_to(root_url) unless @gamer == current_gamer
+    end
+
+     def admin_user
+      redirect_to(root_url) unless current_gamer.admin?
     end
 end

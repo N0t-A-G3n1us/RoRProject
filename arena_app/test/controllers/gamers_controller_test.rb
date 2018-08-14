@@ -3,6 +3,7 @@ require 'test_helper'
 class GamersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @gamer = gamers(:michael)
+    @gamer2= gamers(:archer)
   end
 
   test "should get index" do
@@ -51,6 +52,19 @@ class GamersControllerTest < ActionDispatch::IntegrationTest
       delete gamer_url(@gamer)
     end
 
-    assert_redirected_to gamers_url
+
+  test "should redirect destroy when not logged in" do
+    assert_no_difference 'Gamer.count' do
+      delete user_path(@gamer)
+    end
+    assert_redirected_to login_url
+  end
+
+  test "should redirect destroy when logged in as a non-admin" do
+    log_in_as(@gamer2)
+    assert_no_difference 'Gamer.count' do
+      delete user_path(@gamer)
+    end
+    assert_redirected_to root_url
   end
 end
