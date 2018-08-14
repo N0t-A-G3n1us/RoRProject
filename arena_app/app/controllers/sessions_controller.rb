@@ -23,6 +23,18 @@ class SessionsController < ApplicationController
     end
   end
 
+  def create_by_google_oauth   
+    if !logged_in?
+      @gamer= Gamer.signin_from_auth(request.env["omniauth.auth"])
+      session[:id] = @gamer.id
+      log_in @gamer
+    else
+      flash[:warning] = 'You are already logged'
+    end
+
+    redirect_to root_url
+  end
+
   def destroy
     log_out if logged_in?
     redirect_to root_url
