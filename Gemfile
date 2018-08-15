@@ -25,7 +25,8 @@ gem 'bootstrap-will_paginate', '1.0.0'     #paginazione
 gem 'faker',          '1.7.3'              #profili finti
 gem 'rails-controller-testing'
 gem 'omniauth-google-oauth2'
-
+#for better formatting in rails console
+gem 'hirb'
 
 
 # Use CoffeeScript for .coffee assets and views

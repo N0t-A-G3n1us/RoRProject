@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
   def create_by_google_oauth   
     if !logged_in?
       @gamer= Gamer.signin_from_auth(request.env["omniauth.auth"])
-      session[:email] = @gamer.email
+      session[:gamer_id] = @gamer.id
       log_in @gamer
     else
       flash[:warning] = 'You are already logged'

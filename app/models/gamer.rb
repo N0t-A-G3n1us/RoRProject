@@ -103,7 +103,8 @@ class Gamer < ApplicationRecord
       where(email: auth.info.email).first_or_initialize do |gamer|
         gamer.username = auth.info.name
         gamer.email = auth.info.email
-        gamer.password= Gamer.digest(Gamer.new_token) #get a random password
+        gamer.password= Gamer.digest(Gamer.new_token) #get a random password and encrypt
+        gamer.activate
         gamer.save!
       end
     end
