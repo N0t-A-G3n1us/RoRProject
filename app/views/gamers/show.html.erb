@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @gamer.username %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @gamer.email %>
+</p>
+<% if current_gamer?(@gamer) %>
+    <%= link_to 'Edit', edit_gamer_path(@gamer) %> |
+<% end %>
+
+<%= link_to 'Back', gamers_path %>
