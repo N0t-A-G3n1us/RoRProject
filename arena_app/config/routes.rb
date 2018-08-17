@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  
+  resources :teams
   get 'password_resets/new'
   get 'password_resets/edit'
   default_url_options :host => "localhost:3000"
@@ -20,6 +22,7 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#create_by_google_oauth'
   get 'auth/failure', to: redirect('/')
   
+  resources :groups
   resources :gamers
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]

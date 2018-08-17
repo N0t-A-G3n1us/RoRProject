@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<%= image_tag @team.avatar.url(:thumb) if @team.avatar? %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @team.name %>
+</p>
+
+<p>
+  <strong>Boss:</strong>
+  <%= @team.boss %>
+</p>
+
+<p>
+  <strong>Invite:</strong>
+  <%= @team.invites.each do |inv| %>
+      <%= inv%>
+  <% end %>
+</p>
+
+<p>
+  <strong>Match:</strong>
+  <%= @team.matches.each do |mat| %>
+    <%= mat%>
+  <% end %>
+</p>
+
+<p>
+  <strong>Challenge:</strong>
+  <%= @team.challenges.each do |cha| %>
+    <%= cha%>
+  <% end %>
+</p>
+<p>
+  <strong>Members:</strong>
+  <%= @team.members.each do |mem| %>
+    <%= mem%>
+  <% end %>
+</p>
+
+
+
+
+<%= link_to 'Edit', edit_team_path(@team) %> |
+<%= link_to 'Back', teams_path %>

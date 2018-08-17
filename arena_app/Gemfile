@@ -27,8 +27,10 @@ gem 'rails-controller-testing'
 gem 'omniauth-google-oauth2'
 #for better formatting in rails console
 gem 'hirb'
-
-
+gem 'devise'
+#gems to upload avatar image
+gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
