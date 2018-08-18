@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_17_171855) do
+ActiveRecord::Schema.define(version: 2018_08_18_151350) do
 
   create_table "consoles", force: :cascade do |t|
     t.string "name"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2018_08_17_171855) do
     t.string "nickname"
     t.string "conssole"
     t.string "gammes"
+    t.boolean "updated"
     t.index ["email"], name: "index_gamers_on_email", unique: true
   end
 

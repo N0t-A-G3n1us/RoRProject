@@ -1,8 +1,9 @@
 class Gamer < ApplicationRecord
 
-    attr_accessor :remember_token,:activation_token, :reset_token ,:verify_changes # aggiunge attributo alla classe Gamer
+    attr_accessor :remember_token,:activation_token, :reset_token # aggiunge attributo alla classe Gamer
     before_create :create_activation_digest
-    before_create :set_verification
+
+
 
     #has_many :games
     #has_one :console
@@ -53,6 +54,11 @@ class Gamer < ApplicationRecord
     def remember
         self.remember_token = Gamer.new_token
         update_attribute(:remember_digest, Gamer.digest(remember_token))
+    end
+
+    def generate_attributes_token
+        self.attributes_token= Gamer.new_token
+        Gamer.digest(remember_token)
     end
 
 
@@ -120,9 +126,14 @@ class Gamer < ApplicationRecord
       end
     end
 
-    def set_verification
-        self.verify_changes=false
+
+    def set_false_verification
+        update_attribute(:verify_changes,false)
     end
+
+
+
+
 end
 
 

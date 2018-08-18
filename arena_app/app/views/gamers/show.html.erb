@@ -26,6 +26,11 @@
   <%= @gamer.conssole %>
 
 </p>
+<p>
+  <strong>Description:</strong>
+  <%= @gamer.description %>
+
+</p>
 <% if current_gamer?(@gamer) %>
     <%= link_to 'Edit', edit_gamer_path(@gamer) %> |
 <% end %>

@@ -10,6 +10,26 @@ class AccountAttributesController < ApplicationController
     def edit
     end
 
+    def update
+        @gamer = Gamer.find_by(email: params[:email].downcase)
+        if @gamer
+          @gamer.update_attribute(:conssole,params[:account_attributes][:conssole])
+          @gamer.update_attribute(:nickname,params[:account_attributes][:nickname])
+          @gamer.update_attribute(:nation,params[:account_attributes][:nation])
+          @gamer.update_attribute(:gammes,params[:account_attributes][:gammes])
+          @gamer.update_attribute(:description,params[:account_attributes][:description])
+          @gamer.update_attribute(:updated,true)
+
+          flash[:info] = "attributes updated"
+          redirect_to @gamer
+
+        else
+          flash.now[:danger] = "Email address not found"
+          render 'edit'
+        end
+
+    end
+
 
 
     def create
@@ -20,8 +40,10 @@ class AccountAttributesController < ApplicationController
           @gamer.update_attribute(:nation,params[:account_attributes][:nation])
           @gamer.update_attribute(:gammes,params[:account_attributes][:gammes])
           @gamer.update_attribute(:description,params[:account_attributes][:description])
+          @gamer.update_attribute(:updated,true)
           flash[:info] = "attributes updated"
-          redirect_to root_url
+          redirect_to @gamer
+
         else
           flash.now[:danger] = "Email address not found"
           render 'new'

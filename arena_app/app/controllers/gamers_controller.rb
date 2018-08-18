@@ -3,6 +3,7 @@ class GamersController < ApplicationController
   before_action :logged_in_gamer, only: [:index,:edit, :update, :destroy]   #richiama la funzione logged in use nel caso ci sia il richiamo di edit o update (funzione di sotto)
   before_action :correct_gamer,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
+  before_action :check_attributes, only: [:show,:edit,:update]
 
 
   # GET /gamers
@@ -51,7 +52,7 @@ class GamersController < ApplicationController
   def update
     respond_to do |format|
       if @gamer.update(gamer_params)
-        format.html { redirect_to @gamer, notice: 'Gamer was successfully updated.' }
+        format.html { redirect_to edit_account_attribute_url(email: @gamer.email), notice: 'Gamer was successfully updated.' }
         format.json { render :show, status: :ok, location: @gamer }
       else
         format.html { render :edit }
@@ -78,7 +79,7 @@ class GamersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gamer_params
-      params.require(:gamer).permit(:username, :email, :password , :password_confirmation, :gammes , :conssole , :nickname ,:nation)   #aggiunto gli ultimi 2  MANCAVA QUESTO (SENZA L AGGIUNTA NON VENIVANO INSERITI E VEDEVA PASSWORD VUOTE
+      params.require(:gamer).permit(:username, :email, :password , :password_confirmation, :gammes , :conssole , :nickname ,:nation,:updated)   #aggiunto gli ultimi 2  MANCAVA QUESTO (SENZA L AGGIUNTA NON VENIVANO INSERITI E VEDEVA PASSWORD VUOTE
     end
 
     # Confirms a logged-in gamer.
@@ -98,4 +99,13 @@ class GamersController < ApplicationController
      def admin_user
       redirect_to(root_url) unless current_gamer.admin?
     end
+
+    def check_attributes
+       @gamer = Gamer.find(params[:id])
+       if !@gamer.updated && @gamer==current_gamer
+            flash[:danger] = "Please change your attributes#{@gamer.updated}"
+            redirect_to edit_account_attribute_url(email: @gamer.email)
+       end
+    end
+
 end
