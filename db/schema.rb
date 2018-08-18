@@ -37,6 +37,13 @@ ActiveRecord::Schema.define(version: 2018_08_17_215944) do
     t.index ["team_id"], name: "index_gamers_on_team_id"
   end
 
+  create_table "gamers_teams", id: false, force: :cascade do |t|
+    t.integer "gamer_id", null: false
+    t.integer "team_id", null: false
+    t.index ["gamer_id"], name: "index_gamers_teams_on_gamer_id"
+    t.index ["team_id"], name: "index_gamers_teams_on_team_id"
+  end
+
   create_table "games", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
