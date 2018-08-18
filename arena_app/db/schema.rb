@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_13_170751) do
+ActiveRecord::Schema.define(version: 2018_08_17_171855) do
+
+  create_table "consoles", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "gamers", force: :cascade do |t|
     t.string "username"
@@ -25,7 +32,19 @@ ActiveRecord::Schema.define(version: 2018_08_13_170751) do
     t.string "reset_digest"
     t.datetime "reset_sent_at"
     t.boolean "admin", default: false
+    t.string "description"
+    t.string "nation"
+    t.string "nickname"
+    t.string "conssole"
+    t.string "gammes"
     t.index ["email"], name: "index_gamers_on_email", unique: true
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

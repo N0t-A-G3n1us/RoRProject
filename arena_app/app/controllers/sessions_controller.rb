@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
     end
   end
 
-  def create_by_google_oauth   
+  def create_by_google_oauth
     if !logged_in?
       @gamer= Gamer.signin_from_auth(request.env["omniauth.auth"])
       session[:gamer_id] = @gamer.id
@@ -39,4 +39,6 @@ class SessionsController < ApplicationController
     log_out if logged_in?
     redirect_to root_url
   end
+
+
 end

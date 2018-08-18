@@ -9,6 +9,23 @@
   <strong>Email:</strong>
   <%= @gamer.email %>
 </p>
+<p>
+  <strong>Nickname:</strong>
+  <%= @gamer.nickname %>
+</p>
+<p>
+  <strong>Nation:</strong>
+  <%= @gamer.nation %>
+</p>
+<p>
+  <strong>Games:</strong>
+  <%= @gamer.gammes %>
+</p>
+<p>
+  <strong>Console:</strong>
+  <%= @gamer.conssole %>
+
+</p>
 <% if current_gamer?(@gamer) %>
     <%= link_to 'Edit', edit_gamer_path(@gamer) %> |
 <% end %>
