@@ -1,7 +1,18 @@
 class Gamer < ApplicationRecord
 
-    attr_accessor :remember_token,:activation_token, :reset_token  # aggiunge attributo alla classe Gamer
+    attr_accessor :remember_token,:activation_token, :reset_token ,:verify_changes # aggiunge attributo alla classe Gamer
     before_create :create_activation_digest
+    before_create :set_verification
+
+    #has_many :games
+    #has_one :console
+
+   # validates :nickname, length: {minimum: 6},
+                       #  presence: true
+
+   # validates :console , presence: true
+   # validates :nation , presence: true
+   # validates :games, presence: true
 
 
 
@@ -95,7 +106,7 @@ class Gamer < ApplicationRecord
      end
 
     def self.signin_from_auth(auth)
-      
+
       find_by(email: auth['info']['email']) || create_from_auth(auth)
     end
 
@@ -107,6 +118,10 @@ class Gamer < ApplicationRecord
         gamer.activate
         gamer.save!
       end
+    end
+
+    def set_verification
+        self.verify_changes=false
     end
 end
 

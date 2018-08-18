@@ -78,7 +78,7 @@ class GamersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gamer_params
-      params.require(:gamer).permit(:username, :email, :password , :password_confirmation)   #aggiunto gli ultimi 2  MANCAVA QUESTO (SENZA L AGGIUNTA NON VENIVANO INSERITI E VEDEVA PASSWORD VUOTE
+      params.require(:gamer).permit(:username, :email, :password , :password_confirmation, :gammes , :conssole , :nickname ,:nation)   #aggiunto gli ultimi 2  MANCAVA QUESTO (SENZA L AGGIUNTA NON VENIVANO INSERITI E VEDEVA PASSWORD VUOTE
     end
 
     # Confirms a logged-in gamer.
