@@ -9,10 +9,10 @@ class Team < ApplicationRecord
   has_many :invites, through: :invite_requests, source: :gamer
   
   has_many :matches
-  has_many :matching_team , through: :matches   
+  has_many :matching_teams , through: :matches   
   
   has_many :challenges
-  has_many :challenging_team, through: :challenges 
+  has_many :challenging_teams, through: :challenges 
   
   has_many :members
   has_many :gamers ,through: :members

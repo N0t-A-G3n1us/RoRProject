@@ -1,3 +1,5 @@
+<% provide(:title, "Teams list") %>
+
 <p id="notice"><%= notice %></p>
 
 <h1>Teams</h1>
@@ -16,8 +18,10 @@
   </thead>
 
   <tbody>
-    <% @teams.each do |team| %>
+    <% @teams.all.each do |team| %>
       <tr>
+        <td> <%= image_tag team.avatar.url(:thumb),width: 60, class: "avatar-image" %>
+</td>
         <td><%= team.name %></td>
         <td><%= team.boss %></td>
         <td><%= team.invites.to_a %></td>

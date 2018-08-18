@@ -13,20 +13,23 @@ class TeamAvatarUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  
+
   # Provide a default URL as a default if there hasn't been a file uploaded:
-  # def default_url(*args)
-  #   # For Rails 3.1+ asset pipeline compatibility:
-  #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
-  #
-  #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
-  # end
+   def default_url(*args)
+     # For Rails 3.1+ asset pipeline compatibility:
+      #ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
+     #"/images/fallback/" + [version_name, "default.png"].compact.join('_')
+    ActionController::Base.helpers.asset_path("team_default_avatar.png")
+   end
+
 
   # Process files as they are uploaded:
-  # process scale: [200, 300]
+   process scale: [200, 300]
   #
-  # def scale(width, height)
-  #   # do something
-  # end
+   def scale(width, height)
+      process resize_to_fit: [80,80]
+   end
 
   # Create different versions of your uploaded files:
    version :thumb do

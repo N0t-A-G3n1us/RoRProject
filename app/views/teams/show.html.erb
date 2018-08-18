@@ -1,7 +1,8 @@
+<% provide(:title, "Team "+ @team.name ) %>
+
 <p id="notice"><%= notice %></p>
 
-<%= image_tag @team.avatar.url(:thumb) if @team.avatar? %>
-
+<%= image_tag @team.avatar.url(:thumb),width: 80, class: "avatar-image" %>
 <p>
   <strong>Name:</strong>
   <%= @team.name %>
@@ -35,7 +36,7 @@
 <p>
   <strong>Members:</strong>
   <%= @team.members.each do |mem| %>
-    <%= mem%>
+    <%= mem %>
   <% end %>
 </p>
 
