@@ -55,8 +55,7 @@ class GamersController < ApplicationController
         format.html { redirect_to edit_account_attribute_url(email: @gamer.email), notice: 'Gamer was successfully updated.' }
         format.json { render :show, status: :ok, location: @gamer }
       else
-        format.html { render :edit }
-        format.json { render json: @gamer.errors, status: :unprocessable_entity }
+        format.html { redirect_to edit_account_attribute_url(email: @gamer.email) }
       end
     end
   end
@@ -104,7 +103,7 @@ class GamersController < ApplicationController
        @gamer = Gamer.find(params[:id])
        if !@gamer.updated && @gamer==current_gamer
             flash[:danger] = "Please change your attributes#{@gamer.updated}"
-            redirect_to edit_account_attribute_url(email: @gamer.email)
+            redirect_to new_account_attribute_url(email: @gamer.email)
        end
     end
 

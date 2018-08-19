@@ -4,6 +4,33 @@ class AccountAttributesController < ApplicationController
     def new
     end
 
+     def create
+        @gamer = Gamer.find_by(email: params[:email].downcase)
+        if @gamer
+          if (params[:account_attributes][:conssole].nil? || params[:account_attributes][:nickname].empty? || params[:account_attributes][:nation].empty? ||
+             params[:account_attributes][:gammes].nil? )
+             flash.now[:danger] = "All parameters not compiled"
+             render 'edit'    #non riesco a reindirizzare quando faccio la edit e sbaglio volontariamente parametri nell'edit url (mi ritorna nella new url).quindi ho dovuto forzare dicendo che in caso di
+             #di valori errati di reindirizzare nella edit. praticamente quando faccio la edit e faccio la submit mi entra sempre nella create invece di entrare nell'update.
+          else
+
+              @gamer.update_attribute(:conssole,params[:account_attributes][:conssole])
+              @gamer.update_attribute(:nickname,params[:account_attributes][:nickname])
+              @gamer.update_attribute(:nation,params[:account_attributes][:nation])
+              @gamer.update_attribute(:gammes,params[:account_attributes][:gammes])
+              @gamer.update_attribute(:description,params[:account_attributes][:description])
+              @gamer.update_attribute(:updated,true)  #attributo aggiunto nel db per verificare che siano stati aggiunti gli attributi aggiuntivi nell'account
+
+              flash[:info] = "attributes updated"
+              redirect_to @gamer
+          end
+
+        else
+          flash.now[:danger] = "Email address not found"
+          render 'new'
+        end
+    end
+
     def index
     end
 
@@ -13,15 +40,22 @@ class AccountAttributesController < ApplicationController
     def update
         @gamer = Gamer.find_by(email: params[:email].downcase)
         if @gamer
-          @gamer.update_attribute(:conssole,params[:account_attributes][:conssole])
-          @gamer.update_attribute(:nickname,params[:account_attributes][:nickname])
-          @gamer.update_attribute(:nation,params[:account_attributes][:nation])
-          @gamer.update_attribute(:gammes,params[:account_attributes][:gammes])
-          @gamer.update_attribute(:description,params[:account_attributes][:description])
-          @gamer.update_attribute(:updated,true)
+          if (params[:account_attributes][:conssole].empty? || params[:account_attributes][:nickname].empty? || params[:account_attributes][:nation].empty? ||
+             params[:account_attributes][:gammes].empty? )
+             flash.now[:danger] = "All parameters not compiled"
+             render 'edit'
+          else
 
-          flash[:info] = "attributes updated"
-          redirect_to @gamer
+              @gamer.update_attribute(:conssole,params[:account_attributes][:conssole])
+              @gamer.update_attribute(:nickname,params[:account_attributes][:nickname])
+              @gamer.update_attribute(:nation,params[:account_attributes][:nation])
+              @gamer.update_attribute(:gammes,params[:account_attributes][:gammes])
+              @gamer.update_attribute(:description,params[:account_attributes][:description])
+              @gamer.update_attribute(:updated,true)
+
+              flash[:info] = "attributes updated"
+              redirect_to @gamer
+          end
 
         else
           flash.now[:danger] = "Email address not found"
@@ -32,23 +66,6 @@ class AccountAttributesController < ApplicationController
 
 
 
-    def create
-        @gamer = Gamer.find_by(email: params[:email].downcase)
-        if @gamer
-          @gamer.update_attribute(:conssole,params[:account_attributes][:conssole])
-          @gamer.update_attribute(:nickname,params[:account_attributes][:nickname])
-          @gamer.update_attribute(:nation,params[:account_attributes][:nation])
-          @gamer.update_attribute(:gammes,params[:account_attributes][:gammes])
-          @gamer.update_attribute(:description,params[:account_attributes][:description])
-          @gamer.update_attribute(:updated,true)
-          flash[:info] = "attributes updated"
-          redirect_to @gamer
-
-        else
-          flash.now[:danger] = "Email address not found"
-          render 'new'
-        end
-    end
 
     private
 

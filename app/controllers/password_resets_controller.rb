@@ -52,7 +52,7 @@ class PasswordResetsController < ApplicationController
     # Confirms a valid user.
     def valid_gamer
       unless (@gamer && @gamer.activated? &&
-              @gamer.authenticated?(:reset, params[:id]))
+              @gamer.authenticated?(:reset, params[:id]))    #richiama params[:id] posto nell' url del form for di edit.html.erb (per questo inserisce params[:id] nel path per il routing della form
         redirect_to root_url
       end
     end
