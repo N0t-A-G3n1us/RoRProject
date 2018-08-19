@@ -64,6 +64,24 @@ class TeamsController < ApplicationController
     end
   end
 
+  def join
+    puts "---------->"+current_gamer.id.to_s
+    @team =Team.find(params[:team_id])
+    puts "---------->"+ @team.id.to_s
+    @team.members.create(gamer_id: current_gamer.id)
+    redirect_to @team
+  end
+
+  def leave
+
+    @team =Team.find(params[:team_id])
+    @member = @team.members.find_by(gamer_id: current_gamer.id)
+    @team.members.delete(@member) unless @member.nil?
+    redirect_to @team
+  end
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_team
@@ -76,4 +94,6 @@ class TeamsController < ApplicationController
           {:match_ids => []} ,{ :challenge_ids => [] },
            {:gamer_ids => []},:game_id , :console, :avatar )
     end
+
+  
 end

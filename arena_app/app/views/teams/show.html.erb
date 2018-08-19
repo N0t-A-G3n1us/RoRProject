@@ -21,14 +21,14 @@
 </p>
 
 <p>
-  <strong>Match:</strong>
+  <strong>Matches:</strong>
   <%= @team.matches.each do |mat| %>
     <%= mat%>
   <% end %>
 </p>
 
 <p>
-  <strong>Challenge:</strong>
+  <strong>Challenges:</strong>
   <%= @team.challenges.each do |cha| %>
     <%= cha%>
   <% end %>
@@ -41,7 +41,11 @@
 </p>
 
 
+  
+  <%= link_to 'Join this team', team_join_path(@team) %></br>
+  <%= link_to 'Leave this team', team_leave_path(@team) %></br></br>
+  
 
 
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+  <%= link_to 'Edit', edit_team_path(@team) %> |
+  <%= link_to 'Back', teams_path  %>
