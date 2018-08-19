@@ -32,9 +32,7 @@ ActiveRecord::Schema.define(version: 2018_08_17_215944) do
     t.string "reset_digest"
     t.datetime "reset_sent_at"
     t.boolean "admin", default: false
-    t.integer "team_id"
     t.index ["email"], name: "index_gamers_on_email", unique: true
-    t.index ["team_id"], name: "index_gamers_on_team_id"
   end
 
   create_table "gamers_teams", id: false, force: :cascade do |t|
@@ -68,7 +66,6 @@ ActiveRecord::Schema.define(version: 2018_08_17_215944) do
     t.integer "member_id"
     t.text "description"
     t.index ["game_id"], name: "index_groups_on_game_id"
-    t.index ["member_id"], name: "index_groups_on_member_id"
     t.index ["name"], name: "index_groups_on_name", unique: true
   end
 
@@ -113,11 +110,7 @@ ActiveRecord::Schema.define(version: 2018_08_17_215944) do
     t.string "console"
     t.integer "game_id"
     t.string "avatar"
-    t.index ["boss_id"], name: "index_teams_on_boss_id"
-    t.index ["challenge_id"], name: "index_teams_on_challenge_id"
     t.index ["game_id"], name: "index_teams_on_game_id"
-    t.index ["invite_id"], name: "index_teams_on_invite_id"
-    t.index ["match_id"], name: "index_teams_on_match_id"
   end
 
 end

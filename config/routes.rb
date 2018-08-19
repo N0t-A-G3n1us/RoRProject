@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  
+
+
   resources :teams
   get 'password_resets/new'
   get 'password_resets/edit'
@@ -21,7 +22,10 @@ Rails.application.routes.draw do
   get 'logoutGoogle', to: 'sessions#destroy' # , as: 'logout'
   get 'auth/:provider/callback', to: 'sessions#create_by_google_oauth'
   get 'auth/failure', to: redirect('/')
-  
+
+  #arena
+  get '/arena',  to: 'arena_pages#arena'
+
   resources :groups
   resources :gamers
   resources :account_activations, only: [:edit]
