@@ -1,5 +1,6 @@
 class Gamer < ApplicationRecord
 
+<<<<<<< HEAD
     #db relations
     belongs_to :team
     has_many :invite_requests
@@ -8,10 +9,27 @@ class Gamer < ApplicationRecord
     attr_accessor :remember_token,:activation_token, :reset_token  # aggiunge attributo alla classe Gamer
     before_create :create_activation_digest
 
+=======
+    attr_accessor :remember_token,:activation_token, :reset_token # aggiunge attributo alla classe Gamer
+    before_create :create_activation_digest
+
+
+
+    #has_many :games
+    #has_one :console
+
+   # validates :nickname, length: {minimum: 6},
+                       #  presence: true
+
+   # validates :console , presence: true
+   # validates :nation , presence: true
+   # validates :games, presence: true
 
 
 
 
+
+>>>>>>> origin/account-attributes
     #attr_accessor :username, :email, :password, :password_confirmation    già lo fa da solo
 
     before_save { self.email = email.downcase }
