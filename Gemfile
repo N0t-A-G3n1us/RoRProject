@@ -27,6 +27,8 @@ gem 'rails-controller-testing'
 gem 'omniauth-google-oauth2'
 #for better formatting in rails console
 gem 'hirb'
+gem 'geocoder'
+
 
 
 # Use CoffeeScript for .coffee assets and views
