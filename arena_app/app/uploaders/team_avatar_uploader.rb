@@ -28,7 +28,7 @@ class TeamAvatarUploader < CarrierWave::Uploader::Base
    process scale: [200, 300]
   #
    def scale(width, height)
-      process resize_to_fit: [80,80]
+      resize_to_fit(80,80)
    end
 
   # Create different versions of your uploaded files:
