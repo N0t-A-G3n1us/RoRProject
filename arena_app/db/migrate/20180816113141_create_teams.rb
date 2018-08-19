@@ -2,11 +2,11 @@ class CreateTeams < ActiveRecord::Migration[5.2]
   def change
     create_table :teams do |t|
       t.string :name
-      t.references :boss, foreign_key: true
-      t.references :invite, foreign_key: true
-      t.references :match, foreign_key: true
-      t.references :challenge, foreign_key: true
-      t.references :member, foreign_key: true
+      t.integer :boss_id
+      t.integer :invite_id
+      t.integer :match_id
+      t.integer :challenge_id
+      t.integer :member_id
 
       t.timestamps
     end
