@@ -1,11 +1,11 @@
 class Gamer < ApplicationRecord
 
     #db relations
-    
+
     has_many :invite_requests
     has_many :invites, through: :invite_requests
 
-    
+
 
     attr_accessor :remember_token,:activation_token, :reset_token  # aggiunge attributo alla classe Gamer
     before_create :create_activation_digest
@@ -32,7 +32,11 @@ class Gamer < ApplicationRecord
     validates :password, presence: true, length: { minimum: 6 }
     #validates_confirmation_of :password
 
-    
+
+    #roles
+    enum role: [:casual, :pro, :leader, :admin]
+
+
 
 
     # Returns the hash digest of the given string.
