@@ -29,7 +29,7 @@ gem 'omniauth-google-oauth2'
 gem 'hirb'
 gem 'geocoder'
 
-
+gem 'devise'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

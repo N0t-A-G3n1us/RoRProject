@@ -92,6 +92,14 @@ ActiveRecord::Schema.define(version: 2018_08_19_102441) do
     t.integer "gamer_id"
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.string "ip"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "matches", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -131,14 +139,6 @@ ActiveRecord::Schema.define(version: 2018_08_19_102441) do
     t.index ["game_id"], name: "index_teams_on_game_id"
     t.index ["invite_id"], name: "index_teams_on_invite_id"
     t.index ["match_id"], name: "index_teams_on_match_id"
-  end
-
-  create_table "locations", force: :cascade do |t|
-    t.string "ip"
-    t.float "latitude"
-    t.float "longitude"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end
