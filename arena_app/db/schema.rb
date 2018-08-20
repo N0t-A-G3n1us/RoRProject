@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_19_102441) do
+ActiveRecord::Schema.define(version: 2018_08_20_095715) do
 
   create_table "challenges", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -39,13 +39,14 @@ ActiveRecord::Schema.define(version: 2018_08_19_102441) do
     t.string "reset_digest"
     t.datetime "reset_sent_at"
     t.boolean "admin", default: false
-    t.integer "team_id"
     t.string "description"
     t.string "nation"
     t.string "nickname"
+    t.integer "team_id"
     t.string "conssole"
     t.string "gammes"
     t.boolean "updated", default: false
+    t.integer "role"
     t.index ["email"], name: "index_gamers_on_email", unique: true
     t.index ["team_id"], name: "index_gamers_on_team_id"
   end
