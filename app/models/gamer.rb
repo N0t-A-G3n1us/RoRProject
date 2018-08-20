@@ -1,9 +1,11 @@
 class Gamer < ApplicationRecord
 
     #db relations
-    belongs_to :team
+    
     has_many :invite_requests
     has_many :invites, through: :invite_requests
+
+    
 
     attr_accessor :remember_token,:activation_token, :reset_token  # aggiunge attributo alla classe Gamer
     before_create :create_activation_digest
