@@ -13,16 +13,20 @@ class AccountAttributesController < ApplicationController
              render 'edit'    #non riesco a reindirizzare quando faccio la edit e sbaglio volontariamente parametri nell'edit url (mi ritorna nella new url).quindi ho dovuto forzare dicendo che in caso di
              #di valori errati di reindirizzare nella edit. praticamente quando faccio la edit e faccio la submit mi entra sempre nella create invece di entrare nell'update.
           else
+              if params[:account_attributes][:nation] != request.location.country
+                 flash.now[:danger] = "nation doesn't match with your location:#{request.location.country}"
+                 render 'edit'
+              else
+                 @gamer.update_attribute(:conssole,params[:account_attributes][:conssole])
+                 @gamer.update_attribute(:nickname,params[:account_attributes][:nickname])
+                 @gamer.update_attribute(:nation,params[:account_attributes][:nation])
+                 @gamer.update_attribute(:gammes,params[:account_attributes][:gammes])
+                 @gamer.update_attribute(:description,params[:account_attributes][:description])
+                 @gamer.update_attribute(:updated,true)  #attributo aggiunto nel db per verificare che siano stati aggiunti gli attributi aggiuntivi nell'account
 
-              @gamer.update_attribute(:conssole,params[:account_attributes][:conssole])
-              @gamer.update_attribute(:nickname,params[:account_attributes][:nickname])
-              @gamer.update_attribute(:nation,params[:account_attributes][:nation])
-              @gamer.update_attribute(:gammes,params[:account_attributes][:gammes])
-              @gamer.update_attribute(:description,params[:account_attributes][:description])
-              @gamer.update_attribute(:updated,true)  #attributo aggiunto nel db per verificare che siano stati aggiunti gli attributi aggiuntivi nell'account
-
-              flash[:info] = "attributes updated"
-              redirect_to @gamer
+                 flash[:info] = "attributes updated"
+                 redirect_to @gamer
+              end
           end
 
         else
@@ -46,15 +50,20 @@ class AccountAttributesController < ApplicationController
              render 'edit'
           else
 
-              @gamer.update_attribute(:conssole,params[:account_attributes][:conssole])
-              @gamer.update_attribute(:nickname,params[:account_attributes][:nickname])
-              @gamer.update_attribute(:nation,params[:account_attributes][:nation])
-              @gamer.update_attribute(:gammes,params[:account_attributes][:gammes])
-              @gamer.update_attribute(:description,params[:account_attributes][:description])
-              @gamer.update_attribute(:updated,true)
+              if params[:account_attributes][:nation] != request.location.country
+                 flash.now[:danger] = "nation doesn't match with your location#{request.location.country}"
+                 render 'edit'
+              else
+                 @gamer.update_attribute(:conssole,params[:account_attributes][:conssole])
+                 @gamer.update_attribute(:nickname,params[:account_attributes][:nickname])
+                 @gamer.update_attribute(:nation,params[:account_attributes][:nation])
+                 @gamer.update_attribute(:gammes,params[:account_attributes][:gammes])
+                 @gamer.update_attribute(:description,params[:account_attributes][:description])
+                 @gamer.update_attribute(:updated,true)  #attributo aggiunto nel db per verificare che siano stati aggiunti gli attributi aggiuntivi nell'account
 
-              flash[:info] = "attributes updated"
-              redirect_to @gamer
+                 flash[:info] = "attributes updated"
+                 redirect_to @gamer
+              end
           end
 
         else

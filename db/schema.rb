@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_18_151350) do
+ActiveRecord::Schema.define(version: 2018_08_19_102441) do
 
   create_table "challenges", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -131,6 +131,14 @@ ActiveRecord::Schema.define(version: 2018_08_18_151350) do
     t.index ["game_id"], name: "index_teams_on_game_id"
     t.index ["invite_id"], name: "index_teams_on_invite_id"
     t.index ["match_id"], name: "index_teams_on_match_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "ip"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
