@@ -1,2 +1,5 @@
 <p>Welcome <%= current_gamer.username %></p>
-<p>Welcome <%= current_gamer.role %></p>
+<% if current_gamer.casual? %>
+  <h3>Welcome Super Admin</h3>
+<% else %>
+  <h3>Welcome</h3>
