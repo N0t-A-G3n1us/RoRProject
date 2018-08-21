@@ -8,7 +8,7 @@
 <% elsif current_gamer.admin? %>
   <h3>Welcome, Admin</h3>
 <% else %>
-  <h3>Welcome, Idiot.</h3>
+  <h3>Welcome, Idiot. <%= current_gamer.role %> </h3>
 <% end %>
 
 
