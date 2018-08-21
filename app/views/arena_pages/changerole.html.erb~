@@ -1,6 +1,12 @@
 <p>Welcome <%= current_gamer.username %></p>
 <% if current_gamer.casual? %>
   <h3>Welcome Super Admin</h3>
+<% elsif current_gamer.pro? %>
+  <h3>Welcome, pro</h3>
+<% elsif current_gamer.leader? %>
+  <h3>Welcome, Company Admin</h3>
+<% elsif current_gamer.admin? %>
+  <h3>Welcome, Admin</h3>
 <% else %>
-  <h3>Welcome</h3>
+  <h3>Welcome, Idiot.</h3>
 <% end %>
