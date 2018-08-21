@@ -33,6 +33,9 @@ Rails.application.routes.draw do
   #arena
   get '/arena',  to: 'arena_pages#arena'
   get '/changerole', to: 'arena_pages#changerole'
+  get '/upgrade', to: 'arena_pages#upgrade' #È IL BOTTONE PER CAMBIARE RUOLO
+  get '/downgrade', to: 'arena_pages#downgrade'
+
 
   resources :teams do
     get 'join'
