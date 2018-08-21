@@ -42,7 +42,11 @@ class Gamer < ApplicationRecord
     validates :password, presence: true, length: { minimum: 6 }
     #validates_confirmation_of :password
 
-    
+
+    #roles
+    enum role: [:casual, :pro, :leader, :admin]
+
+
 
 
     # Returns the hash digest of the given string.

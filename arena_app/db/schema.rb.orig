@@ -11,22 +11,25 @@
 # It's strongly recommended that you check this file into your version control system.
 
 <<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2018_08_17_215944) do
+ActiveRecord::Schema.define(version: 2018_08_21_090521) do
+=======
+ActiveRecord::Schema.define(version: 2018_08_20_095715) do
+>>>>>>> 8d8f2a41d9fae1dd3581683258f4df11c0d00031
 
   create_table "challenges", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "team_id"
     t.integer "challenging_team_id"
-=======
-ActiveRecord::Schema.define(version: 2018_08_18_151350) do
+  end
 
   create_table "consoles", force: :cascade do |t|
     t.string "name"
-    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
->>>>>>> origin/account-attributes
+    t.text "description"
+    t.integer "group_id"
+    t.index ["name"], name: "index_consoles_on_name", unique: true
   end
 
   create_table "gamers", force: :cascade do |t|
@@ -44,16 +47,38 @@ ActiveRecord::Schema.define(version: 2018_08_18_151350) do
     t.boolean "admin", default: false
 <<<<<<< HEAD
     t.integer "team_id"
+    t.string "nation"
+    t.string "nickname"
+    t.boolean "updated", default: false
+    t.integer "console_id"
+    t.integer "game_id"
+    t.text "description"
 =======
     t.string "description"
     t.string "nation"
     t.string "nickname"
+    t.integer "team_id"
     t.string "conssole"
     t.string "gammes"
-    t.boolean "updated"
->>>>>>> origin/account-attributes
+    t.boolean "updated", default: false
+    t.integer "role"
+>>>>>>> 8d8f2a41d9fae1dd3581683258f4df11c0d00031
     t.index ["email"], name: "index_gamers_on_email", unique: true
     t.index ["team_id"], name: "index_gamers_on_team_id"
+  end
+
+  create_table "gamers_consoles", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "console_id"
+    t.integer "gamer_id"
+  end
+
+  create_table "gamers_games", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "game_id"
+    t.integer "gamer_id"
   end
 
   create_table "gamers_teams", id: false, force: :cascade do |t|
@@ -80,12 +105,12 @@ ActiveRecord::Schema.define(version: 2018_08_18_151350) do
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.string "region"
-    t.string "console"
     t.integer "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "member_id"
     t.text "description"
+    t.integer "console_id"
     t.index ["game_id"], name: "index_groups_on_game_id"
     t.index ["member_id"], name: "index_groups_on_member_id"
     t.index ["name"], name: "index_groups_on_name", unique: true
@@ -96,6 +121,14 @@ ActiveRecord::Schema.define(version: 2018_08_18_151350) do
     t.datetime "updated_at", null: false
     t.integer "team_id"
     t.integer "gamer_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "ip"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "matches", force: :cascade do |t|
@@ -129,21 +162,14 @@ ActiveRecord::Schema.define(version: 2018_08_18_151350) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "description"
-    t.string "console"
     t.integer "game_id"
     t.string "avatar"
+    t.integer "console_id"
     t.index ["boss_id"], name: "index_teams_on_boss_id"
     t.index ["challenge_id"], name: "index_teams_on_challenge_id"
     t.index ["game_id"], name: "index_teams_on_game_id"
     t.index ["invite_id"], name: "index_teams_on_invite_id"
     t.index ["match_id"], name: "index_teams_on_match_id"
-  end
-
-  create_table "games", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end
