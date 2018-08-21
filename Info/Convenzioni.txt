@@ -1,0 +1,4 @@
+1] (Note that, in contrast to the plural convention for controller names, 
+	model names are singular: a Users controller, but a User model.)
+	 model represents a single user, whereas a database table consists of many users.
+	

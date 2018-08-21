@@ -1,0 +1,56 @@
+<% provide(:title, "More attributes") %>
+<h1 class="center">Successfull Sign Up! Welcome on board! <%= current_gamer.username %></h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">      <!--  url ti manda al controller di riferimento diciamo (dopo la post) il params riprende il token dal link che attiva la pagina -->
+    <%= form_for(:account_attributes, url: account_attributes_path(params[:id])) do |f| %>
+
+
+      <%= hidden_field_tag :email, params[:email] %>
+
+
+      <p>
+
+      <%= label :console_ids, 'Choose your consoles:' %>
+
+        <div class="funkyradio">
+        <%= f.collection_check_boxes( :console_ids, Console.all, :id, :name) do |c|%>
+          <div class="funkyradio-primary">
+            <%= c.check_box %> <%= c.label %>
+          </div>
+        <%end%>
+        </div>
+
+      </p>
+
+      <%= f.label :console_nickname %>
+      <%= f.text_field :nickname, class: 'form-control' %>
+
+      <%= f.label :nation %>
+      <%= f.text_field :nation, class: 'form-control' %>
+
+
+      <%= label :game_ids, 'Choose your consoles:' %>
+
+        <div class="funkyradio">
+        <%= f.collection_check_boxes( :game_ids, Game.all, :id, :name) do |c|%>
+          <div class="funkyradio-primary">
+            <%= c.check_box %> <%= c.label %>
+          </div>
+        <%end%>
+        </div>
+
+      </p>
+
+
+
+      <%= f.label :description %>
+      <%= f.text_area :description, class: 'form-control' %>
+
+
+
+      <%= f.submit "Update Profile", class: "btn btn-primary" %>
+    <% end %>
+
+  </div>
+</div>
