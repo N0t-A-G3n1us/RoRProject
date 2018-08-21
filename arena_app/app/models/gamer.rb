@@ -1,6 +1,7 @@
 class Gamer < ApplicationRecord
 
     #db relations
+
     
     has_many :invite_requests
     has_many :invites, through: :invite_requests, source: :team
@@ -39,7 +40,7 @@ class Gamer < ApplicationRecord
                       uniqueness: true
 
     has_secure_password
-    validates :password, presence: true, length: { minimum: 6 }
+    validates :password, presence: true, length: { minimum: 6 }, unless: Proc.new{|gamer| gamer.password.nil?} #HO DOVUTO AGGIUNGERE UNLESS CHE SENNÒ DAVA PROBLEMI OGNI VOLTA CHE CAMBIAVI UN PARAMETRO
     #validates_confirmation_of :password
 
 

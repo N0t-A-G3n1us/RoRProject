@@ -13,8 +13,8 @@
 <<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2018_08_21_090521) do
 =======
-ActiveRecord::Schema.define(version: 2018_08_20_095715) do
->>>>>>> 8d8f2a41d9fae1dd3581683258f4df11c0d00031
+ActiveRecord::Schema.define(version: 2018_08_21_093758) do
+>>>>>>> 17cb7b5b2a5126fb648bb35949c54c3eff833490
 
   create_table "challenges", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -45,24 +45,15 @@ ActiveRecord::Schema.define(version: 2018_08_20_095715) do
     t.string "reset_digest"
     t.datetime "reset_sent_at"
     t.boolean "admin", default: false
-<<<<<<< HEAD
-    t.integer "team_id"
     t.string "nation"
     t.string "nickname"
+    t.integer "team_id"
     t.boolean "updated", default: false
+    t.integer "role", default: 0
     t.integer "console_id"
     t.integer "game_id"
     t.text "description"
-=======
-    t.string "description"
-    t.string "nation"
-    t.string "nickname"
-    t.integer "team_id"
-    t.string "conssole"
-    t.string "gammes"
-    t.boolean "updated", default: false
     t.integer "role"
->>>>>>> 8d8f2a41d9fae1dd3581683258f4df11c0d00031
     t.index ["email"], name: "index_gamers_on_email", unique: true
     t.index ["team_id"], name: "index_gamers_on_team_id"
   end
