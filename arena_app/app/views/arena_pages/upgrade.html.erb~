@@ -1,0 +1,2 @@
+<p>Succesful?</p>
+<p> <%= current_gamer.username %> is now a <%= current_gamer.role %>

@@ -3,8 +3,4 @@ class Group < ApplicationRecord
                          presence: true
   has_many :playings
   has_many :games , through: :playings
-
-  has_many :members
-
-  has_one :console
 end

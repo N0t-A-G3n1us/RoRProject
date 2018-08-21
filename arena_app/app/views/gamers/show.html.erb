@@ -19,15 +19,12 @@
 </p>
 <p>
   <strong>Games:</strong>
-  <% @gamer.games.each do |game| %>
-    <%= game.name %>
-  <%end%>
+  <%= @gamer.gammes %>
 </p>
 <p>
   <strong>Console:</strong>
-  <% @gamer.consoles.each do |console|  %>
-    <%= console.name %>
-  <%end%>
+  <%= @gamer.conssole %>
+
 </p>
 <p>
   <strong>Description:</strong>

@@ -4,8 +4,6 @@ class Team < ApplicationRecord
 
 
   has_one :boss, class_name: 'Gamer'
-  has_one :console
-  has_one :game
 
   has_many :invite_requests 
   has_many :invites, through: :invite_requests, source: :gamer
@@ -16,7 +14,8 @@ class Team < ApplicationRecord
   has_many :challenges
   has_many :challenging_teams, through: :challenges 
   
-  has_many :members , source: :gamer
+  has_many :members
+  has_many :gamers ,through: :members
 
   mount_uploader :avatar, TeamAvatarUploader
 
