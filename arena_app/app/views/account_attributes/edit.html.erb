@@ -11,13 +11,15 @@
 
       <p>
 
-      <%= label :console, 'Choose your console:' %>
+        <%= label :console_ids, 'Choose your consoles:' %>
 
-      console_1 <%= f.radio_button :conssole,'console 1', class: 'form-control'%>
-
-      console_2 <%= f.radio_button :conssole,'console 2', class: 'form-control'%>
-
-      console_3 <%= f.radio_button :conssole, 'console 3', class: 'form-control'%>
+        <div class="funkyradio">
+        <%= f.collection_check_boxes( :console_ids, Console.all, :id, :name) do |c|%>
+          <div class="funkyradio-primary">
+            <%= c.check_box %> <%= c.label %>
+          </div>
+        <%end%>
+        </div>
 
       </p>
 
@@ -27,21 +29,22 @@
       <%= f.label :nation %>
       <%= f.text_field :nation, class: 'form-control' %>
 
+      <p>
+        <%= label :game_ids, 'Choose your games:' %>
 
-      <%= label :games, 'Choose your games:' %>
-
-      game_1 <%= f.check_box :gammes,{:multiple => true},'game 1',false%>
-
-      game_2 <%= f.check_box :gammes,{:multiple => true},'game 2',false%>
-
-      game_3 <%= f.check_box :gammes,{:multiple => true},'game 3',false%>
-
-      </p>
+        <div class="funkyradio">
+        <%= f.collection_check_boxes( :games_ids, Game.all, :id, :name) do |c|%>
+          <div class="funkyradio-primary">
+            <%= c.check_box %> <%= c.label %>
+          </div>
+        <%end%>
+        </div>
 
 
 
       <%= f.label :description %>
-      <%= f.text_area :description, class: 'form-control' %>
+      
+        <%= f.text_area :description, class: 'form-control' %>
 
 
 

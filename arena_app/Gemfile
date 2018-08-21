@@ -29,6 +29,9 @@ gem 'omniauth-google-oauth2'
 gem 'hirb'
 gem 'geocoder'
 
+#to generate erd 
+gem 'rails-erd', group: :development
+
 
 #gems to upload avatar image
 gem 'carrierwave', '~> 1.0'
@@ -91,3 +94,4 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+

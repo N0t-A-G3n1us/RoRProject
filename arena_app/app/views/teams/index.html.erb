@@ -27,7 +27,10 @@
         <td><%= team.invites.to_a %></td>
         <td><%= team.matches.to_a %></td>
         <td><%= team.challenges.to_a %></td>
-        <td><%= team.members.to_a %></td>
+        <td><% team.members.each do |mem| %>
+          <%= mem.gamer.username %> -> <%=mem.gamer.email %>
+          <%end%>
+        </td>
         <td><%= link_to 'Show', team %></td>
         <td><%= link_to 'Edit', edit_team_path(team) %></td>
         <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
