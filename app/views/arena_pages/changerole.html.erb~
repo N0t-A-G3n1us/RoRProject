@@ -3,3 +3,4 @@
   <h3>Welcome Super Admin</h3>
 <% else %>
   <h3>Welcome</h3>
+<% end %>
