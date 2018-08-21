@@ -30,11 +30,12 @@ gem 'omniauth-google-oauth2'
 gem 'hirb'
 gem 'geocoder'
 
-
+<<<<<<< HEAD:Gemfile
+=======
 #to generate erd 
 gem 'rails-erd', group: :development
 
-
+>>>>>>> 6d361599d1891d9135705ab29357c6fb2da66921:arena_app/Gemfile
 
 #gems to upload avatar image
 gem 'carrierwave', '~> 1.0'

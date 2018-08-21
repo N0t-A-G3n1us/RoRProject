@@ -1,12 +1,11 @@
 class Gamer < ApplicationRecord
 
     #db relations
-<<<<<<< HEAD:app/models/gamer.rb
+
 
     has_many :invite_requests
     has_many :invites, through: :invite_requests
 
-=======
     
     has_many :invite_requests
     has_many :invites, through: :invite_requests, source: :team
@@ -21,7 +20,7 @@ class Gamer < ApplicationRecord
 
     has_many :gamers_games
     has_many :games, through: :gamers_games
->>>>>>> 6d361599d1891d9135705ab29357c6fb2da66921:arena_app/app/models/gamer.rb
+
 
 
     attr_accessor :remember_token,:activation_token, :reset_token  # aggiunge attributo alla classe Gamer
