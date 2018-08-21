@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_19_102441) do
+ActiveRecord::Schema.define(version: 2018_08_21_090521) do
 
   create_table "challenges", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -48,8 +48,23 @@ ActiveRecord::Schema.define(version: 2018_08_19_102441) do
     t.integer "console_id"
     t.integer "game_id"
     t.text "description"
+    t.integer "role"
     t.index ["email"], name: "index_gamers_on_email", unique: true
     t.index ["team_id"], name: "index_gamers_on_team_id"
+  end
+
+  create_table "gamers_consoles", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "console_id"
+    t.integer "gamer_id"
+  end
+
+  create_table "gamers_games", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "game_id"
+    t.integer "gamer_id"
   end
 
   create_table "gamers_teams", id: false, force: :cascade do |t|
