@@ -29,8 +29,9 @@ gem 'omniauth-google-oauth2'
 #for better formatting in rails console
 gem 'hirb'
 gem 'geocoder'
+gem 'httparty'
 
-#to generate erd 
+#to generate erd
 gem 'rails-erd', group: :development
 
 
@@ -39,7 +40,7 @@ gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'devise'
 
-#gem http 
+#gem http
 gem 'httpparty'
 
 # Use CoffeeScript for .coffee assets and views

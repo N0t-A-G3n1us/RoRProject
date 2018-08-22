@@ -56,14 +56,15 @@ Rails.application.routes.draw do
       
     end
   end
-  resources :groups do 
+  resources :groups do
     get 'join'
     get 'leave'
-  end 
+  end
   resources :gamers
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :account_attributes
+  resources :arena_pages
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
