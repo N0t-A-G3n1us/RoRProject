@@ -2,7 +2,9 @@ class Gamer < ApplicationRecord
 
     #db relations
 
-    
+    has_many :gamers_groups
+    has_many :groups, through: :gamers_groups
+
     has_many :invite_requests
     has_many :invites, through: :invite_requests, source: :team
    

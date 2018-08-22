@@ -27,7 +27,7 @@
         <td><%= team.invites.to_a %></td>
         <td><%= team.matches.to_a %></td>
         <td><%= team.challenges.to_a %></td>
-        <td><% team.members.each do |mem| %>
+        <td><% team.gamers.each do |mem| %>
           <%= mem.gamer.username %> -> <%=mem.gamer.email %>
           <%end%>
         </td>

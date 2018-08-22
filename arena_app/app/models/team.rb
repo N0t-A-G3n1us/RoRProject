@@ -16,7 +16,7 @@ class Team < ApplicationRecord
   has_many :challenges
   has_many :challenging_teams, through: :challenges 
   
-  has_many :members , source: :gamer
+  has_many :gamers
 
   mount_uploader :avatar, TeamAvatarUploader
 

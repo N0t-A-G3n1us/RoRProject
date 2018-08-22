@@ -35,8 +35,8 @@
 </p>
 <p>
   <strong>Members:</strong>
-  <%= @team.members.each do |mem| %>
-    <%= mem %>
+  <%= @team.gamers.each do |mem| %>
+    <%= mem.username %> <%= mem.email %>
   <% end %>
 </p>
 

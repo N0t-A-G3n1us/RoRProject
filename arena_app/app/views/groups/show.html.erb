@@ -25,5 +25,14 @@
   	<%end%>
 </p>
 
+<p>
+<strong>Members:</strong>
+<% @group.members.each do |g| %>
+      <%= g.username %> -> <%= g.email %>
+    <%end%>
+</p>
+<%= link_to 'Join this group', group_join_path(@group) %></br>
+<%= link_to 'Leave this group', group_leave_path(@group) %></br></br>
+
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>

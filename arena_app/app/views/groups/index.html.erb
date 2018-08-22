@@ -10,6 +10,7 @@
       <th>Region</th>
       <th>Console</th>
       <th>Game</th>
+      <th>Members </th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,6 +23,9 @@
         <td><%= group.console %></td>
         <td> <% group.games.each do |g| %>
       <%= g.name %> <%end%></td>
+        <td> <% group.members.each do |g| %>
+      <%= g.username %> -> <%= g.email %> <%end%></td>
+      
         <td><%= link_to 'Show', group %></td>
         <td><%= link_to 'Edit', edit_group_path(group) %></td>
         <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>

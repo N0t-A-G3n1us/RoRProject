@@ -65,18 +65,18 @@ class TeamsController < ApplicationController
   end
 
   def join
-    puts "---------->"+current_gamer.id.to_s
+    #puts "---------->"+current_gamer.id.to_s
     @team =Team.find(params[:team_id])
-    puts "---------->"+ @team.id.to_s
-    @team.members.create(gamer_id: current_gamer.id)
+    #puts "---------->"+ @team.id.to_s
+    @team.gamers << Gamer.find_by_id(current_gamer.id)
     redirect_to @team
   end
 
   def leave
 
     @team =Team.find(params[:team_id])
-    @member = @team.members.find_by(gamer_id: current_gamer.id)
-    @team.members.delete(@member) unless @member.nil?
+    @gamer = @team.gamers.find_by(id: current_gamer.id)
+    @team.gamers.delete(@gamer) unless @gamer.nil?
     redirect_to @team
   end
 

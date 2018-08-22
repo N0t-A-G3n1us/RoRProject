@@ -63,6 +63,23 @@ class GroupsController < ApplicationController
     end
   end
 
+  def join
+    #puts "---------->"+current_member.id.to_s
+    @group =Group.find(params[:group_id])
+    #puts "---------->"+ @group.id.to_s
+    @group.members << Gamer.find_by_id(current_gamer.id)
+    redirect_to @group
+  end
+
+  def leave
+
+    @group =Group.find(params[:group_id])
+    @member = @group.members.find_by_id(current_gamer.id)
+    @group.members.delete(@member) unless @member.nil?
+    redirect_to @group
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_group

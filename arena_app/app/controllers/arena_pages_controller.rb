@@ -27,6 +27,11 @@ class ArenaPagesController < ApplicationController
 	end
 
   end	
+
+  def getTwitchData
+  	HttpParty.get()
+  end
+
   
 
 end

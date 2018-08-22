@@ -1,0 +1,49 @@
+curl -H "Authorization: OAuth 6n11nrg5t0kw1el1dl1tm3bakea2ya" https://id.twitch.tv/oauth2/validate
+@twitch = Twitch.new({
+  client_id: "zhlt7sm2fz1tg5z7w5rfv4zb8lybxx",
+  secret_key: "6n11nrg5t0kw1el1dl1tm3bakea2ya",
+  redirect_uri: "localhost:3000",
+  scope: ["channel_stream","channel_read"]
+})
+
+curl -X GET https://id.twitch.tv/oauth2/authorize?client_id=zhlt7sm2fz1tg5z7w5rfv4zb8lybxx&redirect_uri=http://localhost&response_type=token&scope=channel_stream+channel_read
+
+
+curl -H 'Client-ID: zhlt7sm2fz1tg5z7w5rfv4zb8lybxx' \
+-X GET 'https://api.twitch.tv/helix/streams?game_id=33214'
+
+
+
+curl -X GET 'https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=zhlt7sm2fz1tg5z7w5rfv4zb8lybxx&redirect_uri=http://localhost&scope=viewing_activity_read'
+
+
+
+
+http://localhost/#access_token=o87su8d5plc4783zt8pzkglrep872l&scope=viewing_activity_read&token_type=bearer
+
+
+
+curl -H "Authorization: OAuth o87su8d5plc4783zt8pzkglrep872l" https://api.twitch.tv/kraken/
+
+
+https://api.twitch.tv/kraken/users/44322889?client_id=zhlt7sm2fz1tg5z7w5rfv4zb8lybxx
+
+
+
+curl -H 'Accept: application/vnd.twitchtv.v5+json' \
+-H 'Authorization: OAuth o87su8d5plc4783zt8pzkglrep872l' \
+-X GET https://api.twitch.tv/kraken
+
+{"token":{"valid":true,"authorization":{"scopes":["viewing_activity_read"],"created_at":"2018-08-21T13:21:29Z","updated_at":"2018-08-21T13:21:29Z"},
+"user_name":"railsbiar","user_id":"250091476","client_id":"zhlt7sm2fz1tg5z7w5rfv4zb8lybxx","expires_in":5382271}}
+
+
+
+curl -H 'Accept: application/vnd.twitchtv.v5+json' \
+-H 'Client-ID: zhlt7sm2fz1tg5z7w5rfv4zb8lybxx' \
+-X GET 'https://api.twitch.tv/kraken/streams/summary?game=Overwatch'
+
+
+
+
+

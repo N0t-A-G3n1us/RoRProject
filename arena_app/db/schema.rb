@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_21_093758) do
+ActiveRecord::Schema.define(version: 2018_08_22_075209) do
 
   create_table "challenges", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2018_08_21_093758) do
     t.integer "game_id"
     t.text "description"
     t.integer "role", default: 0
+    t.integer "group_id"
     t.index ["email"], name: "index_gamers_on_email", unique: true
     t.index ["team_id"], name: "index_gamers_on_team_id"
   end
@@ -65,6 +66,13 @@ ActiveRecord::Schema.define(version: 2018_08_21_093758) do
     t.datetime "updated_at", null: false
     t.integer "game_id"
     t.integer "gamer_id"
+  end
+
+  create_table "gamers_groups", force: :cascade do |t|
+    t.integer "gamer_id"
+    t.integer "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "gamers_teams", id: false, force: :cascade do |t|
@@ -124,13 +132,6 @@ ActiveRecord::Schema.define(version: 2018_08_21_093758) do
     t.integer "matching_team_id"
   end
 
-  create_table "members", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "gamer_id"
-    t.integer "team_id"
-  end
-
   create_table "playings", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -151,6 +152,7 @@ ActiveRecord::Schema.define(version: 2018_08_21_093758) do
     t.integer "game_id"
     t.string "avatar"
     t.integer "console_id"
+    t.integer "gamer_id"
     t.index ["boss_id"], name: "index_teams_on_boss_id"
     t.index ["challenge_id"], name: "index_teams_on_challenge_id"
     t.index ["game_id"], name: "index_teams_on_game_id"

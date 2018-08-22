@@ -4,7 +4,8 @@ class Group < ApplicationRecord
   has_many :playings
   has_many :games , through: :playings
 
-  has_many :members
+  has_many :gamers_groups
+  has_many :members, through: :gamers_groups, source: :gamer
 
   has_one :console
 end
