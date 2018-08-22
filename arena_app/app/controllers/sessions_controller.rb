@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       if gamer.activated?
         log_in gamer
         params[:session][:remember_me] == '1' ? remember(gamer) : forget(gamer)
-        redirect_back_or gamer
+        redirect_back_or arena_path
       else
         message  = "Account not activated. "
         message += "Check your email for the activation link."
