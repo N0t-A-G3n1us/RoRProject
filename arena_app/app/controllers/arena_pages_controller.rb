@@ -1,7 +1,6 @@
 class ArenaPagesController < ApplicationController
+  include HTTParty
   def arena
-
-
     @gamer = current_gamer
     #al momento è su overwatch: bisogna semplicemente decidere quanti stream caricare per game e recuperli da @gamer ,aggiungendo altre variabili se necessarie
     response=HTTParty.get('https://api.twitch.tv/kraken/streams/?game=Fortnite&limit=2',:headers => { 'Accept' => 'application/vnd.twitchtv.v5+json' , 'Client-ID' => 'zhlt7sm2fz1tg5z7w5rfv4zb8lybxx'})
