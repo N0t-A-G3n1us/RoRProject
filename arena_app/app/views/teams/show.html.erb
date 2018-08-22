@@ -10,42 +10,49 @@
 
 <p>
   <strong>Boss:</strong>
-  <%= @team.boss %>
+  <%= @team.boss.username unless @team.boss.nil? %>
 </p>
 
 <p>
-  <strong>Invite:</strong>
-  <%= @team.invites.each do |inv| %>
-      <%= inv%>
+  <strong>Invites:</strong>
+  <% @team.invites.each do |inv| %>
+      <%= inv.username %> -> <%= inv.email %> | 
   <% end %>
 </p>
 
 <p>
   <strong>Matches:</strong>
-  <%= @team.matches.each do |mat| %>
-    <%= mat%>
+  <% @team.matches.each do |mat| %>
+    <%= link_to mat, team_matches_path(@team) %>
   <% end %>
 </p>
 
 <p>
   <strong>Challenges:</strong>
-  <%= @team.challenges.each do |cha| %>
-    <%= cha%>
+  <% @team.challenges.each do |cha| %>
+    <%= link_to cha, team_challenges_path(@team) %>
   <% end %>
 </p>
 <p>
   <strong>Members:</strong>
-  <%= @team.gamers.each do |mem| %>
-    <%= mem.username %> <%= mem.email %>
+  <% @team.gamers.each do |mem| %>
+    <%= mem.username %> -> <%= mem.email %> |
   <% end %>
 </p>
 
 
-  
+<% if @team.boss_id == current_gamer.id %>  
+    <%= link_to 'Show invite requests', team_invite_requests_path(@team) %></br>
+    <%end%>
+<% if @team.gamers.include?(current_gamer)%>
+  <%= link_to 'Leave this team', team_leave_path(@team) %></br>
+<% elsif gamer_can_challenge?(@team)%> 
+  <%= link_to 'Send challenge to this team', team_add_challenge_path(@team) %></br>
+<% else %>  
   <%= link_to 'Join this team', team_join_path(@team) %></br>
-  <%= link_to 'Leave this team', team_leave_path(@team) %></br></br>
-  
+<%end%>
 
 
+</br>
   <%= link_to 'Edit', edit_team_path(@team) %> |
   <%= link_to 'Back', teams_path  %>

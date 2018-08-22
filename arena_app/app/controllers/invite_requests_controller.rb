@@ -1,0 +1,109 @@
+class InviteRequestsController < ApplicationController
+  before_action :set_invite_request, only: [:show, :edit, :update, :destroy]
+
+  # GET /invite_requests
+  # GET /invite_requests.json
+  def index
+    @invite_requests = InviteRequest.all
+  end
+
+  # GET /invite_requests/1
+  # GET /invite_requests/1.json
+  def show
+  end
+
+  # GET /invite_requests/new
+  def new
+    @invite_request = InviteRequest.new
+  end
+
+  # GET /invite_requests/1/edit
+  def edit
+  end
+
+  # POST /invite_requests
+  # POST /invite_requests.json
+  def create
+    @invite_request = InviteRequest.new(invite_request_params)
+
+    respond_to do |format|
+      if @invite_request.save
+        format.html { redirect_to @invite_request, notice: 'Invite request was successfully created.' }
+        format.json { render :show, status: :created, location: @invite_request }
+      else
+        format.html { render :new }
+        format.json { render json: @invite_request.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /invite_requests/1
+  # PATCH/PUT /invite_requests/1.json
+  def update
+    respond_to do |format|
+      if @invite_request.update(invite_request_params)
+        format.html { redirect_to @invite_request, notice: 'Invite request was successfully updated.' }
+        format.json { render :show, status: :ok, location: @invite_request }
+      else
+        format.html { render :edit }
+        format.json { render json: @invite_request.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /invite_requests/1
+  # DELETE /invite_requests/1.json
+  def destroy
+    @invite_request.destroy
+    render :index
+    
+  end
+
+  def accept
+    @team = Team.find_by_id(params[:team_id])
+    @inv=InviteRequest.find_by_id(params[:invite_request_id])
+    if @team.nil?
+      flash[:danger]="not found this team"
+    elsif @inv.nil?
+      flash[:danger]="not found this invite request"
+    else
+      @team.gamers << @inv.gamer
+      flash[:success]="added gamer"
+      @team.invites.delete(@inv.gamer)
+      @inv.destroy
+    end
+    render :index
+  end
+
+  def refuse
+    @team = Team.find_by_id(params[:team_id])
+    @inv=InviteRequest.find_by_id(params[:invite_request_id])
+    if @team.nil?
+      flash[:danger]="not found this team"
+      render :index
+    elsif @team.gamers.include?(current_gamer)
+      flash[:warning]="gamer already in team"
+      render :index
+    elsif @inv.nil?
+      flash[:danger]="not found this invite request"
+      render :index
+    else
+      @team.invites.delete(@inv.gamer)
+      flash[:success]="removed invite"
+      @inv.destroy
+    end
+    render :index
+  end
+  
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_invite_request
+      @invite_request = InviteRequest.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def invite_request_params
+      params.fetch(:invite_request, :team_id,{})
+    end
+end

@@ -40,6 +40,21 @@ Rails.application.routes.draw do
   resources :teams do
     get 'join'
     get 'leave'
+    get 'show_invites'
+    get 'add_challenge'
+    resources :invite_requests do
+      get 'accept'
+      get 'refuse'
+    end
+    resources :challenges do
+      get'accept'
+      get'refuse'
+    end
+    resources :matches do
+      get'ragequit'
+      get'register'
+      
+    end
   end
   resources :groups do 
     get 'join'

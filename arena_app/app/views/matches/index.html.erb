@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Matches</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Opponent</th>
+      <th>Score</th>
+      <th colspan="5"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%if !@matches.nil? %>
+    <% @matches.each do |match| %>
+    <tr>
+      
+      <% if match.disputed %>
+      <td>
+        <%="X "+match.matching_team.name+" " %>
+      </td>
+      <td>
+        [
+        <%= display_score(match.score)+" " %>|
+        <%= " "+ display_score(match.mat_score) %>
+        ]
+      </td>
+      <% else %>
+      <td>
+        <%=match.matching_team.name+" " %>
+      </td>
+      <td><%=display_no_score%></td>
+      <td>
+        <%= link_to 'RageQuit',team_match_ragequit_path(match_id: match.id)%>
+      </td>
+      <td>
+        <%= link_to 'Register score', edit_team_match_path(id: match.id), data: { confirm: 'Are you sure? Match will be considered concluded' } %>
+      </td>
+    </tr>
+    <% end %>
+    <% end %>
+    <%end%>
+  </tbody>
+</table>
+
+<br>
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_22_075209) do
+ActiveRecord::Schema.define(version: 2018_08_22_170725) do
 
   create_table "challenges", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -130,6 +130,9 @@ ActiveRecord::Schema.define(version: 2018_08_22_075209) do
     t.datetime "updated_at", null: false
     t.integer "team_id"
     t.integer "matching_team_id"
+    t.integer "score"
+    t.integer "mat_score"
+    t.boolean "disputed", default: false
   end
 
   create_table "playings", force: :cascade do |t|

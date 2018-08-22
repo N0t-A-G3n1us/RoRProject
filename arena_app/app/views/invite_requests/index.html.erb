@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Invite Requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if !@invite_requests.empty?   %>
+    <%@invite_requests.each do |invite_request|%>
+    <tr>
+      Request from: <%= invite_request.gamer_id %>
+      <td><%= link_to 'Accept', team_invite_request_accept_path(invite_request_id: invite_request.id) %></td>
+      <td><%= link_to 'Refuse', team_invite_request_refuse_path(invite_request_id: invite_request.id), data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+    <%else%>
+      <strong>No invites request at the moment</strong>
+    <%end%>
+  </tbody>
+</table>
+
+<br>
+

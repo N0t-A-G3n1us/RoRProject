@@ -64,6 +64,9 @@ class TeamsController < ApplicationController
     end
   end
 
+  # #  # # # # # NOT CRUD
+
+
   def join
     #puts "---------->"+current_gamer.id.to_s
     @team =Team.find(params[:team_id])
@@ -79,6 +82,19 @@ class TeamsController < ApplicationController
     @team.gamers.delete(@gamer) unless @gamer.nil?
     redirect_to @team
   end
+
+
+  def show_invites
+    @team = Team.find(params[:team_id])
+    redirect_to team_invite_requests_path(@team)
+  end
+
+  def add_challenge
+    @team = Team.find(params[:team_id])
+    @team.challenges.create(team_id: @team.id, challenging_team_id: current_gamer.team.id)
+    render :show
+  end 
+
 
 
 

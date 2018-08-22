@@ -23,12 +23,12 @@
         <td> <%= image_tag team.avatar.url(:thumb),width: 60, class: "avatar-image" %>
 </td>
         <td><%= team.name %></td>
-        <td><%= team.boss %></td>
-        <td><%= team.invites.to_a %></td>
+        <td><%= team.boss.username unless team.boss.nil? %></td>
+        <td><%= team.invites.map{|m| m.username} %></td>
         <td><%= team.matches.to_a %></td>
         <td><%= team.challenges.to_a %></td>
         <td><% team.gamers.each do |mem| %>
-          <%= mem.gamer.username %> -> <%=mem.gamer.email %>
+          <%= mem.username %> -> <%=mem.email %>
           <%end%>
         </td>
         <td><%= link_to 'Show', team %></td>
