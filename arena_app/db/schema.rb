@@ -10,13 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_24_085630) do
+ActiveRecord::Schema.define(version: 2018_08_24_173446) do
 
   create_table "challenges", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "team_id"
     t.integer "challenging_team_id"
+  end
+
+  create_table "chatroom_users", force: :cascade do |t|
+    t.integer "chatroom_id"
+    t.integer "gamer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatroom_id"], name: "index_chatroom_users_on_chatroom_id"
+    t.index ["gamer_id"], name: "index_chatroom_users_on_gamer_id"
+  end
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "consoles", force: :cascade do |t|
@@ -41,14 +56,14 @@ ActiveRecord::Schema.define(version: 2018_08_24_085630) do
     t.string "reset_digest"
     t.datetime "reset_sent_at"
     t.boolean "admin", default: false
-    t.integer "team_id"
     t.string "nation"
     t.string "nickname"
+    t.integer "team_id"
     t.boolean "updated", default: false
+    t.integer "role", default: 0
     t.integer "console_id"
     t.integer "game_id"
     t.text "description"
-    t.integer "role", default: 0
     t.integer "group_id"
     t.index ["email"], name: "index_gamers_on_email", unique: true
     t.index ["team_id"], name: "index_gamers_on_team_id"
@@ -133,6 +148,16 @@ ActiveRecord::Schema.define(version: 2018_08_24_085630) do
     t.integer "score"
     t.integer "mat_score"
     t.boolean "disputed", default: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "chatroom_id"
+    t.integer "gamer_id"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["gamer_id"], name: "index_messages_on_gamer_id"
   end
 
   create_table "playings", force: :cascade do |t|
