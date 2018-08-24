@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<% provide(:title, "Invite requests") %>
 <h1>Invite Requests</h1>
 
 <table>
@@ -23,6 +23,5 @@
     <%end%>
   </tbody>
 </table>
-
 <br>
-
+<%= link_to 'Back', new_team_path %>

@@ -1,4 +1,4 @@
-<% provide(:title, "Group list") %>
+<%= provide(:title, "My group list") %>
 <p id="notice"><%= notice %></p>
 
 <h1>Groups</h1>
@@ -16,7 +16,7 @@
   </thead>
 
   <tbody>
-    <% @groups.each do |group| %>
+    <% current_gamer.groups.each do |group| %>
       <tr>
         <td><%= group.name %></td>
         <td><%= group.region %></td>
@@ -37,5 +37,5 @@
 <br>
 <%= link_to 'Back',  arena_path %>
 <% if current_gamer.admin? %>
-<%= link_to 'New Group', new_group_path %>
+  <%= link_to 'New Group', new_group_path %>
 <% end %>

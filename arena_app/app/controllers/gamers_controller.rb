@@ -81,14 +81,7 @@ class GamersController < ApplicationController
       params.require(:gamer).permit(:username, :email, :password , :password_confirmation, {:game_ids => []} , {:console_ids => [] }, :nickname ,:nation,:updated)   #aggiunto gli ultimi 2  MANCAVA QUESTO (SENZA L AGGIUNTA NON VENIVANO INSERITI E VEDEVA PASSWORD VUOTE
     end
 
-    # Confirms a logged-in gamer.
-    def logged_in_gamer
-      unless logged_in?
-        store_location    #VEDI SESSION HELPER
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
+    
     # Confirms the correct gamer.
     def correct_gamer
       @Gamer = Gamer.find(params[:id])

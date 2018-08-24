@@ -1,5 +1,6 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'font-awesome';
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -90,6 +91,10 @@ input {
   width: auto;
   margin-left: 0;
 }
+
+/* home */
+
+
 
 /* gamers index */
 

@@ -10,9 +10,6 @@ class Gamer < ApplicationRecord
    
     belongs_to :team, optional: true 
 
-    has_many :members
-    has_many :groups, through: :members,source: :gamer
-
     has_many :gamers_consoles
     has_many :consoles, through: :gamers_consoles
 
@@ -34,12 +31,15 @@ class Gamer < ApplicationRecord
 
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
-    validates :username, length: {minimum: 6},
-                         presence: true #ATTENZIONE AGLI ERRORI COMPILA SEMPRE PER OGNI COSA SCRITTA PERCHE QUI NON AVEVO MESSO  ':' E MI RICHIAMAVA UN ALTRA PAGINA
+    validates :username, length: {minimum: 3,maximum:40},
+                         presence: true,
+                         uniqueness: true 
     validates :email, length:{maximum:255},
                       presence: true,
                       format: { with: VALID_EMAIL_REGEX },
                       uniqueness: true
+    
+                    
 
     has_secure_password
     validates :password, presence: true, length: { minimum: 6 }, unless: Proc.new{|gamer| gamer.password.nil?} #HO DOVUTO AGGIUNGERE UNLESS CHE SENNÒ DAVA PROBLEMI OGNI VOLTA CHE CAMBIAVI UN PARAMETRO

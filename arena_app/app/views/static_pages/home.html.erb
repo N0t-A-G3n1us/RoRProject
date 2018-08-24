@@ -2,14 +2,20 @@
 
 <div class="center jumbotron">
 
-    <h1>Welcome to the Players Arena</h1>
-    <p>Find me in app/views/static_pages/home.html.erb</p>
+	
+	
+	<%if !logged_in?%>
+		<h1>Welcome to the Players Arena</h1>
+		<%= link_to "Sign up",signup_path, class:"btn btn-lg btn-primary" %>
+		<%= link_to "Login",login_path , class:"btn btn-lg btn-primary" %>
+		<%= link_to "Use Google Account",loginGoogle_path, class:"btn btn-lg btn-primary" %>
+		<%=fa_icon "google" ,base: "circle", class: "fa-10x"%>
+	<%else%>
+		<h1> Hi <%= current_gamer.username%></h1></br>
+		<h1>Have fun in arena!</h1>
+	<%end%>
 
-    <%= link_to "Sign up",signup_path, class:"btn btn-lg btn-primary" %>
-    <%= link_to "Login",login_path , class:"btn btn-lg btn-primary" %>
-    <%= link_to "Use Google Account",loginGoogle_path, class:"btn btn-lg btn-primary" %>
-
-
+	
 </div>
 
 

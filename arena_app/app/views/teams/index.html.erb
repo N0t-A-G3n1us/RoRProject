@@ -20,7 +20,7 @@
   <tbody>
     <% @teams.all.each do |team| %>
       <tr>
-        <td> <%= image_tag team.avatar.url(:thumb),width: 60, class: "avatar-image" %>
+        <td> <%= image_tag team.avatar.url(:thumb),width: 60, class: "avatar-image " %>
 </td>
         <td><%= team.name %></td>
         <td><%= team.boss.username unless team.boss.nil? %></td>
@@ -40,5 +40,7 @@
 </table>
 
 <br>
-
+<%= link_to 'Back', arena_path %>
+<% if current_gamer.admin? %>
 <%= link_to 'New Team', new_team_path %>
+<%end%>

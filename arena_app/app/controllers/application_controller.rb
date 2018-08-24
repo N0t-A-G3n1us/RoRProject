@@ -14,4 +14,22 @@ class ApplicationController < ActionController::Base
    # end
   #end
 
+  def logged_in_gamer
+    unless logged_in?
+      store_location
+      flash[:danger]="Please log in."
+      redirect_to root_url
+    end
+  end
+
+
+  #override cancancan method
+  def current_ability
+    @current_ability ||= Ability.new(current_gamer)
+  end
+
+  #manage exception not authorized
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:danger] = exception.message
+    redirect_back fallback_location: root_path  end
 end

@@ -56,6 +56,7 @@ Rails.application.routes.draw do
       
     end
   end
+  get '/my_groups', to: 'groups#my_groups'
   resources :groups do
     get 'join'
     get 'leave'
@@ -64,7 +65,7 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :account_attributes
-  resources :arena_pages
+  
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

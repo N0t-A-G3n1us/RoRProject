@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  load_and_authorize_resource
   before_action :set_group, only: [:show, :edit, :update, :destroy]
 
   # GET /groups
@@ -27,7 +28,7 @@ class GroupsController < ApplicationController
   # POST /groups.json
   def create
     @group = Group.new(group_params)
-
+    #salvo il gruppo nel gamer
     respond_to do |format|
       if @group.save
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
@@ -68,7 +69,9 @@ class GroupsController < ApplicationController
     @group =Group.find(params[:group_id])
     #puts "---------->"+ @group.id.to_s
     @group.members << Gamer.find_by_id(current_gamer.id)
-    redirect_to @group
+    # @member = current_gamer.groups.build(params[:id])
+    # @group = @member.build_group(params[:group])
+     redirect_to @group
   end
 
   def leave
@@ -79,6 +82,8 @@ class GroupsController < ApplicationController
     redirect_to @group
   end
 
+  def my_groups
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -88,6 +93,6 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:name, :region, :console,{:game_ids => []}, :description)
+      params.require(:group).permit(:member,:name, :region, :console,{:game_ids => []}, :description)
     end
 end

@@ -10,6 +10,6 @@ module MatchesHelper
 	end
 
 	def display_no_score
-		"[   |   ]"
+		"[ | ]"
 	end
 end
