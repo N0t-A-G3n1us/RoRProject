@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
+  resources :chatrooms
   resources :consoles
   resources :games
+  resources :chatrooms do
+    resources :chatroom_users
+    resources :messages
+  end
 
   default_url_options :host => "localhost:3000"
   root 'static_pages#home'
@@ -35,6 +40,9 @@ Rails.application.routes.draw do
   get '/changerole', to: 'arena_pages#changerole'
   get '/upgrade', to: 'arena_pages#upgrade' #È IL BOTTONE PER CAMBIARE RUOLO
   get '/downgrade', to: 'arena_pages#downgrade'
+
+  #chatroom
+  get '/chat', to: 'chatrooms#index'
 
 
   resources :teams do
