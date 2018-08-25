@@ -15,17 +15,17 @@ class Ability
         can :read, :all
       elsif gamer.pro?
         #can :read, :all
-        can :create, Group
-        can :update, Group
-        can :destroy, Group
+        can :create, Group if gamer.groups.count < 4 
+        can :update, Group , creator_id: gamer.id 
+        can :destroy, Group,  creator_id: gamer.id 
       elsif gamer.leader?
         #can :read, :all
-        can :create, Team
-        can :update, Team
-        can :destroy, Team
-        can :create, Group
-        can :update, Group
-
+        can :create, Team if gamer.teams.count < 1
+        can :update, Team, boss_id: gamer.id
+        can :destroy, Team, boss_id: gamer.id
+        can :create, Group 
+        can :update, Group, creator_id: gamer.id 
+        can :destroy, Group,  creator_id: gamer.id 
 
       end
 

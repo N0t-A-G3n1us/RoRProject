@@ -29,6 +29,10 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     #salvo il gruppo nel gamer
+    @group.creator=current_gamer
+    
+    @group.members << current_gamer
+
     respond_to do |format|
       if @group.save
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
@@ -93,6 +97,6 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:member,:name, :region, :console,{:game_ids => []}, :description)
+      params.require(:group).permit(:member,:name, :region, :console_id,{:game_ids => []}, :description)
     end
 end

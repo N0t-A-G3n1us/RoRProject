@@ -28,7 +28,8 @@ class TeamsController < ApplicationController
   # POST /teams.json
   def create
     @team = Team.new(team_params)
-
+    @team.boss=current_gamer
+    @team.gamers << current_gamer
     respond_to do |format|
       if @team.save
         format.html { redirect_to @team, notice: 'Team was successfully created.' }
@@ -71,14 +72,16 @@ class TeamsController < ApplicationController
     #puts "---------->"+current_gamer.id.to_s
     @team =Team.find(params[:team_id])
     #puts "---------->"+ @team.id.to_s
-    @team.gamers << Gamer.find_by_id(current_gamer.id)
+    
+    @team.gamers << Gamer.find_by_id(current_gamer.id) unless current_gamer.team==@team
+    
     redirect_to @team
   end
 
   def leave
 
     @team =Team.find(params[:team_id])
-    @gamer = @team.gamers.find_by(id: current_gamer.id)
+    @gamer = current_gamer
     @team.gamers.delete(@gamer) unless @gamer.nil?
     redirect_to @team
   end

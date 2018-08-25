@@ -41,7 +41,7 @@
 </p>
 
 
-<% if @team.boss_id == current_gamer.id %>  
+<% if @team.boss == current_gamer %>  
     <%= link_to 'Show invite requests', team_invite_requests_path(@team) %></br>
     <%end%>
 <% if @team.gamers.include?(current_gamer)%>

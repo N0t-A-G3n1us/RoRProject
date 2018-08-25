@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_24_085630) do
+ActiveRecord::Schema.define(version: 2018_08_24_222403) do
 
   create_table "challenges", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2018_08_24_085630) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "description"
-    t.integer "group_id"
+    t.integer "team_id"
     t.index ["name"], name: "index_consoles_on_name", unique: true
   end
 
@@ -86,6 +86,8 @@ ActiveRecord::Schema.define(version: 2018_08_24_085630) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "console_id"
+    t.integer "team_id"
     t.index ["name"], name: "index_games_on_name"
   end
 
@@ -105,6 +107,7 @@ ActiveRecord::Schema.define(version: 2018_08_24_085630) do
     t.integer "member_id"
     t.text "description"
     t.integer "console_id"
+    t.integer "creator_id"
     t.index ["game_id"], name: "index_groups_on_game_id"
     t.index ["member_id"], name: "index_groups_on_member_id"
     t.index ["name"], name: "index_groups_on_name", unique: true
@@ -135,6 +138,13 @@ ActiveRecord::Schema.define(version: 2018_08_24_085630) do
     t.boolean "disputed", default: false
   end
 
+  create_table "platforms", force: :cascade do |t|
+    t.integer "game_id"
+    t.integer "console_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "playings", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -145,20 +155,15 @@ ActiveRecord::Schema.define(version: 2018_08_24_085630) do
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
-    t.integer "boss_id"
     t.integer "invite_id"
     t.integer "match_id"
     t.integer "challenge_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "description"
-    t.integer "game_id"
     t.string "avatar"
-    t.integer "console_id"
     t.integer "gamer_id"
-    t.index ["boss_id"], name: "index_teams_on_boss_id"
     t.index ["challenge_id"], name: "index_teams_on_challenge_id"
-    t.index ["game_id"], name: "index_teams_on_game_id"
     t.index ["invite_id"], name: "index_teams_on_invite_id"
     t.index ["match_id"], name: "index_teams_on_match_id"
   end

@@ -7,13 +7,18 @@
 </p>
 
 <p>
+  <strong>Creator:</strong>
+  <%= @group.creator.username %> -> <%= @group.creator.email %>
+</p>
+
+<p>
   <strong>Region:</strong>
   <%= @group.region %>
 </p>
 
 <p>
   <strong>Console:</strong>
-  <%= @group.console %>
+  <%= @group.console.name  %>
 </p>
 
 <p>

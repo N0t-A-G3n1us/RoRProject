@@ -1,9 +1,12 @@
 class Team < ApplicationRecord
-  validates :name, length: {minimum: 3,maximum: 10},
+  
+  validates :name, length: {minimum: 3,maximum: 40},
   presence: true, uniqueness: true
 
 
   has_one :boss, class_name: 'Gamer'
+  has_many :gamers
+  
   has_one :console
   has_one :game
 
@@ -16,7 +19,7 @@ class Team < ApplicationRecord
   has_many :challenges
   has_many :challenging_teams, through: :challenges 
   
-  has_many :gamers
+  
 
   mount_uploader :avatar, TeamAvatarUploader
   validate  :avatar_size
