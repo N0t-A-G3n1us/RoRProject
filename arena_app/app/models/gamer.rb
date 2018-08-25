@@ -9,17 +9,18 @@ class Gamer < ApplicationRecord
     has_many :gamers_groups
     has_many :groups, through: :gamers_groups
 
+    belongs_to :team, optional:true
+
     has_many :invite_requests
     has_many :invites, through: :invite_requests, source: :team
    
-    belongs_to :team, optional: true 
-
     has_many :gamers_consoles
     has_many :consoles, through: :gamers_consoles
 
     has_many :gamers_games
     has_many :games, through: :gamers_games
 
+    
 
     attr_accessor :remember_token,:activation_token, :reset_token  # aggiunge attributo alla classe Gamer
     before_create :create_activation_digest

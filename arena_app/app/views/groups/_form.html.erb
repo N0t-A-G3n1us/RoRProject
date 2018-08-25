@@ -22,17 +22,20 @@
   </div>
 
   <div class="field">
-    <%= form.label :console %>
-    <%= form.text_field :console %>
+  <%= form.collection_select :console_id, Console.all, :id, :name %>
+  
+  
   </div>
 
   <div class="field">
-
+    <%= form.label :game %>
     <% Game.all.each do |game| %>
-      <%= game.name %> 
-      <%= check_box_tag "group[game_ids][]", game.id,class: "checkbox" %> 
+      <%= game.name %>
+      
+      <%= check_box_tag "group[game_ids][]", game.id,class: "check_box" %> 
       
     <%end%>
+    
   </div>
   <div class="field">
   <%= form.label :description %>

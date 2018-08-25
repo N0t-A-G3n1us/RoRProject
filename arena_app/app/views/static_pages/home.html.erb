@@ -13,6 +13,8 @@
 	<%else%>
 		<h1> Hi <%= current_gamer.username%></h1></br>
 		<h1>Have fun in arena!</h1>
+		<%= link_to "Login with other Account",login_path , class:"btn btn-lg btn-primary" %>
+		<%= link_to "Arena",arena_path , class:"btn btn-lg btn-primary" %>
 	<%end%>
 
 	

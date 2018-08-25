@@ -6,10 +6,10 @@ module TeamsHelper
 			if @t.boss == current_gamer && @t!=team #cur gamer is boss of a different team
 				return true
 			end
-		flash[:danger]="not boss"
+	#	flash[:danger]="You are not boss of any team"
 		end
 
-		flash[:danger]="nil"
+	#	flash[:danger]="You have no team"
 		false
 	end
 
