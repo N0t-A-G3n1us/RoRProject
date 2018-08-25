@@ -1,6 +1,11 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+
+  #NECESSARIO PER REDIS ON HEROKU
+  config.web_socket_server_url = "wss://playersarena.herokuapp.com/cable" 
+  config.action_cable.allowed_request_origins = ['https://playersarena.herokuapp.com', 'http://playersarena.herokuapp.com']
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
