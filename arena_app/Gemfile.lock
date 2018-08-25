@@ -101,8 +101,6 @@ GEM
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
-    font-awesome-rails (4.7.0.4)
-      railties (>= 3.2, < 6.0)
     geocoder (1.5.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -290,7 +288,6 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   faker (= 1.7.3)
-  font-awesome-rails
   geocoder
   hirb
   httparty
