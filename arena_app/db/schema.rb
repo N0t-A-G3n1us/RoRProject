@@ -10,13 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_24_222403) do
+ActiveRecord::Schema.define(version: 2018_08_24_085630) do
 
   create_table "challenges", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "team_id"
     t.integer "challenging_team_id"
+  end
+
+  create_table "chatroom_users", force: :cascade do |t|
+    t.integer "chatroom_id"
+    t.integer "gamer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatroom_id"], name: "index_chatroom_users_on_chatroom_id"
+    t.index ["gamer_id"], name: "index_chatroom_users_on_gamer_id"
+  end
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "consoles", force: :cascade do |t|
@@ -137,6 +152,18 @@ ActiveRecord::Schema.define(version: 2018_08_24_222403) do
     t.integer "mat_score"
     t.boolean "disputed", default: false
   end
+
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "chatroom_id"
+    t.integer "gamer_id"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["gamer_id"], name: "index_messages_on_gamer_id"
+  end
+
 
   create_table "platforms", force: :cascade do |t|
     t.integer "game_id"

@@ -1,6 +1,10 @@
 class Gamer < ApplicationRecord
 
     #db relations
+    
+    has_many :chatroom_users
+    #has_many :chatrooms, through:chatroom_users
+    has_many :messages
 
     has_many :gamers_groups
     has_many :groups, through: :gamers_groups
