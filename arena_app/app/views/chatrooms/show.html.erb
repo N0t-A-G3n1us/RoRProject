@@ -3,9 +3,9 @@
   <%= @chatroom.name %>
 </p>
 
-<div data-behavior='messages'>
+<div data-behavior='messages' data-chatroom-id='<%= @chatroom.id %>'>
 	<% @chatroom.messages.order(created_at: :desc).limit(100).reverse.each do |message| %>
-		<div><strong><%= message.gamer.username %>:</strong> <%= message.body%></div>
+		<%= render message %>
 	<% end %>
 </div>
   
