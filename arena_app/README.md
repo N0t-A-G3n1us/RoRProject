@@ -77,7 +77,7 @@ $ cd redis-stable
 $ make
 ```
 
-Run the redis server
+Run the redis server on another shell 
 
 ```
 $ redis-server
