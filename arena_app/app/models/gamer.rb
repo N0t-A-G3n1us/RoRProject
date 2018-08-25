@@ -150,14 +150,6 @@ class Gamer < ApplicationRecord
     end
 
 
-    def casual?
-      gamers_groups.where(:role => 'casual').first
-    end
-
-    def creator?
-      gamers_groups.where(:role => 'creator').first
-    end
-
 
 
 end

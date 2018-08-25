@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_24_085630) do
+ActiveRecord::Schema.define(version: 2018_08_24_222403) do
 
   create_table "challenges", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -153,7 +153,6 @@ ActiveRecord::Schema.define(version: 2018_08_24_085630) do
     t.boolean "disputed", default: false
   end
 
-
   create_table "messages", force: :cascade do |t|
     t.integer "chatroom_id"
     t.integer "gamer_id"
@@ -163,7 +162,6 @@ ActiveRecord::Schema.define(version: 2018_08_24_085630) do
     t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
     t.index ["gamer_id"], name: "index_messages_on_gamer_id"
   end
-
 
   create_table "platforms", force: :cascade do |t|
     t.integer "game_id"
