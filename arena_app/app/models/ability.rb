@@ -13,8 +13,10 @@ class Ability
       cannot :read , Challenge
       can :my_groups, Group
       can [:destroy,:update,:edit], Gamer
-
-      if gamer.admin?  # additional permissions for administrators
+      if gamer.nil? 
+        can :create, Gamer 
+      
+      elsif gamer.admin?  # additional permissions for administrators
         can :manage, :all
       elsif gamer.casual?
         can :read, :all
