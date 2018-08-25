@@ -1,0 +1,1 @@
+<script> $("#new_message")[0].reset() </script>

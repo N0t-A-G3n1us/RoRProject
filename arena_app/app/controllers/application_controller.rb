@@ -2,6 +2,15 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include TeamsHelper
   protect_from_forgery with: :exception
+  before_action :cookie_set
+
+
+  def cookie_set
+    @gamer = current_gamer
+    return unless current_gamer
+    cookies[:user_name] = @gamer.id
+  end
+  
   
 
   #def remote_ip
