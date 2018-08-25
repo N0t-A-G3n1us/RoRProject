@@ -12,7 +12,8 @@ class Ability
       cannot :read , InviteRequest
       cannot :read , Challenge
       can :my_groups, Group
-      can :destroy, Gamer
+      can [:destroy,:update,:edit], Gamer
+
       if gamer.admin?  # additional permissions for administrators
         can :manage, :all
       elsif gamer.casual?
