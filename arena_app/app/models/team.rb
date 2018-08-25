@@ -10,7 +10,7 @@ class Team < ApplicationRecord
   has_one :console
   has_one :game
 
-  has_many :invite_requests 
+  has_many :invite_requests , inverse_of: :team
   has_many :invites, through: :invite_requests, source: :gamer
   
   has_many :matches

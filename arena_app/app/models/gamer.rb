@@ -11,7 +11,7 @@ class Gamer < ApplicationRecord
 
     belongs_to :team, optional:true
 
-    has_many :invite_requests
+    has_many :invite_requests, inverse_of: :gamer
     has_many :invites, through: :invite_requests, source: :team
    
     has_many :gamers_consoles
