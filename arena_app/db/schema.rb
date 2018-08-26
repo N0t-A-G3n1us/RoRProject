@@ -56,14 +56,14 @@ ActiveRecord::Schema.define(version: 2018_08_24_222403) do
     t.string "reset_digest"
     t.datetime "reset_sent_at"
     t.boolean "admin", default: false
-    t.integer "team_id"
     t.string "nation"
     t.string "nickname"
+    t.integer "team_id"
     t.boolean "updated", default: false
+    t.integer "role", default: 0
     t.integer "console_id"
     t.integer "game_id"
     t.text "description"
-    t.integer "role", default: 0
     t.integer "group_id"
     t.index ["email"], name: "index_gamers_on_email", unique: true
     t.index ["team_id"], name: "index_gamers_on_team_id"
@@ -121,8 +121,8 @@ ActiveRecord::Schema.define(version: 2018_08_24_222403) do
     t.datetime "updated_at", null: false
     t.integer "member_id"
     t.text "description"
-    t.integer "console_id"
     t.integer "creator_id"
+    t.integer "console_id"
     t.index ["game_id"], name: "index_groups_on_game_id"
     t.index ["member_id"], name: "index_groups_on_member_id"
     t.index ["name"], name: "index_groups_on_name", unique: true
