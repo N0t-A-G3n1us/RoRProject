@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :chatrooms do
-    resources :chatroom_users
-    resources :messages
-  end
-  resources :consoles
-  resources :games
+  
 
   default_url_options :host => "localhost:3000"
   root 'static_pages#home'
@@ -49,9 +44,10 @@ Rails.application.routes.draw do
     get 'leave'
     get 'show_invites'
     get 'add_challenge'
-    resources :invite_requests do
+    resources :invite_requests, only:[:index,:create,:destroy] do
       get 'accept'
       get 'refuse'
+
     end
     resources :challenges do
       get'accept'
@@ -73,6 +69,12 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :account_attributes
   
+  resources :chatrooms do
+    resources :chatroom_users
+    resources :messages
+  end
+  resources :consoles
+  resources :games
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

@@ -76,6 +76,22 @@ $ tar xvzf redis-stable.tar.gz
 $ cd redis-stable
 $ make
 ```
+It is a good idea to copy both the Redis server and the command line interface in proper places, either manually using the following commands:
+
+```
+$ sudo cp src/redis-server /usr/local/bin/
+$ sudo cp src/redis-cli /usr/local/bin/
+
+```
+Or just using 
+
+```
+
+$ sudo make install.
+
+```
+
+In the following documentation we assume that /usr/local/bin is in your PATH environment variable so that you can execute both the binaries without specifying the full path.
 
 Run the redis server on another shell 
 

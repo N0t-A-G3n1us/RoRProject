@@ -1,4 +1,5 @@
 class ConsolesController < ApplicationController
+  load_and_authorize_resource
   before_action :set_console, only: [:show, :edit, :update, :destroy]
 
   # GET /consoles

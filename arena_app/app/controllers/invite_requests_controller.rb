@@ -1,12 +1,15 @@
 class InviteRequestsController < ApplicationController
+  load_and_authorize_resource :team
+  load_and_authorize_resource :invite_request, through: :team
+  
   before_action :set_invite_request, only: [:show, :edit, :update, :destroy]
 
   # GET /invite_requests
   # GET /invite_requests.json
   def index
-    @invite_requests = InviteRequest.all
+    @team = Team.find_by_id(params[:team_id])
+    @invite_requests = @team.invite_requests
   end
-
   # GET /invite_requests/1
   # GET /invite_requests/1.json
   def show

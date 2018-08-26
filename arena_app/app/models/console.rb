@@ -1,4 +1,5 @@
 class Console < ApplicationRecord
+    
     belongs_to :team, optional: true
     has_many :groups
     

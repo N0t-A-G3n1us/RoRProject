@@ -1,4 +1,6 @@
 class MatchesController < ApplicationController
+  load_and_authorize_resource :team
+  load_and_authorize_resource :match, through: :team
   before_action :set_match, only: [:show, :edit, :update, :destroy]
 
   # GET /matches

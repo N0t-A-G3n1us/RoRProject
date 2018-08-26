@@ -11,7 +11,7 @@ class Gamer < ApplicationRecord
 
     belongs_to :team, optional:true
 
-    has_many :invite_requests
+    has_many :invite_requests, inverse_of: :gamer
     has_many :invites, through: :invite_requests, source: :team
    
     has_many :gamers_consoles
@@ -37,8 +37,8 @@ class Gamer < ApplicationRecord
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
     validates :username, length: {minimum: 3,maximum:40},
-                         presence: true,
-                         uniqueness: true 
+                         presence: true
+                         #,uniqueness: true 
     validates :email, length:{maximum:255},
                       presence: true,
                       format: { with: VALID_EMAIL_REGEX },

@@ -44,7 +44,7 @@ gem 'devise'
 #gem http
 gem 'httparty'
 
-gem 'font-awesome-rails'
+
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
