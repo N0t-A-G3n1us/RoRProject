@@ -37,8 +37,8 @@ class Gamer < ApplicationRecord
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
     validates :username, length: {minimum: 3,maximum:40},
-                         presence: true,
-                         uniqueness: true 
+                         presence: true
+                         #,uniqueness: true 
     validates :email, length:{maximum:255},
                       presence: true,
                       format: { with: VALID_EMAIL_REGEX },

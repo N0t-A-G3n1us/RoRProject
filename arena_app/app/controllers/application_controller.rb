@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include TeamsHelper
   protect_from_forgery with: :exception
-  before_action :cookie_set
+  before_action :cookie_set 
 
 
   def cookie_set
@@ -41,4 +41,4 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     flash[:danger] = exception.message
     redirect_back fallback_location: root_path  end
-end
+  end

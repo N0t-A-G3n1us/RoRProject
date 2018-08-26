@@ -31,8 +31,11 @@ class SessionsController < ApplicationController
     else
       flash[:warning] = 'You are already logged'
     end
-
-    redirect_to root_url
+    if current_gamer.updated 
+      redirect_to root_url
+    else
+      redirect_to new_account_attribute_url(email:current_gamer.email)
+    end
   end
 
   def destroy
