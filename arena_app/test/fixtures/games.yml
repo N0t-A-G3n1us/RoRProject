@@ -1,7 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: game1
+  created_at: <%= Time.zone.now %>
+  updated_at: <%= Time.zone.now %>
+  console_id: 1
+  team_id: 1
 
 two:
-  name: MyString
+  name: game2
+  created_at: <%= Time.zone.now %>
+  updated_at: <%= Time.zone.now %>
+  console_id: 2
+  team_id: 2

@@ -4,8 +4,19 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+one:
+    created_at: <%= Time.zone.now %>
+    updated_at: <%= Time.zone.now %>
+    team_id: 1
+    matching_team_id: 2
+    score: 1
+    mat_score: 1
+    disputed: true
+two:
+    created_at: <%= Time.zone.now %>
+    updated_at: <%= Time.zone.now %>
+    team_id: 2
+    matching_team_id: 1
+    score: 2
+    mat_score: 2
+    disputed: true

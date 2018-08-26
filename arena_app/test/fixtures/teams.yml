@@ -1,17 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  boss: one
-  invite: one
-  match: one
-  challenge: one
-  member: one
+  name: eheh
+  invite_id: one
+  match_id: one
+  challenge_id: one
+  gamer_id: one
+  description: sfdfsdfs
+  avatar: sdffsd
+  created_at: <%= Time.zone.now %>
+  updated_at: <%= Time.zone.now %>
 
 two:
   name: MyString
-  boss: two
-  invite: two
-  match: two
-  challenge: two
-  member: two
+  invite_id: two
+  match_id: two
+  challenge_id: two
+  gamer_id: two
+  description: shsfsgs
+  avatar: dggsd
+  created_at: <%= Time.zone.now %>
+  updated_at: <%= Time.zone.now %>

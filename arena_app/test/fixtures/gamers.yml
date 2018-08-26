@@ -7,6 +7,18 @@ michael:
   activated: true
   activated_at: <%= Time.zone.now %>
   admin: true
+  team_id: 1
+  group_id: 1
+  remember_digest: <%= Gamer.digest('remember_token') %>
+  activation_digest: <%= Gamer.digest('activation_token') %>
+  reset_digest: <%= Gamer.digest('reset_token') %>
+  reset_sent_at: <%= Time.zone.now %>
+  updated: true
+  role: 1
+  description: username1
+  nickname: nickname1
+  nation: nation1
+
 
 archer:
   username: Archer Example
@@ -14,6 +26,18 @@ archer:
   password_digest: <%= Gamer.digest('password') %>
   activated: true
   activated_at: <%= Time.zone.now %>
-  
+  admin: true
+  team_id: 2
+  group_id: 2
+  remember_digest: <%= Gamer.digest('remember_token') %>
+  activation_digest: <%= Gamer.digest('activation_token') %>
+  reset_digest: <%= Gamer.digest('reset_token') %>
+  reset_sent_at: <%= Time.zone.now %>
+  updated: true
+  role: 2
+  description: username2
+  nickname: nickname2
+  nation: nation2
+
 
 #empty
