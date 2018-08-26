@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  chatroom: one
-  gamer: one
+  chatroom_id: one
+  gamer_id: one
+  created_at: <%= Time.zone.now %>
+  updated_at: <%= Time.zone.now %>
 
 two:
   chatroom: two
   gamer: two
+  created_at: <%= Time.zone.now %>
+  updated_at: <%= Time.zone.now %>

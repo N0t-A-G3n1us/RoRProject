@@ -1,7 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: chatroom1
+  created_at: <%= Time.zone.now %>
+  updated_at: <%= Time.zone.now %>
 
 two:
-  name: MyString
+  name: chatroom2
+  created_at: <%= Time.zone.now %>
+  updated_at: <%= Time.zone.now %>

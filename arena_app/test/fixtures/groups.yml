@@ -1,13 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  region: MyString
-  console: MyString
-  game: one
+  name: ciccio
+  region: ciao
+  console_id: 1
+  game_id: 1
+  description: nulla di interessante
+  creator_id: 1
+  member_id: 1
+  created_at: <%= Time.zone.now %>
+  updated_at: <%= Time.zone.now %>
 
 two:
-  name: MyString
-  region: MyString
-  console: MyString
-  game: two
+  name: pasticcio
+  region: buono
+  console_id: 2
+  game_id: 2
+  description: niente
+  creator_id: 2
+  member_id: 2
+  created_at: <%= Time.zone.now %>
+  updated_at: <%= Time.zone.now %>
