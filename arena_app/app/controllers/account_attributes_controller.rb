@@ -13,8 +13,14 @@ class AccountAttributesController < ApplicationController
              render 'edit'    #non riesco a reindirizzare quando faccio la edit e sbaglio volontariamente parametri nell'edit url (mi ritorna nella new url).quindi ho dovuto forzare dicendo che in caso di
              #di valori errati di reindirizzare nella edit. praticamente quando faccio la edit e faccio la submit mi entra sempre nella create invece di entrare nell'update.
           else
+              if params[:account_attributes][:game_ids].count>4  #prima cella array '' quindi +1
+                 flash.now[:danger] = "more than 3 games selected"
+                 render 'edit'
+              elsif params[:account_attributes][:console_ids].count>2
+                 flash.now[:danger] = "more than 1 console selected"
+                 render 'edit'
 
-              if !request.location.country.nil? && params[:account_attributes][:nation] != request.location.country
+              elsif !request.location.country.nil? && params[:account_attributes][:nation] != request.location.country
                  flash.now[:danger] = "nation doesn't match with your location:#{request.location.country}"
                  render 'edit'
               else
