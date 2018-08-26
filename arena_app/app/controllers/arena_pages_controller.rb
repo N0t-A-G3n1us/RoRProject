@@ -1,5 +1,6 @@
 class ArenaPagesController < ApplicationController
   include HTTParty
+  before_action :check_attributes
   def arena
      @gamer = current_gamer
     #@gamer_games=GamersGame.select(:game_id).where(gamer_id: @gamer.id)
@@ -69,6 +70,14 @@ class ArenaPagesController < ApplicationController
 	end
 
   end
+
+  def check_attributes
+       @gamer = current_gamer
+       if !@gamer.updated
+            flash[:danger] = "Please change your attributes#{@gamer.updated}"
+            redirect_to new_account_attribute_url(email: @gamer.email)
+       end
+    end
 
 
 

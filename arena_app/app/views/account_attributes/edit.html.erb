@@ -33,17 +33,18 @@
         <%= label :game_ids, 'Choose your games:' %>
 
         <div class="funkyradio">
-        <%= f.collection_check_boxes( :games_ids, Game.all, :id, :name) do |c|%>
+        <%= f.collection_check_boxes( :game_ids, Game.all, :id, :name) do |c|%>
           <div class="funkyradio-primary">
             <%= c.check_box %> <%= c.label %>
           </div>
         <%end%>
         </div>
+      </p>
 
 
 
       <%= f.label :description %>
-      
+
         <%= f.text_area :description, class: 'form-control' %>
 
 

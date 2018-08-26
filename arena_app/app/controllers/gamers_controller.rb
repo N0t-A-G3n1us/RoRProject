@@ -1,11 +1,11 @@
 class GamersController < ApplicationController
   load_and_authorize_resource
-  
+
   before_action :set_gamer, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_gamer, only: [:index,:edit, :update, :destroy]   #richiama la funzione logged in use nel caso ci sia il richiamo di edit o update (funzione di sotto)
   before_action :correct_gamer,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
-  before_action :check_attributes, only: [:show,:edit,:update]
+  before_action :check_attributes, only: [:show,:edit,:update,:index]
 
 
   # GET /gamers
@@ -83,7 +83,7 @@ class GamersController < ApplicationController
       params.require(:gamer).permit(:username, :email, :password , :password_confirmation, {:game_ids => []} , {:console_ids => [] }, :nickname ,:nation,:updated)   #aggiunto gli ultimi 2  MANCAVA QUESTO (SENZA L AGGIUNTA NON VENIVANO INSERITI E VEDEVA PASSWORD VUOTE
     end
 
-    
+
     # Confirms the correct gamer.
     def correct_gamer
       @Gamer = Gamer.find(params[:id])
@@ -95,8 +95,8 @@ class GamersController < ApplicationController
     end
 
     def check_attributes
-       @gamer = Gamer.find(params[:id])
-       if !@gamer.updated && @gamer==current_gamer
+       @gamer = current_gamer
+       if !@gamer.updated
             flash[:danger] = "Please change your attributes#{@gamer.updated}"
             redirect_to new_account_attribute_url(email: @gamer.email)
        end

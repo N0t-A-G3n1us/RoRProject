@@ -7,8 +7,8 @@ class AccountAttributesController < ApplicationController
      def create
         @gamer = Gamer.find_by(email: params[:email].downcase)
         if @gamer
-          if (params[:account_attributes][:console_ids].nil? || params[:account_attributes][:nickname].empty? || params[:account_attributes][:nation].empty? ||
-             params[:account_attributes][:game_ids].nil? )
+          if (params[:account_attributes][:console_ids].count==1 || params[:account_attributes][:nickname].empty? || params[:account_attributes][:nation].empty? ||
+             params[:account_attributes][:game_ids].count==1 )
              flash.now[:danger] = "All parameters not compiled"
              render 'edit'    #non riesco a reindirizzare quando faccio la edit e sbaglio volontariamente parametri nell'edit url (mi ritorna nella new url).quindi ho dovuto forzare dicendo che in caso di
              #di valori errati di reindirizzare nella edit. praticamente quando faccio la edit e faccio la submit mi entra sempre nella create invece di entrare nell'update.
