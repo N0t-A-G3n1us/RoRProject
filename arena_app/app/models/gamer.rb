@@ -7,18 +7,18 @@ class Gamer < ApplicationRecord
     has_many :messages
 
     has_many :gamers_groups
-    has_many :groups, through: :gamers_groups
+    has_many :groups, through: :gamers_groups, dependent: :destroy
 
     belongs_to :team, optional:true
 
     has_many :invite_requests, inverse_of: :gamer
-    has_many :invites, through: :invite_requests, source: :team
+    has_many :invites, through: :invite_requests, source: :team, dependent: :destroy
    
     has_many :gamers_consoles
-    has_many :consoles, through: :gamers_consoles
+    has_many :consoles, through: :gamers_consoles, dependent: :destroy
 
     has_many :gamers_games
-    has_many :games, through: :gamers_games
+    has_many :games, through: :gamers_games, dependent: :destroy
 
     
 

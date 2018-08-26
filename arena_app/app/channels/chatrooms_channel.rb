@@ -13,6 +13,7 @@ class ChatroomsChannel < ApplicationCable::Channel
   def send_message(data)
     @chatroom = Chatroom.find(data["chatroom_id"])
     message   = @chatroom.messages.create(body: data["body"], gamer: current_gamer)
+    #team:current_gamer.team
     MessageRelayJob.perform_later(message)
   end
 end

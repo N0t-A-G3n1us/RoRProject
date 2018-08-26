@@ -30,7 +30,7 @@
       <%= f.text_field :nation, class: 'form-control' %>
 
 
-      <%= label :game_ids, 'Choose your consoles:' %>
+      <%= label :game_ids, 'Choose your games:' %>
 
         <div class="funkyradio">
         <%= f.collection_check_boxes( :game_ids, Game.all, :id, :name) do |c|%>
