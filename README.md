@@ -1,9 +1,25 @@
 # RoRProject
-University project made by three students
+This is a web application based on Ruby On Rails to connect users and let them chat in order to meet each other in "Groups", set of people that want to play specific games, or in "Teams", set of player ready to challenge other teams.
+The app uses Twitch API to show some twitch streams based on user's games.     
+Heroku free service is been used to deploy the application. 
+
+The app is accessible at this link: https://playersarena.herokuapp.com/  
+
+Sapienza University of Rome, project made by three students check Contact section for more info.
+
+#Install and start
+
 
 ## Getting started
 
-To get started with the app, clone the repo and then install the needed gems:
+To get started with the app, clone the repo and go to app's root directory:
+
+```
+$ cd arena_app
+``` 
+(this is the app directory, others are just information ones)
+
+Then install the needed gems:
 
 ```
 $ bundle install --without production
@@ -21,42 +37,13 @@ Finally, run the test suite to verify that everything is working correctly:
 $ rails test
 ```
 
-If the test suite passes, you'll be ready to run the app in a local server:
+If the test suite passes, go ahead to redis installation.
 
-```
-$ rails server
-```
+Now you have to install Redis server that handles through websockes the chatrooms' system.
 
-For more information, see the
-[*Ruby on Rails Tutorial* book](http://www.railstutorial.org/book).
+## Install Redis for websocket setup 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-# WEBSOCKET SET UP WITH REDIS 
-
-Download and install
+Download and install redis software
 
 ```
 $ wget http://download.redis.io/redis-stable.tar.gz
@@ -86,6 +73,46 @@ Run the redis server on another shell
 ```
 $ redis-server
 ```
+
+## Start the app
+You are ready to run the app in a local server, run in a shell:
+
+```
+$ rails server
+```
+And run in an other shell:
+```
+$ redis-server
+```
+
+You can access the app at: http://localhost:3000/
+
+
+
+
+Things you may want to cover:
+
+## Ruby version
+The app uses Ruby 2.3.0
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
+
+
+
 
 
 

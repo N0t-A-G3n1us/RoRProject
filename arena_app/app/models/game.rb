@@ -6,7 +6,6 @@ class Game < ApplicationRecord
   has_many :gamers_games
   has_many :gamers,through: :gamers_games, dependent: :destroy
 
-  has_many :platforms
-  has_many :consoles, through: :platforms
+
 
 end

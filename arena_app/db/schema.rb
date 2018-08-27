@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_27_080903) do
+ActiveRecord::Schema.define(version: 2018_08_27_092526) do
 
   create_table "challenges", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -58,7 +58,6 @@ ActiveRecord::Schema.define(version: 2018_08_27_080903) do
     t.string "nation"
     t.string "nickname"
     t.integer "team_id"
-    t.string "conssole"
     t.boolean "updated", default: false
     t.integer "role", default: 0, null: false
     t.text "description"
@@ -161,13 +160,6 @@ ActiveRecord::Schema.define(version: 2018_08_27_080903) do
     t.datetime "updated_at", null: false
     t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
     t.index ["gamer_id"], name: "index_messages_on_gamer_id"
-  end
-
-  create_table "platforms", force: :cascade do |t|
-    t.integer "game_id"
-    t.integer "console_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "playings", force: :cascade do |t|
