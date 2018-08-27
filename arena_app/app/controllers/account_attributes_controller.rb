@@ -2,6 +2,12 @@ class AccountAttributesController < ApplicationController
     #before_action :get_gamer
     include HTTParty
     def new
+      if Console.count==0  
+        Console.create(name:'PS4')
+        Console.create(name:'XBOX ONE')
+        Console.create(name:'PC')
+        Console.create(name:'Mobile')
+      end
       if Game.count==0 #initialize games db
         response=HTTParty.get("https://api.twitch.tv/kraken/games/top",
           :headers => { 'Accept' => 'application/vnd.twitchtv.v5+json' ,

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_26_181931) do
+ActiveRecord::Schema.define(version: 2018_08_27_080903) do
 
   create_table "challenges", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -55,15 +55,16 @@ ActiveRecord::Schema.define(version: 2018_08_26_181931) do
     t.datetime "activated_at"
     t.string "reset_digest"
     t.datetime "reset_sent_at"
-    t.integer "team_id"
     t.string "nation"
     t.string "nickname"
+    t.integer "team_id"
+    t.string "conssole"
     t.boolean "updated", default: false
-    t.integer "console_id"
-    t.integer "game_id"
+    t.integer "role", default: 0, null: false
     t.text "description"
-    t.integer "role", default: 0
     t.integer "group_id"
+    t.index ["email"], name: "index_gamers_on_email", unique: true
+    t.index ["team_id"], name: "index_gamers_on_team_id"
   end
 
   create_table "gamers_consoles", force: :cascade do |t|
@@ -120,8 +121,8 @@ ActiveRecord::Schema.define(version: 2018_08_26_181931) do
     t.datetime "updated_at", null: false
     t.integer "member_id"
     t.text "description"
-    t.integer "console_id"
     t.integer "creator_id"
+    t.integer "console_id"
     t.index ["game_id"], name: "index_groups_on_game_id"
     t.index ["member_id"], name: "index_groups_on_member_id"
     t.index ["name"], name: "index_groups_on_name", unique: true
@@ -175,32 +176,6 @@ ActiveRecord::Schema.define(version: 2018_08_26_181931) do
     t.integer "game_id"
     t.integer "group_id"
     t.index ["game_id", "group_id"], name: "index_playings_on_game_id_and_group_id"
-  end
-
-  create_table "table_gamers", force: :cascade do |t|
-    t.string "username"
-    t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "password_digest"
-    t.string "remember_digest"
-    t.string "activation_digest"
-    t.boolean "activated", default: false
-    t.datetime "activated_at"
-    t.string "reset_digest"
-    t.datetime "reset_sent_at"
-    t.boolean "admin", default: false
-    t.integer "team_id"
-    t.string "nation"
-    t.string "nickname"
-    t.boolean "updated", default: false
-    t.integer "console_id"
-    t.integer "game_id"
-    t.text "description"
-    t.integer "role", default: 0
-    t.integer "group_id"
-    t.index ["email"], name: "index_gamers_on_email", unique: true
-    t.index ["team_id"], name: "index_gamers_on_team_id"
   end
 
   create_table "teams", force: :cascade do |t|
