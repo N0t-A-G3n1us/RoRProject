@@ -22,16 +22,26 @@ class GamersControllerTest < ActionDispatch::IntegrationTest
   test "should create gamer" do    #????????????? perche non crea nuovo utente?
     assert_difference('Gamer.count') do
       post gamers_path, params: { gamer: { username:  "Example User",
-                                         email: "user1@example.com",
+                                         email: "michael@example.com",
                                          password:              "password",
-                                         password_confirmation: "password"} }
+                                         password_confirmation: "passwords",
+                                         activated: true,
+                                         updated: true,
+                                         team_id: 1,
+                                         group_id: 1,
+                                         role: 1,
+                                         description: "username1",
+                                         nickname: "nickname1",
+                                         nation: "nation1"} }
     end
+
 
     assert_redirected_to gamer_url(Gamer.last)
   end
 
   test "should show gamer" do
     get gamer_url(@gamer)
+    log_in_as(@gamer)
     assert_response :success
   end
 
@@ -41,30 +51,29 @@ class GamersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  #test "should update gamer" do
-  #  log_in_as(@gamer)    #aggiunto
-  #  patch gamer_url(@gamer), params: { gamer: { email: @gamer.email, username: @gamer.username } }
-  #  assert_redirected_to gamer_url(@gamer)
-  #end
+  test "should update gamer" do
+    log_in_as(@gamer)    #aggiunto
+    patch gamer_url(@gamer), params: { gamer: { username:  "Example User",
+                                         email: "michael@example.com",
+                                         password:              "password",
+                                         password_confirmation: "password",
+                                         activated: true,
+                                         updated: true} }
+  end
 
   test "should destroy gamer" do
     assert_difference('Gamer.count', -1) do
       delete gamer_url(@gamer)
     end
+  end
 
 
   test "should redirect destroy when not logged in" do
     assert_no_difference 'Gamer.count' do
-      delete user_path(@gamer)
+      delete gamer_path(@gamer)
     end
     assert_redirected_to login_url
   end
 
-  test "should redirect destroy when logged in as a non-admin" do
-    log_in_as(@gamer2)
-    assert_no_difference 'Gamer.count' do
-      delete user_path(@gamer)
-    end
-    assert_redirected_to root_url
-  end
+
 end
