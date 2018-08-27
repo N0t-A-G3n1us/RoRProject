@@ -75,7 +75,8 @@ Rails.application.routes.draw do
   end
   resources :consoles
   resources :games
-  
+  resources :challenges
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
