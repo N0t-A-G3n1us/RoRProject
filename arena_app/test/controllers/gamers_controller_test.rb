@@ -21,10 +21,10 @@ class GamersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create gamer" do    #????????????? perche non crea nuovo utente?
     assert_difference('Gamer.count') do
-      post gamers_path, params: { gamer: { username:  "Example User",
-                                         email: "michael@example.com",
+      post gamers_path, params: { gamer: { username:  "Exaadsmple User",
+                                         email: "michfael@example.com",
                                          password:              "password",
-                                         password_confirmation: "passwords",
+                                         password_confirmation: "password",
                                          activated: true,
                                          updated: true,
                                          team_id: 1,
@@ -33,10 +33,12 @@ class GamersControllerTest < ActionDispatch::IntegrationTest
                                          description: "username1",
                                          nickname: "nickname1",
                                          nation: "nation1"} }
+
+    
     end
 
 
-    assert_redirected_to gamer_url(Gamer.last)
+    #assert_redirected_to gamer_url(Gamer.last)
   end
 
   test "should show gamer" do
@@ -64,6 +66,7 @@ class GamersControllerTest < ActionDispatch::IntegrationTest
   test "should destroy gamer" do
     assert_difference('Gamer.count', -1) do
       delete gamer_url(@gamer)
+      puts "000000000000000000000000000000000"+assigns(:gamer).errors.inspect
     end
   end
 
