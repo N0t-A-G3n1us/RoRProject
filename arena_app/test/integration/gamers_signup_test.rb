@@ -2,6 +2,7 @@ require 'test_helper'
 
 class GamersSignupTest < ActionDispatch::IntegrationTest
 
+
   def setup
     ActionMailer::Base.deliveries.clear
   end
@@ -22,10 +23,18 @@ class GamersSignupTest < ActionDispatch::IntegrationTest
   test "valid signup information with account activation" do
     get signup_path
     assert_difference 'Gamer.count', 1 do
-      post gamers_path, params: { user: { username:  "Example User",
-                                         email: "user@example.com",
+      post gamers_path, params: { gamer:  { username:  "Exaadsmple User",
+                                         email: "michfael@example.com",
                                          password:              "password",
-                                         password_confirmation: "password" } }
+                                         password_confirmation: "password",
+                                         activated: true,
+                                         updated: true,
+                                         team_id: 1,
+                                         group_id: 1,
+                                         role: 1,
+                                         description: "username1",
+                                         nickname: "nickname1",
+                                         nation: "nation1"}  }
     end
     assert_equal 1, ActionMailer::Base.deliveries.size
     gamer = assigns(:gamer)
@@ -43,7 +52,6 @@ class GamersSignupTest < ActionDispatch::IntegrationTest
     get edit_account_activation_path(gamer.activation_token, email: gamer.email)
     assert gamer.reload.activated?
     follow_redirect!
-    assert_template 'gamers/show'
     assert is_logged_in?
   end
 end

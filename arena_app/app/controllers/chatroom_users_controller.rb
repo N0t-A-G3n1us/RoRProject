@@ -1,9 +1,11 @@
 class ChatroomUsersController < ApplicationController
+	before_action :set_group
 	before_action :set_chatroom
+	
 
 	def create
 		@chatroom_user = @chatroom.chatroom_users.where(gamer_id: current_gamer.id).first_or_create
-		redirect_to @chatroom
+		redirect_to group_chatroom_url(@group, @chatroom)
 	end
 
 	def destroy
@@ -13,10 +15,16 @@ class ChatroomUsersController < ApplicationController
 
 	private
 
+		def set_group
+			@group = Group.find(params[:group_id])
+		end
+
+
 		def set_chatroom
 			@chatroom = Chatroom.find(params[:chatroom_id])
 		end
 
+		
 
 end
 

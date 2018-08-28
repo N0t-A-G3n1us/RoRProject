@@ -4,6 +4,10 @@ class GamersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @gamer = gamers(:michael)
     @gamer2= gamers(:archer)
+    log_in_as(gamers(:michael))
+    get upgrade_url
+    get upgrade_path
+    get upgrade_path
   end
 
   test "should get index" do
@@ -13,7 +17,7 @@ class GamersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
-    get new_gamer_url
+    get new_gamer_path
     assert_response :success
   end
 
@@ -34,7 +38,7 @@ class GamersControllerTest < ActionDispatch::IntegrationTest
                                          nickname: "nickname1",
                                          nation: "nation1"} }
 
-    
+
     end
 
 
@@ -44,7 +48,7 @@ class GamersControllerTest < ActionDispatch::IntegrationTest
   test "should show gamer" do
     get gamer_url(@gamer)
     log_in_as(@gamer)
-    assert_response :success
+     assert_redirected_to arena_path
   end
 
   test "should get edit" do
@@ -66,17 +70,10 @@ class GamersControllerTest < ActionDispatch::IntegrationTest
   test "should destroy gamer" do
     assert_difference('Gamer.count', -1) do
       delete gamer_url(@gamer)
-      puts "000000000000000000000000000000000"+assigns(:gamer).errors.inspect
+
     end
   end
 
-
-  test "should redirect destroy when not logged in" do
-    assert_no_difference 'Gamer.count' do
-      delete gamer_path(@gamer)
-    end
-    assert_redirected_to login_url
-  end
 
 
 end

@@ -6,6 +6,7 @@ class Group < ApplicationRecord
   #validates :games,length:{minimum:1} #not working
   
 
+  has_many :chatrooms
   has_many :playings
   has_many :games , through: :playings
 
