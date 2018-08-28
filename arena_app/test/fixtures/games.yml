@@ -1,14 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: game1
+  name: Fortnite
   created_at: <%= Time.zone.now %>
   updated_at: <%= Time.zone.now %>
   console_id: 1
   team_id: 1
 
 two:
-  name: game2
+  name: League of Legends
   created_at: <%= Time.zone.now %>
   updated_at: <%= Time.zone.now %>
   console_id: 2

@@ -16,6 +16,7 @@ module SessionsHelper
         @current_gamer = gamer
       end
     end
+
   end
   # Remembers a gamer in a persistent session.
   def remember(gamer)
