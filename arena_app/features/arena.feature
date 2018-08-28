@@ -6,9 +6,7 @@
 # Then: I should see career guide page
 
 
-Feature: Have basic interaction with teams and groups
-
-
+Feature: Have basic interaction with teams and groups from arena page
 
 Scenario: I want to see group list
 Given As a CASUAL GAMER 
@@ -41,12 +39,3 @@ Given As a CASUAL GAMER
 When I click ChangeRole 
 Then I should get redirected to arena with changed role
 
-Scenario: I want to join a group
-Given As a CASUAL GAMER  
-When I click JoinGroup in a group show page
-Then  I should be displayed in group members
-
-Scenario: I want to join a team
-Given As a CASUAL GAMER  
-When I click JoinTeam in a show team page
-Then I should be displayed in team members

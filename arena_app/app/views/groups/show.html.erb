@@ -37,7 +37,10 @@
     <%end%>
 </p>
 <%= link_to 'Join this group', group_join_path(@group) %></br>
-<%= link_to 'Leave this group', group_leave_path(@group) %></br></br>
-
+<% if @group.creator == current_gamer %>
+  <%= link_to 'Leave this group', group_leave_path(@group), data: { confirm: "Group will be deleted, are you sure?" } %></br>
+  <% else %>
+  <%= link_to 'Leave this group', group_leave_path(@group) %></br>
+  <% end %>
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>

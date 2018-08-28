@@ -11,13 +11,13 @@ class Team < ApplicationRecord
   has_one :game
 
   has_many :invite_requests , inverse_of: :team
-  has_many :invites, through: :invite_requests, source: :gamer
+  has_many :invites, through: :invite_requests, source: :gamer, dependent: :destroy
   
   has_many :matches
-  has_many :matching_teams , through: :matches   
+  has_many :matching_teams , through: :matches  
   
   has_many :challenges
-  has_many :challenging_teams, through: :challenges 
+  has_many :challenging_teams, through: :challenges,  dependent: :destroy 
   
   
 

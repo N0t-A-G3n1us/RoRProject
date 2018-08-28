@@ -12,7 +12,7 @@ class GroupsController < ApplicationController
   # GET /groups/1.json
   def show
    @group = Group.find(params[:id])
-  end
+ end
 
   # GET /groups/new
   def new
@@ -75,15 +75,19 @@ class GroupsController < ApplicationController
     @group.members << Gamer.find_by_id(current_gamer.id) unless current_gamer.groups.include?(@group)
     # @member = current_gamer.groups.build(params[:id])
     # @group = @member.build_group(params[:group])
-     redirect_to @group
+    redirect_to @group
   end
 
   def leave
 
     @group =Group.find(params[:group_id])
     @member = @group.members.find_by_id(current_gamer.id)
-    @group.members.delete(@member) unless @member.nil?
-    redirect_to @group
+    if(@group.creator==@member)
+      destroy
+    else
+      @group.members.delete(@member) unless @member.nil?
+      redirect_to @group
+    end
   end
 
   def my_groups
@@ -99,4 +103,4 @@ class GroupsController < ApplicationController
     def group_params
       params.require(:group).permit(:member,:name, :region, :console_id,{:game_ids => []}, :description)
     end
-end
+  end

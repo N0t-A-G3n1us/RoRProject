@@ -40,11 +40,12 @@ Rails.application.routes.draw do
 
 
   resources :teams do
-    get 'join'
+    #get 'join'
+    get 'send_invite'
     get 'leave'
     get 'show_invites'
     get 'add_challenge'
-    resources :invite_requests, only:[:index,:create,:destroy] do
+    resources :invite_requests, only:[:index,:show,:create,:destroy] do
       get 'accept'
       get 'refuse'
 
@@ -75,7 +76,7 @@ Rails.application.routes.draw do
   end
   resources :consoles
   resources :games
-  resources :challenges
+
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

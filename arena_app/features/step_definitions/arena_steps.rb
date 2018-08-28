@@ -73,18 +73,3 @@ Then("I should get redirected to arena with changed role") do
    current_path.should == changerole_path # Write code here that turns the phrase above into concrete actions
 end
 
-When("I click JoinGroup in a group show page") do
-   # Write code here that turns the phrase above into concrete actions
-end
-
-Then("I should be displayed in group members") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When("I click JoinTeam in a show team page") do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then("I should be displayed in team members") do
-  pending # Write code here that turns the phrase above into concrete actions
-end

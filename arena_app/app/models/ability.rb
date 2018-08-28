@@ -36,20 +36,31 @@ class Ability
         can :leave, Group do |group|
           !gamer.groups.nil? && gamer.groups.include?(group)
         end
+        can :join, Team do |team|
+          gamer.team.nil? || gamer.team!= team 
+        end
+        can :leave, Team do |team|
+          !gamer.team.nil? && gamer.team==team && team.boss != gamer
+
+        end
 
       elsif gamer.leader?
         #Team
         can :read, InviteRequest
         can :create, Team
         can :read, Challenge
-        can [:update,:destroy], Team, boss_id: gamer.id
+        can [:update,:destroy,:edit], Team do |team|
+           team.boss==gamer
+        end
         can :join, Team do |team|
           gamer.team.nil? || gamer.team!= team 
         end
         can :leave, Team do |team|
           !gamer.team.nil? && gamer.team==team && team.boss != gamer
         end
-        can :show_invites, Team, boss_id: gamer.id
+        can :show_invites, Team  do |team|
+           team.boss==gamer
+        end
         can :add_challenge, Team do |team|
           team.boss != gamer && !gamer.team.nil? && gamer.team != team && gamer.team.boss==gamer
         end

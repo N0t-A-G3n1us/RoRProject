@@ -28,10 +28,13 @@ class TeamsController < ApplicationController
   # POST /teams.json
   def create
     @team = Team.new(team_params)
-    @team.boss=current_gamer
-    @team.gamers << current_gamer
+
+    
     respond_to do |format|
       if @team.save
+        @team.boss=current_gamer
+        @team.gamers << current_gamer
+       
         format.html { redirect_to @team, notice: 'Team was successfully created.' }
         format.json { render :show, status: :created, location: @team }
       else
@@ -68,22 +71,36 @@ class TeamsController < ApplicationController
   # #  # # # # # NOT CRUD
 
 
-  def join
-    #puts "---------->"+current_gamer.id.to_s
-    @team =Team.find(params[:team_id])
-    #puts "---------->"+ @team.id.to_s
-    
-    @team.gamers << Gamer.find_by_id(current_gamer.id) unless current_gamer.team.nil? || current_gamer.team==@team
-    
+  def send_invite
+    @team = Team.find(params[:team_id])
+    InviteRequest.create(gamer_id: current_gamer.id,team_id: @team.id)
     redirect_to @team
   end
+
+
+
+  # def join
+  #   #puts "---------->"+current_gamer.id.to_s
+  #   @team =Team.find(params[:team_id])
+  #   #puts "---------->"+ @team.id.to_s
+    
+  #   @team.gamers << Gamer.find_by_id(current_gamer.id) unless current_gamer.team.nil? || current_gamer.team==@team
+    
+  #   redirect_to @team
+  # end
 
   def leave
 
     @team =Team.find(params[:team_id])
     @gamer = current_gamer
-    @team.gamers.delete(@gamer) unless @gamer.nil?
-    redirect_to @team
+    if(@team.boss==@gamer)
+      destroy
+    else
+      @team.gamers.delete(@gamer) unless @gamer.nil?
+      redirect_to @team
+    end
+      
+    
   end
 
 

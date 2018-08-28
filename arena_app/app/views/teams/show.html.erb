@@ -45,11 +45,15 @@
     <%= link_to 'Show invite requests', team_invite_requests_path(@team) %></br>
     <%end%>
 <% if @team.gamers.include?(current_gamer)%>
+  <% if @team.boss == current_gamer %>
+  <%= link_to 'Leave this team', team_leave_path(@team), data: { confirm: "Team will be deleted, are you sure?" } %></br>
+  <% else %>
   <%= link_to 'Leave this team', team_leave_path(@team) %></br>
+  <% end %>
 <% elsif gamer_can_challenge?(@team)%> 
   <%= link_to 'Send challenge to this team', team_add_challenge_path(@team) %></br>
 <% else %>  
-  <%= link_to 'Join this team', team_join_path(@team) %></br>
+  <%= link_to 'Join this team', team_send_invite_path(@team) %></br>
 <%end%>
 
 
