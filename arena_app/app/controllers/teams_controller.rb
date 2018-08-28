@@ -73,7 +73,7 @@ class TeamsController < ApplicationController
     @team =Team.find(params[:team_id])
     #puts "---------->"+ @team.id.to_s
     
-    @team.gamers << Gamer.find_by_id(current_gamer.id) unless current_gamer.team==@team
+    @team.gamers << Gamer.find_by_id(current_gamer.id) unless current_gamer.team.nil? || current_gamer.team==@team
     
     redirect_to @team
   end

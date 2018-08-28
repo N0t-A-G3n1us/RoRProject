@@ -3,11 +3,16 @@ require 'test_helper'
 class ConsolesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @console = consoles(:one)
+    log_in_as(gamers(:michael))
+    get upgrade_url
+    get upgrade_path
+    get upgrade_path
   end
 
   test "should get index" do
-    get consoles_url
-    assert_response :success
+
+     get consoles_url
+     assert_response :success
   end
 
   test "should get new" do
@@ -17,7 +22,8 @@ class ConsolesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create console" do
     assert_difference('Console.count') do
-      post consoles_url, params: { console: { description: @console.description, name: @console.name } }
+      post consoles_path, params: { console: { description: "miadesc", name: "miacon" } }
+      #puts "000000000000000000000000000000000"+assigns(:console).errors.inspect
     end
 
     assert_redirected_to console_url(Console.last)

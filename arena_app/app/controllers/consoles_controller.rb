@@ -1,6 +1,6 @@
 class ConsolesController < ApplicationController
-  load_and_authorize_resource
-  before_action :set_console, only: [:show, :edit, :update, :destroy]
+   load_and_authorize_resource 
+   before_action :set_console, only: [:show, :edit, :update, :destroy]
 
   # GET /consoles
   # GET /consoles.json
@@ -70,6 +70,6 @@ class ConsolesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def console_params
-      params.require(:console).permit(:name, :description)
+      params.require(:console).permit(:id,:console,:name, :description)
     end
 end

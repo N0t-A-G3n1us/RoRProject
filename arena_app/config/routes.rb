@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  
+
 
   default_url_options :host => "localhost:3000"
   root 'static_pages#home'
@@ -56,7 +56,7 @@ Rails.application.routes.draw do
     resources :matches do
       get'ragequit'
       get'register'
-      
+
     end
   end
   get '/my_groups', to: 'groups#my_groups'
@@ -73,10 +73,13 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :account_attributes
-  
-  
   resources :consoles
   resources :games
+  resources :challenges
+  resources :matches
+  resources :matches
+  resources :invite_requests
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

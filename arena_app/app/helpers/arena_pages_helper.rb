@@ -1,0 +1,3 @@
+module ArenaPagesHelper
+
+end

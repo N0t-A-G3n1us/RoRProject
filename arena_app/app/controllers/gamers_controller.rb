@@ -1,11 +1,11 @@
 class GamersController < ApplicationController
   load_and_authorize_resource
 
-  before_action :set_gamer, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_gamer, only: [:index,:edit, :update, :destroy]   #richiama la funzione logged in use nel caso ci sia il richiamo di edit o update (funzione di sotto)
-  before_action :correct_gamer,   only: [:edit, :update]
-  before_action :admin_user,     only: :destroy
-  before_action :check_attributes, only: [:show,:edit,:update,:index]
+   before_action :set_gamer, only: [:show, :edit, :update, :destroy]
+   before_action :logged_in_gamer, only: [:index,:edit, :update, :destroy]   #richiama la funzione logged in use nel caso ci sia il richiamo di edit o update (funzione di sotto)
+   before_action :correct_gamer,   only: [:edit, :update]
+   before_action :admin_user,     only: :destroy
+   before_action :check_attributes, only: [:show,:edit,:update,:index]
 
 
   # GET /gamers

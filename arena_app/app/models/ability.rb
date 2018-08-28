@@ -20,6 +20,12 @@ class Ability
         can :manage, :all
       elsif gamer.casual?
         can :read, :all
+        can :join, Group do |group|
+          gamer.groups.nil?||!gamer.groups.include?(group)
+        end
+        can :leave, Group do |group|
+          !gamer.groups.nil? && gamer.groups.include?(group)
+        end
       elsif gamer.pro?
         #Group
         can :create, Group if gamer.groups.count < 1 
