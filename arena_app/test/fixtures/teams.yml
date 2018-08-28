@@ -21,3 +21,15 @@ two:
   avatar: dggsd
   created_at: <%= Time.zone.now %>
   updated_at: <%= Time.zone.now %>
+
+
+three:
+  name: MyString
+  invite_id: three
+  match_id: three
+  challenge_id: three
+  gamer_id: three
+  description: shsfsgs
+  avatar: dggsd
+  created_at: <%= Time.zone.now %>
+  updated_at: <%= Time.zone.now %>

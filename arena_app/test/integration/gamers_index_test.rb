@@ -5,6 +5,10 @@ class GamersIndexTest < ActionDispatch::IntegrationTest
   def setup
     @admin     = gamers(:michael)
     @non_admin = gamers(:archer)
+    log_in_as(@admin)
+    get upgrade_url
+    get upgrade_path
+    get upgrade_path
   end
 
   test "index as admin including pagination and delete links" do
@@ -19,7 +23,7 @@ class GamersIndexTest < ActionDispatch::IntegrationTest
       assert_select 'a[href=?]', gamer_path(gamer), text: gamer.username
       unless gamer == @admin
         assert_select 'a[href=?]', gamer_path(gamer), text: 'delete'
-     
+
       end
     end
     assert_difference 'Gamer.count', -1 do

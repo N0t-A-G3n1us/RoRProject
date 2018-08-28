@@ -10,14 +10,14 @@ class ConsolesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-   
+
      get consoles_url
      assert_response :success
   end
 
   test "should get new" do
     get new_console_url
-    assert_redirected_to root_url
+    assert_response :success
   end
 
   test "should create console" do

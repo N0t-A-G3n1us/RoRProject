@@ -3,6 +3,10 @@ require 'test_helper'
 class GamesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @game = games(:one)
+    log_in_as(gamers(:michael))
+    get upgrade_url
+    get upgrade_path
+    get upgrade_path
   end
 
   test "should get index" do

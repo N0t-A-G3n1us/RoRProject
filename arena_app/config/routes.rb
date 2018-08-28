@@ -76,6 +76,9 @@ Rails.application.routes.draw do
   resources :consoles
   resources :games
   resources :challenges
+  resources :matches
+  resources :matches
+  resources :invite_requests
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
