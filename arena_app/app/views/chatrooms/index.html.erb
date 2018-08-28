@@ -14,10 +14,9 @@
     <% @chatrooms.each do |chatroom| %>
       <tr>
         <td><%= chatroom.name %></td>
-        <td><%= link_to 'Show', chatroom %></td>
-        <td><%= link_to 'Edit', edit_chatroom_path(chatroom) %></td>
-        <td><%= link_to 'Destroy', chatroom, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Join', chatroom_chatroom_users_path(chatroom), method: :post %></td>
+        <td><%= link_to 'Edit', edit_group_chatroom_path(chatroom.group_id, chatroom) %></td>
+        
+        <td><%= link_to 'Join', group_chatroom_chatroom_users_path(chatroom.group_id, chatroom), method: :post %></td>
         
       </tr>
     <% end %>
@@ -26,4 +25,4 @@
 
 <br>
 
-<%= link_to 'New Chatroom', new_chatroom_path %>
+<%= link_to 'New Chatroom', new_group_chatroom_path %>

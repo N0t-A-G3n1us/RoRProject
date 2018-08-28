@@ -61,6 +61,11 @@ Rails.application.routes.draw do
   end
   get '/my_groups', to: 'groups#my_groups'
   resources :groups do
+    resources :chatrooms do
+      resources :chatroom_users
+      resources :messages
+      get 'index'
+    end
     get 'join'
     get 'leave'
   end
@@ -69,10 +74,7 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :account_attributes
   
-  resources :chatrooms do
-    resources :chatroom_users
-    resources :messages
-  end
+  
   resources :consoles
   resources :games
 
