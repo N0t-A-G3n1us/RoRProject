@@ -19,6 +19,13 @@ class ActiveSupport::TestCase
     session[:gamer_id] = gamer.id
   end
 
+  def complete_log_in
+    log_in_as(gamers(:michael))
+    get upgrade_url
+    get upgrade_path
+    get upgrade_path
+  end
+
 end
 
 class ActionDispatch::IntegrationTest

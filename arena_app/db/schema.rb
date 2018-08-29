@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2018_08_27_130622) do
 
   create_table "challenges", force: :cascade do |t|
