@@ -44,3 +44,20 @@
   <% end %>
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>
+
+<tbody>
+    <% @group.chatrooms.each do |chatroom| %>
+      <tr>
+        <td><%= chatroom.name %></td>
+        <td><%= link_to 'Edit', edit_group_chatroom_path(chatroom.group_id, chatroom) %></td>
+        
+        <td><%= link_to 'Join', group_chatroom_chatroom_users_path(chatroom.group_id, chatroom), method: :post %></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Chatroom', new_group_chatroom_path(@group) %>
