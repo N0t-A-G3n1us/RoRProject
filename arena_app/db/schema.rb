@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_27_130622) do
+ActiveRecord::Schema.define(version: 2018_08_29_203644) do
 
   create_table "challenges", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_130622) do
     t.datetime "updated_at", null: false
     t.integer "console_id"
     t.integer "gamer_id"
+    t.index ["gamer_id", "console_id"], name: "index_gamers_consoles_on_gamer_id_and_console_id", unique: true
   end
 
   create_table "gamers_games", force: :cascade do |t|
@@ -80,6 +81,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_130622) do
     t.datetime "updated_at", null: false
     t.integer "game_id"
     t.integer "gamer_id"
+    t.index ["gamer_id", "game_id"], name: "index_gamers_games_on_gamer_id_and_game_id", unique: true
   end
 
   create_table "gamers_groups", force: :cascade do |t|
@@ -134,6 +136,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_130622) do
     t.datetime "updated_at", null: false
     t.integer "team_id"
     t.integer "gamer_id"
+    t.index ["gamer_id", "team_id"], name: "index_invite_requests_on_gamer_id_and_team_id", unique: true
   end
 
   create_table "locations", force: :cascade do |t|
@@ -169,7 +172,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_130622) do
     t.datetime "updated_at", null: false
     t.integer "game_id"
     t.integer "group_id"
-    t.index ["game_id", "group_id"], name: "index_playings_on_game_id_and_group_id"
+    t.index ["game_id", "group_id"], name: "index_playings_on_game_id_and_group_id", unique: true
   end
 
   create_table "teams", force: :cascade do |t|

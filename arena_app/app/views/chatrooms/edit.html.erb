@@ -2,5 +2,5 @@
 
 <%= render 'form', chatroom: @chatroom %>
 
-<%= link_to 'Show', @chatroom %> |
-<%= link_to 'Back', chatrooms_path %>
+<%= link_to 'Show', group_chatroom_url(@chatroom.group,@chatroom) %> |
+<%= link_to 'Back', group_chatrooms_path %>

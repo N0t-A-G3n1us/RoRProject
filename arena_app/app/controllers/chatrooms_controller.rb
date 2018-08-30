@@ -22,6 +22,7 @@ class ChatroomsController < ApplicationController
 
   # GET /chatrooms/1/edit
   def edit
+    @group = Group.find(params[:group_id])
   end
 
   # POST /chatrooms
@@ -48,7 +49,7 @@ class ChatroomsController < ApplicationController
     @chatroom.update(chatroom_params)
     respond_to do |format|
       if @chatroom.update(chatroom_params)
-        format.html { redirect_to @group.chatroom, notice: 'Chatroom was successfully updated.' }
+        format.html { redirect_to group_chatroom_url(@group, @chatroom), notice: 'Chatroom was successfully updated.' }
         format.json { render :show, status: :ok, location: @chatroom }
       else
         format.html { render :edit }

@@ -57,7 +57,8 @@ class GamersController < ApplicationController
         format.html { redirect_to edit_account_attribute_url(email: @gamer.email), notice: 'Gamer was successfully updated.' }
         format.json { render :show, status: :ok, location: @gamer }
       else
-        format.html { redirect_to edit_account_attribute_url(email: @gamer.email) }
+        format.html { render :edit }
+        format.json { render json: @chatroom.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -80,7 +81,7 @@ class GamersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gamer_params
-      params.require(:gamer).permit(:username, :email, :password , :password_confirmation, {:game_ids => []} , {:console_ids => [] }, :nickname ,:nation,:updated)   #aggiunto gli ultimi 2  MANCAVA QUESTO (SENZA L AGGIUNTA NON VENIVANO INSERITI E VEDEVA PASSWORD VUOTE
+      params.require(:gamer).permit(:username, :email, :password , :password_confirmation, {:game_ids => []} , {:console_ids => [] }, :nickname ,:nation,:updated)   
     end
 
 

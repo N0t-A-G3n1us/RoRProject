@@ -31,7 +31,7 @@ class GroupsController < ApplicationController
     #salvo il gruppo nel gamer
     @group.creator=current_gamer
     
-    @group.members << current_gamer
+    @group.members << current_gamer 
 
     respond_to do |format|
       if @group.save
@@ -72,7 +72,7 @@ class GroupsController < ApplicationController
     #puts "---------->"+current_member.id.to_s
     @group =Group.find(params[:group_id])
     #puts "---------->"+ @group.id.to_s
-    @group.members << Gamer.find_by_id(current_gamer.id) unless current_gamer.groups.include?(@group)
+    @group.members << Gamer.find_by_id(current_gamer.id) unless current_gamer.groups.include?(@group) || @group.members.include?(current_gamer)
     # @member = current_gamer.groups.build(params[:id])
     # @group = @member.build_group(params[:group])
     redirect_to @group
