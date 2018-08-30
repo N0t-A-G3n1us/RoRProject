@@ -60,3 +60,21 @@
 </br>
   <%= link_to 'Edit', edit_team_path(@team) %> |
   <%= link_to 'Back', teams_path  %>
+
+
+<tbody>
+    <% @team.chatrooms.each do |chatroom| %>
+      <tr>
+        <td><%= chatroom.name %></td>
+        <td><%= link_to 'Edit', edit_team_chatroom_path(chatroom.team_id, chatroom) %></td>
+        
+        <td><%= link_to 'Join', team_chatroom_chatroom_users_path(chatroom.team_id, chatroom), method: :post %></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Chatroom', new_team_chatroom_path(@team) %>

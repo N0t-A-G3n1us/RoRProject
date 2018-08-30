@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_27_130622) do
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 2018_08_29_203644) do
+=======
+ActiveRecord::Schema.define(version: 2018_08_30_082203) do
+>>>>>>> 84f232e113ded226e0b6d2da61e4d755b3272185
 
   create_table "challenges", force: :cascade do |t|
     t.datetime "created_at", null: false

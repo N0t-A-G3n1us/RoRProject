@@ -1,4 +1,4 @@
-<%= form_for [@group, @chatroom] do |form| %>
+<%= form_for [@parent, @chatroom] do |form| %>
   <% if @chatroom.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(chatroom.errors.count, "error") %> prohibited this chatroom from being saved:</h2>

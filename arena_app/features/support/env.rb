@@ -87,11 +87,14 @@ module CucHelper
 	def attributes_dummy(gamer)
 		gamer.consoles << Console.create(name: "PS5")
 		gamer.games << Game.create(name: "Fortnite")
-		
+        t = Team.create!(name: "ccc", gamer_id: gamer.id)
+        gamer.team=t
+        gamer.save!
+
 	end
 
 	def complete_log_in
-		#needed login  
+		#needed login
 		@user=dummy_gamer
 		@user.activate
 		attributes_dummy(@user)
@@ -100,13 +103,13 @@ module CucHelper
 		fill_in("Password", :with => @user.password)
 		click_button("Log in")
 
-	end 
-
-	
-end   
+	end
 
 
-World(CucHelper) 
+end
+
+
+World(CucHelper)
 
 
 
