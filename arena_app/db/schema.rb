@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_27_130622) do
+ActiveRecord::Schema.define(version: 2018_08_30_082203) do
 
   create_table "challenges", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -33,7 +33,9 @@ ActiveRecord::Schema.define(version: 2018_08_27_130622) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "group_id"
+    t.integer "team_id"
     t.index ["group_id"], name: "index_chatrooms_on_group_id"
+    t.index ["team_id"], name: "index_chatrooms_on_team_id"
   end
 
   create_table "consoles", force: :cascade do |t|

@@ -1,6 +1,6 @@
 class ChatroomsController < ApplicationController
   before_action :set_chatroom, only: [:show, :edit, :update, :destroy]
-  #before_action :set_group, only: [:show, :edit, :update, :destroy]
+  include ChatroomsHelper
 
   # GET /chatrooms
   # GET /chatrooms.json
@@ -11,13 +11,20 @@ class ChatroomsController < ApplicationController
   # GET /chatrooms/1
   # GET /chatrooms/1.json
   def show
+  	@chatroom = Chatroom.find(params[:id])
+  	parent_check
 
   end
 
   # GET /chatrooms/new
   def new
-    @group = Group.find(params[:group_id])
-    @chatroom = @group.chatrooms.build
+  	if (params[:group_id].present?)
+  		@parent = Group.find(params[:group_id])
+  	else 
+  		@parent = Team.find(params[:team_id])
+  	end
+    #@parent = Group.find(params[:group_id])
+    @chatroom = @parent.chatrooms.build
   end
 
   # GET /chatrooms/1/edit
@@ -27,13 +34,26 @@ class ChatroomsController < ApplicationController
   # POST /chatrooms
   # POST /chatrooms.json
   def create
-    @group = Group.find(params[:group_id])
-    @chatroom = @group.chatrooms.build(chatroom_params)
+  	
+  	if (params[:group_id].present?)
+  		@parent = Group.find(params[:group_id])
+
+  	else 
+  		@parent = Team.find(params[:team_id])
+  	end
+
+
+    @chatroom = @parent.chatrooms.build(chatroom_params)
 
     respond_to do |format|
       if @chatroom.save
-        format.html { redirect_to group_chatroom_url(@group, @chatroom), notice: 'Chatroom was successfully created.' }
-        format.json { render :show, status: :created, location: @chatroom }
+      	if (params[:group_id].present?)
+        	format.html { redirect_to group_chatroom_url(@parent, @chatroom), notice: 'Chatroom was successfully created.' }
+        	format.json { render :show, status: :created, location: @chatroom }
+        else
+        	format.html { redirect_to team_chatroom_url(@parent, @chatroom), notice: 'Chatroom was successfully created.' }
+        	format.json { render :show, status: :created, location: @chatroom }
+        end
       else
         format.html { render :new }
         format.json { render json: @chatroom.errors, status: :unprocessable_entity }
@@ -44,12 +64,23 @@ class ChatroomsController < ApplicationController
   # PATCH/PUT /chatrooms/1
   # PATCH/PUT /chatrooms/1.json
   def update
-    @group= Group.find(params[:group_id])
+  	if (params[:group_id].present?)
+  		@parent = Group.find(params[:group_id])
+  	else 
+  		@parent = Team.find(params[:team_id])
+  	end
+    #@parent= Group.find(params[:group_id])
     @chatroom.update(chatroom_params)
     respond_to do |format|
       if @chatroom.update(chatroom_params)
-        format.html { redirect_to @group.chatroom, notice: 'Chatroom was successfully updated.' }
-        format.json { render :show, status: :ok, location: @chatroom }
+      	if (params[:group_id].present?)
+        	format.html { redirect_to group_chatroom_url(@parent, @chatroom), notice: 'Chatroom was successfully created.' }
+        	format.json { render :show, status: :created, location: @chatroom }
+        else
+        	format.html { redirect_to team_chatroom_url(@parent, @chatroom), notice: 'Chatroom was successfully created.' }
+        	format.json { render :show, status: :created, location: @chatroom }
+        end
+        
       else
         format.html { render :edit }
         format.json { render json: @chatroom.errors, status: :unprocessable_entity }
@@ -60,10 +91,16 @@ class ChatroomsController < ApplicationController
   # DELETE /chatrooms/1
   # DELETE /chatrooms/1.json
   def destroy
+  	parent_check
     @chatroom.destroy
     respond_to do |format|
-      format.html { redirect_to group_chatrooms_url, notice: 'Chatroom was successfully destroyed.' }
-      format.json { head :no_content }
+      	if (params[:group_id].present?)
+        	format.html { redirect_to group_chatroom_url(@parent, @chatroom), notice: 'Chatroom was successfully created.' }
+        	format.json { render :show, status: :created, location: @chatroom }
+        else
+        	format.html { redirect_to team_chatroom_url(@parent, @chatroom), notice: 'Chatroom was successfully created.' }
+        	format.json { render :show, status: :created, location: @chatroom }
+        end
     end
   end
 
@@ -73,12 +110,8 @@ class ChatroomsController < ApplicationController
       @chatroom = Chatroom.find(params[:id])
     end
 
-    def set_group
-      @group = Group.find(params[:group_id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def chatroom_params
-      params.require(:chatroom).permit(:name)
+      params.require(:chatroom).permit(:name, :team_id, :group_id)
     end
 end

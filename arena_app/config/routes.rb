@@ -45,6 +45,11 @@ Rails.application.routes.draw do
     get 'leave'
     get 'show_invites'
     get 'add_challenge'
+    resources :chatrooms do
+      resources :chatroom_users
+      resources :messages
+      get 'index'
+    end
     resources :invite_requests, only:[:index,:show,:create,:destroy] do
       get 'accept'
       get 'refuse'

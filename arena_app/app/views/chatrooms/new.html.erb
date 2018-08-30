@@ -1,5 +1,11 @@
 <h1>New Chatroom</h1>
 
-<%= render 'form', group: @group, chatroom: @chatroom %>
+<%= render 'form', team: @parent, chatroom: @chatroom %>
 
-<%= link_to 'Back', group_chatrooms_path %>
+
+<% if @chatroom.group.nil? %>
+ 	<%= link_to 'Back', team_chatrooms_path %>
+<% else %>
+ 	<%= link_to 'Back', group_chatrooms_path %>
+<% end %>
+

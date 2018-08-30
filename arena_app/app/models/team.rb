@@ -4,6 +4,8 @@ class Team < ApplicationRecord
   presence: true, uniqueness: true
 
 
+  has_many :chatrooms
+
   has_one :boss, class_name: 'Gamer'
   has_many :gamers
   

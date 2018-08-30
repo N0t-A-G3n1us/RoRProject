@@ -13,7 +13,12 @@
    
   
 </div>
-
-<%= form_for [@chatroom.group, @chatroom, Message.new] do |f| %>
-  <%= f.text_area :body, rows: 1, class: "form-control", autofocus: true %>
+<% if @chatroom.group.nil? %>
+ 	<%= form_for [@chatroom.team, @chatroom, Message.new] do |f| %>
+  	<%= f.text_area :body, rows: 1, class: "form-control", autofocus: true %>
+	<% end %>
+<% else %>
+ 	<%= form_for [@chatroom.group, @chatroom, Message.new] do |f| %>
+  	<%= f.text_area :body, rows: 1, class: "form-control", autofocus: true %>
+	<% end %>
 <% end %>
