@@ -70,15 +70,23 @@
     <% @team.chatrooms.each do |chatroom| %>
       <tr>
         <td><%= chatroom.name %></td>
-        <td><%= link_to 'Change Chatroom name', edit_team_chatroom_path(chatroom.team_id, chatroom) %></td>
-        
-        <td><%= link_to 'Join chatroom', team_chatroom_chatroom_users_path(chatroom.team_id, chatroom), method: :post %></td>
-
+        <% if @team.boss == current_gamer %>
+          <td><%= link_to 'Destroy ', team_chatroom_path(chatroom.team_id, chatroom), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+        <td></td>
+        <% if @team.boss == current_gamer %>
+          <td><%= link_to 'ChangeChatroomName', edit_team_chatroom_path(chatroom.team_id, chatroom) %></td>
+        <% end %>
+        <td></td>
+        <% if @team.gamers.include?(current_gamer)%>
+          <td><%= link_to 'JoinChatroom', team_chatroom_chatroom_users_path(chatroom.team_id, chatroom), method: :post %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Chatroom', new_team_chatroom_path(@team) %>
+<% if @team.boss == current_gamer %>
+  <%= link_to 'New Chatroom', new_team_chatroom_path(@team) %>
+<% end %>
