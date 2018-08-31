@@ -48,7 +48,7 @@
   <% if @team.boss == current_gamer %>
   <%= link_to 'Leave this team', team_leave_path(@team), data: { confirm: "Team will be deleted, are you sure?" } %></br>
   <% else %>
-  <%= link_to 'Leave this team', team_leave_path(@team) %></br>
+  <%= link_to 'Leave this team', team_leave_path(@team), data: { confirm: "You are leaving, are you sure?" } %></br>
   <% end %>
 <% elsif gamer_can_challenge?(@team)%> 
   <%= link_to 'Send challenge to this team', team_add_challenge_path(@team) %></br>
@@ -58,18 +58,22 @@
 
 
 </br>
+<%  if can? :edit, @team %>
   <%= link_to 'Edit', edit_team_path(@team) %> |
+ <%end%> 
   <%= link_to 'Back', teams_path  %>
 
-
+<br>
+<table>
+<th>Chatroom</th>
 <tbody>
     <% @team.chatrooms.each do |chatroom| %>
       <tr>
         <td><%= chatroom.name %></td>
-        <td><%= link_to 'Edit', edit_team_chatroom_path(chatroom.team_id, chatroom) %></td>
+        <td><%= link_to 'Change Chatroom name', edit_team_chatroom_path(chatroom.team_id, chatroom) %></td>
         
-        <td><%= link_to 'Join', team_chatroom_chatroom_users_path(chatroom.team_id, chatroom), method: :post %></td>
-        
+        <td><%= link_to 'Join chatroom', team_chatroom_chatroom_users_path(chatroom.team_id, chatroom), method: :post %></td>
+
       </tr>
     <% end %>
   </tbody>

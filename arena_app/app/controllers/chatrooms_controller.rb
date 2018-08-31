@@ -6,6 +6,11 @@ class ChatroomsController < ApplicationController
   # GET /chatrooms.json
   def index
     @chatrooms = Chatroom.all
+      if (params[:group_id].present?)
+      @parent = Group.find(params[:group_id])
+    else 
+      @parent = Team.find(params[:team_id])
+    end
   end
 
   # GET /chatrooms/1
@@ -29,7 +34,8 @@ class ChatroomsController < ApplicationController
 
   # GET /chatrooms/1/edit
   def edit
-    @group = Group.find(params[:group_id])
+    @chatroom = Chatroom.find(params[:id])
+    parent_check
   end
 
   # POST /chatrooms
@@ -75,10 +81,10 @@ class ChatroomsController < ApplicationController
     respond_to do |format|
       if @chatroom.update(chatroom_params)
       	if (params[:group_id].present?)
-        	format.html { redirect_to group_chatroom_url(@parent, @chatroom), notice: 'Chatroom was successfully created.' }
+        	format.html { redirect_to group_chatroom_url(@parent, @chatroom), notice: 'Chatroom was successfully updated.' }
         	format.json { render :show, status: :created, location: @chatroom }
         else
-        	format.html { redirect_to team_chatroom_url(@parent, @chatroom), notice: 'Chatroom was successfully created.' }
+        	format.html { redirect_to team_chatroom_url(@parent, @chatroom), notice: 'Chatroom was successfully updated.' }
         	format.json { render :show, status: :created, location: @chatroom }
         end
         

@@ -16,9 +16,12 @@
 <% if @chatroom.group.nil? %>
  	<%= form_for [@chatroom.team, @chatroom, Message.new] do |f| %>
   	<%= f.text_area :body, rows: 1, class: "form-control", autofocus: true %>
+	<%= link_to 'Back', team_path(@chatroom.team) %>
 	<% end %>
 <% else %>
  	<%= form_for [@chatroom.group, @chatroom, Message.new] do |f| %>
   	<%= f.text_area :body, rows: 1, class: "form-control", autofocus: true %>
+	<%= link_to 'Back', group_path(@chatroom.group) %>
 	<% end %>
 <% end %>
+

@@ -14,9 +14,9 @@
     <% @chatrooms.each do |chatroom| %>
       <tr>
         <td><%= chatroom.name %></td>
-        <td><%= link_to 'Edit', edit_group_chatroom_path(chatroom.group_id, chatroom) %></td>
+        <td><%= link_to 'Change name of chatroom', edit_group_chatroom_path(chatroom.group_id, chatroom) %></td>
         
-        <td><%= link_to 'Join', group_chatroom_chatroom_users_path(chatroom.group_id, chatroom), method: :post %></td>
+        <td><%= link_to 'Join chatroom', group_chatroom_chatroom_users_path(chatroom.group_id, chatroom), method: :post %></td>
         
       </tr>
     <% end %>
@@ -25,4 +25,4 @@
 
 <br>
 
-<%= link_to 'New Chatroom', new_group_chatroom_path %>
+<%= link_to 'New Chatroom', new_group_chatroom_path(chatroom.group_id) %>

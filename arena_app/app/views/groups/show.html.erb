@@ -42,16 +42,21 @@
   <% else %>
   <%= link_to 'Leave this group', group_leave_path(@group) %></br>
   <% end %>
-<%= link_to 'Edit', edit_group_path(@group) %> |
+<% if can? :edit, @group %>
+  <%= link_to 'Edit', edit_group_path(@group) %> |
+<% end %>
 <%= link_to 'Back', groups_path %>
 
+<br>
+<table>
+<th>Chatroom</th>
 <tbody>
     <% @group.chatrooms.each do |chatroom| %>
       <tr>
         <td><%= chatroom.name %></td>
-        <td><%= link_to 'Edit', edit_group_chatroom_path(chatroom.group_id, chatroom) %></td>
+        <td><%= link_to 'Change Chatroom name', edit_group_chatroom_path(chatroom.group_id, chatroom) %></td>
         
-        <td><%= link_to 'Join', group_chatroom_chatroom_users_path(chatroom.group_id, chatroom), method: :post %></td>
+        <td><%= link_to 'Join chatroom', group_chatroom_chatroom_users_path(chatroom.group_id, chatroom), method: :post %></td>
         
       </tr>
     <% end %>

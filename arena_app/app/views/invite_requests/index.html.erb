@@ -13,7 +13,7 @@
     <% if !@invite_requests.empty?   %>
     <%@invite_requests.each do |invite_request|%>
     <tr>
-      Request from: <%= invite_request.gamer_id %>
+      Request from: <%= invite_request.gamer.email %>
       <td><%= link_to 'Accept', team_invite_request_accept_path(invite_request_id: invite_request.id) %></td>
       <td><%= link_to 'Refuse', team_invite_request_refuse_path(invite_request_id: invite_request.id), data: { confirm: 'Are you sure?' } %></td>
     </tr>

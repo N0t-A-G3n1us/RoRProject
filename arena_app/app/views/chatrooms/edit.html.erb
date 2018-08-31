@@ -2,5 +2,12 @@
 
 <%= render 'form', chatroom: @chatroom %>
 
-<%= link_to 'Show', group_chatroom_url(@chatroom.group,@chatroom) %> |
-<%= link_to 'Back', group_chatrooms_path %>
+<% if @chatroom.group.nil? %>
+	<%= link_to 'Show', group_chatroom_url(@chatroom.team,@chatroom) %> |
+	<%= link_to 'Back', team_path(@chatroom.team) %>
+<% elsif @chatroom.team.nil? %>
+	<%= link_to 'Show', group_chatroom_url(@chatroom.group,@chatroom) %> |
+	<%= link_to 'Back', group_path(@chatroom.group) %>
+<%else%>
+	<%= flash[:danger]="not group nor team in chatroom" %>
+<%end%>

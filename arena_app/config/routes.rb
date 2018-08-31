@@ -38,6 +38,9 @@ Rails.application.routes.draw do
   #chatroom
   get '/chat', to: 'chatrooms#index'
 
+  #errors
+   get '/404', to: 'errors#not_found'
+   get '/500', to: 'errors#internal_server_error'
 
   resources :teams do
     #get 'join'

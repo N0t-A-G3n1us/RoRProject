@@ -73,7 +73,11 @@ class TeamsController < ApplicationController
 
   def send_invite
     @team = Team.find(params[:team_id])
-    InviteRequest.create(gamer_id: current_gamer.id,team_id: @team.id)
+    if (!@team.invites.include? current_gamer)
+      InviteRequest.create(gamer_id: current_gamer.id,team_id: @team.id) 
+    else
+      flash[:danger]="You already have sent this invite"
+    end
     redirect_to @team
   end
 
@@ -111,7 +115,11 @@ class TeamsController < ApplicationController
 
   def add_challenge
     @team = Team.find(params[:team_id])
-    @team.challenges.create(team_id: @team.id, challenging_team_id: current_gamer.team.id)
+    if (!@team.challenges.include? current_gamer.team)
+      @team.challenges.create(team_id: @team.id, challenging_team_id: current_gamer.team.id)   
+    else
+      flash[:danger]="You already have sent this challenge"
+    end
     render :show
   end 
 
