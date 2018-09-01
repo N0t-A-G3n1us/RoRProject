@@ -31,16 +31,17 @@
           <%= mem.username %> -> <%=mem.email %>
           <%end%>
         </td>
-        <td><%= link_to 'Show', team %></td>
-        <td><%= link_to 'Edit', edit_team_path(team) %></td>
-        <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><div class= "btn btn-default btn-xs"><%= link_to 'Show', team %></div>
+        <div class= "btn btn-default btn-xs"><%= link_to 'Edit', edit_team_path(team) %></div>
+        <div class= "btn btn-default btn-xs"><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></div></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-<%= link_to 'Back', arena_path %>
 <% if current_gamer.admin? %>
-<%= link_to 'New Team', new_team_path %>
+<div class= "btn btn-default btn-xs"><%= link_to 'New Team', new_team_path %></div>
 <%end%>
+<br/>
+<div class= "btn btn-default btn-sm"><%= link_to 'Back', arena_path %></div>
