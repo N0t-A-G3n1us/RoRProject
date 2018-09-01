@@ -12,7 +12,7 @@
       <th>Game</th>
       <th>Creator</th>
       <th>Members </th>
-      <th colspan="3"></th>
+      <th colspan="6">Functions:</th>
     </tr>
   </thead>
 
@@ -27,17 +27,18 @@
       <td>    <%= group.creator.username unless group.creator.nil? %></td>
         <td> <% group.members.each do |g| %>
       <%= g.username %> -> <%= g.email %> <%end%></td>
-      
-        <td><%= link_to 'Show', group %></td>
-        <td><%= link_to 'Edit', edit_group_path(group) %></td>
-        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+        <div class= "btn btn-default btn-xs"><%= link_to 'Show', group %></div>
+        <div class= "btn btn-default btn-xs"><%= link_to 'Edit', edit_group_path(group) %></div>
+        <div class= "btn btn-default btn-xs"><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-<%= link_to 'Back',  arena_path %>
+<div class= "btn btn-default btn-sm"><%= link_to 'Back',  arena_path %></div>
 <% if can? :create, Group %>
-<%= link_to 'New Group', new_group_path %>
+<div class= "btn btn-default btn-sm"><%= link_to 'New Group', new_group_path %></div>
 <% end %>
