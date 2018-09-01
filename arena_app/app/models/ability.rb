@@ -17,12 +17,14 @@ class Ability
     cannot :read , Message
 
     if gamer.nil? 
-      can :create, Gamer 
-      can :my_groups, Group
-      can [:destroy,:update,:edit], Gamer
+      # can :create, Gamer 
+      # can :my_groups, Group
+      # can [:destroy,:update,:edit], Gamer
     elsif gamer.admin?  # additional permissions for administrators
       can :manage, :all
     elsif gamer.casual?
+      can [:destroy,:update,:edit], Gamer
+
       can :read, :all
       can :join, Group do |group|
         gamer.groups.nil?||!gamer.groups.include?(group)
@@ -31,6 +33,8 @@ class Ability
         !gamer.groups.nil? && gamer.groups.include?(group)
       end
     elsif gamer.pro?
+      can [:destroy,:update,:edit], Gamer
+      
       #Group
       can :create, Group if gamer.groups.count < 1                    #can create just one group
       can [:update,:destroy], Group , creator_id: gamer.id  
@@ -57,7 +61,8 @@ class Ability
 
     elsif gamer.leader?
       
-      
+      can [:destroy,:update,:edit], Gamer
+
       #Team
 
       can :create, Team 

@@ -8,21 +8,34 @@
 
 #aggiunto PRIMA ERA VUOTO
 
-Gamer.create!(username:  "Example Gamer",
-             email: "example@railstutorial.org",
-             password:              "foobar",
-             password_confirmation: "foobar",
-             activated: true,
-             activated_at: Time.zone.now)
+# Gamer.create!(username:  "Example Gamer",
+#              email: "example@railstutorial.org",
+#              password:              "foobar",
+#              password_confirmation: "foobar",
+#              activated: true,
+#              activated_at: Time.zone.now)
 
-99.times do |n|
-  username  = Faker::Name.name
-  email = "example-#{n+1}@railstutoriall.org"
-  password = "password"
-  Gamer.create!(username:  username,
-              email: email,
-              password:              password,
-              password_confirmation: password,
-              activated: true,
-              activated_at: Time.zone.now)
+# 99.times do |n|
+#   username  = Faker::Name.name
+#   email = "example-#{n+1}@railstutoriall.org"
+#   password = "password"
+#   Gamer.create!(username:  username,
+#               email: email,
+#               password:              password,
+#               password_confirmation: password,
+#               activated: true,
+#               activated_at: Time.zone.now)
+# end
+
+require 'csv'
+puts "Importing nations..."
+
+CSV.foreach(Rails.root.join("region_code.csv"), headers: true) do |row|
+  Nation.create! do |n|
+    n.name = row[0]
+    n.code = row[1]
+  end
 end
+
+
+

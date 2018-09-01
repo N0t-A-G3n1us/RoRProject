@@ -27,8 +27,9 @@
       <%= f.text_field :nickname, class: 'form-control' %>
 
       <%= f.label :nation %>
-      <%= render "region_code" %>
-
+<!--       <%= f.collection_select :code, Nation.order(:name),:id, :name,class: "form-control" %> 
+ -->
+      <%= render partial:"region_code", locals:{f: f }%>
       <p>
         <%= label :game_ids, 'Choose your three favourite games (just three):' %>
 

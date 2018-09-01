@@ -109,7 +109,7 @@ class AccountAttributesController < ApplicationController
 
 
     def gamer_params
-      params.require(:gamer).permit(:email,:nickname , :description, :games , :console)
+      params.require(:gamer).permit(:email,:nickname , :description, :games ,:nation, :console)
     end
 
     def get_gamer
