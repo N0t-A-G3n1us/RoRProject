@@ -29,12 +29,17 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
 
-    
+    if ! current_gamer.team.nil?
+      flash[:danger]="You already have a team"
+      redirect_to teams_path
+    else 
+
     respond_to do |format|
       if @team.save
+        
         @team.boss=current_gamer
         @team.gamers << current_gamer
-       
+
         format.html { redirect_to @team, notice: 'Team was successfully created.' }
         format.json { render :show, status: :created, location: @team }
       else
@@ -43,6 +48,7 @@ class TeamsController < ApplicationController
       end
     end
   end
+end
 
   # PATCH/PUT /teams/1
   # PATCH/PUT /teams/1.json
@@ -115,12 +121,18 @@ class TeamsController < ApplicationController
 
   def add_challenge
     @team = Team.find(params[:team_id])
-    if (!@team.challenges.include? current_gamer.team)
-      @team.challenges.create(team_id: @team.id, challenging_team_id: current_gamer.team.id)   
-    else
-      flash[:danger]="You already have sent this challenge"
+    if @team==current_gamer.team
+      flash[:danger]="This is your team, you cannot challenge"
+    elsif (!@team.challenges.include? Challenge.find_by(challenging_team: current_gamer.team) )
+    
+      @team.challenges.each do |t|
+        flash[:danger]= "---->"  + t.team.inspect + t.challenging_team.inspect + @team.challenges.class.inspect
+      end
+      @team.challenges << Challenge.create(team:@team,challenging_team: current_gamer.team )
+    else 
+      flash[:danger]="You have already sent a challenge request"
     end
-    render :show
+    redirect_to team_path(@team)
   end 
 
 

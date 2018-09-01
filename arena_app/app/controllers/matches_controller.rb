@@ -21,7 +21,8 @@ class MatchesController < ApplicationController
 
   # GET /matches/1/edit
   def edit
-    @match= Match.find(params[:match_id])
+    
+    @match= Match.find(params[:id])
   end
 
   # POST /matches

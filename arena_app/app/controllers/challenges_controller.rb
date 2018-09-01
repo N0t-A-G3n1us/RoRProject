@@ -1,7 +1,7 @@
 class ChallengesController < ApplicationController
   include ChallengesHelper
   load_and_authorize_resource :team
-  load_and_authorize_resource :challenge, through: :team
+  load_and_authorize_resource  :challenge,through: :team
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
 
   # GET /challenges

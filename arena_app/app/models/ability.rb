@@ -11,11 +11,15 @@ class Ability
     can :read, :all
     cannot :read , InviteRequest
     cannot :read , Challenge
-    can :my_groups, Group
-    can [:destroy,:update,:edit], Gamer
+    cannot :read , Chatroom
+    cannot :read , Match
+    cannot :read , ChatroomUser
+    cannot :read , Message
+
     if gamer.nil? 
       can :create, Gamer 
-    
+      can :my_groups, Group
+      can [:destroy,:update,:edit], Gamer
     elsif gamer.admin?  # additional permissions for administrators
       can :manage, :all
     elsif gamer.casual?
@@ -52,17 +56,16 @@ class Ability
 
 
     elsif gamer.leader?
+      
+      
       #Team
-      can :read, InviteRequest
-      can [:accept,:refuse], InviteRequest do |team|
-        team.boss == gamer
-      end
-      can :create, Team
-      can :read, Challenge
+
+      can :create, Team 
+        
       can [:update,:destroy,:edit], Team do |team|
          team.boss==gamer
       end
-      can :join, Team do |team|
+      can :send_invite, Team do |team|
         gamer.team.nil? || gamer.team!= team 
       end
       can :leave, Team do |team|
@@ -74,6 +77,22 @@ class Ability
       can :add_challenge, Team do |team|
         team.boss != gamer && !gamer.team.nil? && gamer.team != team && gamer.team.boss==gamer
       end
+
+      #Challenge
+      can :read, Challenge, team: { boss: gamer}
+      can [:accept,:refuse], Challenge , team: { boss: gamer}
+
+
+      #InviteRequest
+      can :read, InviteRequest, team: { boss: gamer}
+      can [:accept,:refuse], InviteRequest, team: {boss: gamer}
+
+      #Match
+      can :read, Match, team: { boss: gamer}
+      can [:accept,:refuse], Match, team: {boss: gamer}
+      can [:register,:ragequit], Match, team: {boss: gamer}      
+
+
       #Group
       can :create, Group if gamer.groups.count < 2
       can [:update,:destroy], Group, creator_id: gamer.id 

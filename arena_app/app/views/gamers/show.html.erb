@@ -39,6 +39,18 @@
   <%= @gamer.description %>
 
 </p>
+
+<p>
+  <strong>Team</strong>
+  <%= @gamer.team.name unless @gamer.team.nil? %>
+
+</p>
+<p>
+  <strong>Groups:</strong>
+  <% @gamer.groups.each do |g| %>
+    <%= g.name %>
+  <%end%>
+</p>
 <% if current_gamer?(@gamer) %>
     <%= link_to 'Edit', edit_gamer_path(@gamer) %> |
 <% end %>

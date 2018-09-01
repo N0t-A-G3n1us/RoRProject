@@ -11,7 +11,7 @@
 
   <tbody>
   <% if !@challenges.nil? %>
-    <% @challenges.each do |challenge|  %>
+    <% @team.challenges.each do |challenge|  %>
       <tr>
         
         <td>
@@ -23,6 +23,6 @@
     <%end%>
   </tbody>
 </table>
-<%= link_to 'Back', :back %>
+<%= link_to 'Back', team_path(@team) %>
 <br>
 

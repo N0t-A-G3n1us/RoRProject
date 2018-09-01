@@ -16,7 +16,7 @@ class Team < ApplicationRecord
   has_many :invites, through: :invite_requests, source: :gamer, dependent: :destroy
   
   has_many :matches
-  has_many :matching_teams , through: :matches  
+  has_many :matching_teams , through: :matches , dependent: :destroy
   
   has_many :challenges
   has_many :challenging_teams, through: :challenges,  dependent: :destroy 
