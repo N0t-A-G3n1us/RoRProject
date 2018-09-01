@@ -13,7 +13,7 @@ class ChatroomsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
-    get new_group_chatroom_url(@group)
+    get :new
     assert_response :success
   end
 

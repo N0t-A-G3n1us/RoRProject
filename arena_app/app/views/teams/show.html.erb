@@ -16,7 +16,7 @@
 <p>
   <strong>Invites:</strong>
   <% @team.invites.each do |inv| %>
-      <%= inv.username %> -> <%= inv.email %> | 
+      <%= inv.username %> -> <%= inv.email %> |
   <% end %>
 </p>
 
@@ -41,44 +41,54 @@
 </p>
 
 
-<% if @team.boss == current_gamer %>  
-    <%= link_to 'Show invite requests', team_invite_requests_path(@team) %></br>
+<% if @team.boss == current_gamer %>
+    <div class= "btn btn-default btn-sm"><%= link_to 'Show invite requests', team_invite_requests_path(@team) %></div>
     <%end%>
 <% if @team.gamers.include?(current_gamer)%>
   <% if @team.boss == current_gamer %>
-  <%= link_to 'Leave this team', team_leave_path(@team), data: { confirm: "Team will be deleted, are you sure?" } %></br>
+  <div class= "btn btn-default btn-sm"><%= link_to 'Leave this team', team_leave_path(@team), data: { confirm: "Team will be deleted, are you sure?" } %></div>
   <% else %>
-  <%= link_to 'Leave this team', team_leave_path(@team), data: { confirm: "You are leaving, are you sure?" } %></br>
+  <div class= "btn btn-default btn-sm"><%= link_to 'Leave this team', team_leave_path(@team), data: { confirm: "You are leaving, are you sure?" } %></div>
   <% end %>
-<% elsif gamer_can_challenge?(@team)%> 
-  <%= link_to 'Send challenge to this team', team_add_challenge_path(@team) %></br>
-<% else %>  
-  <%= link_to 'Join this team', team_send_invite_path(@team) %></br>
+<% elsif gamer_can_challenge?(@team)%>
+  <div class= "btn btn-default btn-sm"><%= link_to 'Send challenge to this team', team_add_challenge_path(@team) %></div>
+<% else %>
+  <div class= "btn btn-default btn-sm"><%= link_to 'Join this team', team_send_invite_path(@team) %></div> </br>
 <%end%>
 
 
 </br>
-<%  if can? :edit, @team %>
-  <%= link_to 'Edit', edit_team_path(@team) %> |
- <%end%> 
-  <%= link_to 'Back', teams_path  %>
 
 <br>
 <table>
-<th>Chatroom</th>
 <tbody>
+    <th>Chatroom:</th>
     <% @team.chatrooms.each do |chatroom| %>
       <tr>
         <td><%= chatroom.name %></td>
-        <td><%= link_to 'Change Chatroom name', edit_team_chatroom_path(chatroom.team_id, chatroom) %></td>
-        
-        <td><%= link_to 'Join chatroom', team_chatroom_chatroom_users_path(chatroom.team_id, chatroom), method: :post %></td>
+        <td>
+        <% if @team.boss == current_gamer %>
+          <div class= "btn btn-default btn-sm"><%= link_to 'Destroy ', team_chatroom_path(chatroom.team_id, chatroom), method: :delete, data: { confirm: 'Are you sure?' } %></div>
+        <% end %>
 
+        <% if @team.boss == current_gamer %>
+          <div class= "btn btn-default btn-sm"><%= link_to 'ChangeChatroomName', edit_team_chatroom_path(chatroom.team_id, chatroom) %></div>
+        <% end %>
+        <% if @team.gamers.include?(current_gamer)%>
+          <div class= "btn btn-default btn-sm"><%= link_to 'JoinChatroom', team_chatroom_chatroom_users_path(chatroom.team_id, chatroom), method: :post %></div></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Chatroom', new_team_chatroom_path(@team) %>
+<% if @team.boss == current_gamer %>
+  <div class= "btn btn-default btn-sm"><%= link_to 'New Chatroom', new_team_chatroom_path(@team) %></div>
+<% end %>
+<br/>
+<br/>
+<%  if can? :edit, @team %>
+  <div class= "btn btn-default btn-xs"><%= link_to 'Edit', edit_team_path(@team) %></div>
+ <%end%>
+<div class= "btn btn-default btn-xs"><%= link_to 'Back', teams_path  %></div>

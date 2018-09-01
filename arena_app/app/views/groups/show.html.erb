@@ -23,11 +23,11 @@
 
 <p>
   <strong>Game:</strong>
-  
-  	
-  	<% @group.games.each do |g| %>
-  		<%= g.name %>
-  	<%end%>
+
+
+    <% @group.games.each do |g| %>
+      <%= g.name %>
+    <%end%>
 </p>
 
 <p>
@@ -36,33 +36,53 @@
       <%= g.username %> -> <%= g.email %>
     <%end%>
 </p>
-<%= link_to 'Join this group', group_join_path(@group) %></br>
+<div class= "btn btn-default btn-sm"><%= link_to 'Join this group', group_join_path(@group) %></div>
 <% if @group.creator == current_gamer %>
-  <%= link_to 'Leave this group', group_leave_path(@group), data: { confirm: "Group will be deleted, are you sure?" } %></br>
+  <div class= "btn btn-default btn-sm"><%= link_to 'Leave this group', group_leave_path(@group), data: { confirm: "Group will be deleted, are you sure?" } %></div>
   <% else %>
-  <%= link_to 'Leave this group', group_leave_path(@group) %></br>
+  <div class= "btn btn-default btn-sm"><%= link_to 'Leave this group', group_leave_path(@group) %></div>
   <% end %>
 <% if can? :edit, @group %>
-  <%= link_to 'Edit', edit_group_path(@group) %> |
+  <div class= "btn btn-default btn-sm"><%= link_to 'Edit', edit_group_path(@group) %></div>
 <% end %>
-<%= link_to 'Back', groups_path %>
 
-<br>
-<table>
-<th>Chatroom</th>
-<tbody>
-    <% @group.chatrooms.each do |chatroom| %>
-      <tr>
-        <td><%= chatroom.name %></td>
-        <td><%= link_to 'Change Chatroom name', edit_group_chatroom_path(chatroom.group_id, chatroom) %></td>
-        
-        <td><%= link_to 'Join chatroom', group_chatroom_chatroom_users_path(chatroom.group_id, chatroom), method: :post %></td>
-        
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
 
-<%= link_to 'New Chatroom', new_group_chatroom_path(@group) %>
+
+  <br>
+  <table>
+  <th>Chatroom:</th>
+  <tbody>
+      <% @group.chatrooms.each do |chatroom| %>
+        <tr>
+          <td><%= chatroom.name %></td>
+          <td>
+            <% if @group.creator == current_gamer %>
+              <div class= "btn btn-default btn-sm"><%= link_to 'Destroy ', group_chatroom_path(chatroom.group_id, chatroom), method: :delete, data: { confirm: 'Are you sure?' } %></div>
+            <% end %>
+          </td>
+          <td></td>
+          <td>
+            <% if @group.creator == current_gamer %>
+              <div class= "btn btn-default btn-sm"><%= link_to 'ChangeChatroomName', edit_group_chatroom_path(chatroom.group_id, chatroom) %></div></td>
+            <% end %>
+          <td></td>
+            <% if @current_gamer.groups.include? @group %>
+              <td><div class= "btn btn-default btn-sm"><%= link_to 'JoinChatroom', group_chatroom_chatroom_users_path(chatroom.group_id, chatroom), method: :post %></div></td>
+            <% end %>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+  <% if @group.creator == current_gamer %>
+    <div class= "btn btn-default btn-sm"><%= link_to 'New Chatroom', new_group_chatroom_path(@group) %></div>
+  <% end %>
+  <br/>
+  <br/>
+  <br/>
+  <div class= "btn btn-default btn-xs"><%= link_to 'Back', groups_path %></div>
+
+

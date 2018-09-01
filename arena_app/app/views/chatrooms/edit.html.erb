@@ -1,13 +1,13 @@
 <h1>Editing Chatroom</h1>
 
-<%= render 'form', chatroom: @chatroom %>
+<%= render 'form', team: @parent, chatroom: @chatroom %>
 
 <% if @chatroom.group.nil? %>
-	<%= link_to 'Show', group_chatroom_url(@chatroom.team,@chatroom) %> |
-	<%= link_to 'Back', team_path(@chatroom.team) %>
+ 	<%= link_to 'Back', team_path(@parent) %>
+ 	<%= link_to 'Show', team_chatroom_path(@parent, @chatroom) %>
 <% elsif @chatroom.team.nil? %>
-	<%= link_to 'Show', group_chatroom_url(@chatroom.group,@chatroom) %> |
-	<%= link_to 'Back', group_path(@chatroom.group) %>
+ 	<%= link_to 'Back', group_path(@parent) %>
+ 	<%= link_to 'Show', group_chatroom_path(@parent, @chatroom) %>
 <%else%>
 	<%= flash[:danger]="not group nor team in chatroom" %>
-<%end%>
+<% end %>
