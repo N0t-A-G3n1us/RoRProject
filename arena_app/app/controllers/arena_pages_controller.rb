@@ -21,15 +21,7 @@ class ArenaPagesController < ApplicationController
                end
            end
          end
-    else
-        if @gamer_games.to_a.count==1
-            @game_selected=Game.find_by(id: @gamer_games).name
-            response=HTTParty.get("https://api.twitch.tv/kraken/streams/?game=#{@game_selected}&limit=3&language=en",:headers => { 'Accept' => 'application/vnd.twitchtv.v5+json' , 'Client-ID' => 'zhlt7sm2fz1tg5z7w5rfv4zb8lybxx'})
-            body=JSON.parse(response.body)
-           @stream1=body["streams"][0]["channel"]["display_name"]
-            @stream2=body["streams"][1]["channel"]["display_name"]
-            @stream3=body["streams"][2]["channel"]["display_name"]
-        else
+         elsif @gamer_games.to_a.count==2
             (0..1).each do |i|
                 @game_selected=Game.find_by(id: @gamer_games[i]).name
                 response=HTTParty.get("https://api.twitch.tv/kraken/streams/?game=#{@game_selected}&limit=2&language=en",:headers => { 'Accept' => 'application/vnd.twitchtv.v5+json' , 'Client-ID' => 'zhlt7sm2fz1tg5z7w5rfv4zb8lybxx'})
@@ -41,7 +33,20 @@ class ArenaPagesController < ApplicationController
                    @stream3=body["streams"][0]["channel"]["display_name"]
                 end
             end
-        end
+    elsif @gamer_games.to_a.count==1
+
+            @game_selected=Game.find_by(id: @gamer_games).name
+            response=HTTParty.get("https://api.twitch.tv/kraken/streams/?game=#{@game_selected}&limit=3&language=en",:headers => { 'Accept' => 'application/vnd.twitchtv.v5+json' , 'Client-ID' => 'zhlt7sm2fz1tg5z7w5rfv4zb8lybxx'})
+            body=JSON.parse(response.body)
+           @stream1=body["streams"][0]["channel"]["display_name"]
+            @stream2=body["streams"][1]["channel"]["display_name"]
+            @stream3=body["streams"][2]["channel"]["display_name"]
+    
+      else #no games for player
+          #rimanda a setting
+          flash[:danger]="You have not selected any game!"
+          redirect_to edit_account_attribute_url(id:current_gamer.id,email: current_gamer.email)
+
     end
   end
 

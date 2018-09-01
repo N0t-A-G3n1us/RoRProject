@@ -1,4 +1,4 @@
-<%= form_with(model: match, local: true) do |form| %>
+<%= form_with(model: match,local: true, :url => {action: "update", team_id: @team ,id: @match }  ) do |form| %>
   <% if match.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(match.errors.count, "error") %> prohibited this match from being saved:</h2>
@@ -11,6 +11,15 @@
     </div>
   <% end %>
 
+ <div class="field">
+    <%= form.label :score, title: "Set your score" %>
+    <%= form.number_field :score, within: 0...13 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mat_score,title: "Set opposite score" %>
+    <%= form.number_field :mat_score, within: 0...13  %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>

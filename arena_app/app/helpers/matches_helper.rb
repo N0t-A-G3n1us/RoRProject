@@ -5,7 +5,7 @@ module MatchesHelper
 		elsif score < 0
 			return "Retreat"
 		else
-			return score
+			return score.inspect
 		end
 	end
 

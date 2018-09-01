@@ -11,7 +11,7 @@
 
       <p>
 
-        <%= label :console_ids, 'Choose your consoles:' %>
+        <%= label :console_ids, 'Choose your  favourite console (just one):' %>
 
         <div class="funkyradio">
         <%= f.collection_check_boxes( :console_ids, Console.all, :id, :name) do |c|%>
@@ -27,10 +27,10 @@
       <%= f.text_field :nickname, class: 'form-control' %>
 
       <%= f.label :nation %>
-      <%= f.text_field :nation, class: 'form-control' %>
+      <%= render "region_code" %>
 
       <p>
-        <%= label :game_ids, 'Choose your games:' %>
+        <%= label :game_ids, 'Choose your three favourite games (just three):' %>
 
         <div class="funkyradio">
         <%= f.collection_check_boxes( :game_ids, Game.all, :id, :name) do |c|%>
@@ -43,7 +43,7 @@
 
 
 
-      <%= f.label :description %>
+      <%= f.label :description,"Tell others something about you:" %>
 
         <%= f.text_area :description, class: 'form-control' %>
 

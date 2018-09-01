@@ -102,7 +102,13 @@ class ChallengesController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def challenge_params
-      params.fetch(:challenge,:challenge_id, {})
-    end
+    # def challenge_params
+    #   params.fetch(:challenge,:challenge_id, {})
+    # end
+
+
+    
+       def challenge_params
+    params.require(:challenge).permit(:challenge, :team_id)
+  end
 end

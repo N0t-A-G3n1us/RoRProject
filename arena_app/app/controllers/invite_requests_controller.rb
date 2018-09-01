@@ -106,7 +106,11 @@ class InviteRequestsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def invite_request_params
-      params.fetch(:invite_request, :team_id,{})
-    end
+    # def invite_request_params
+    #   params.fetch(:invite_request, :team_id,{})
+    # end
+
+  def invite_request_params
+    params.require(:invite_request).permit(:invite_request, :team_id)
+  end
 end

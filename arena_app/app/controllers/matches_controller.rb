@@ -23,11 +23,13 @@ class MatchesController < ApplicationController
   def edit
     
     @match= Match.find(params[:id])
+    
   end
 
   # POST /matches
   # POST /matches.json
   def create
+
     @match = Match.new(match_params)
 
     respond_to do |format|
@@ -44,9 +46,11 @@ class MatchesController < ApplicationController
   # PATCH/PUT /matches/1
   # PATCH/PUT /matches/1.json
   def update
+    @team = Team.find(params[:team_id])
+    @match.disputed = true
     respond_to do |format|
       if @match.update(match_params)
-        format.html { redirect_to @match, notice: 'Match was successfully updated.' }
+        format.html { redirect_to team_matches_path(@team), notice: 'Match was successfully updated.' }
         format.json { render :show, status: :ok, location: @match }
       else
         format.html { render :edit }
@@ -60,7 +64,7 @@ class MatchesController < ApplicationController
   def destroy
     @match.destroy
     respond_to do |format|
-      format.html { redirect_to matches_url, notice: 'Match was successfully destroyed.' }
+      format.html { redirect_to team_matches_url(@team), notice: 'Match was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -110,7 +114,13 @@ class MatchesController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def match_params
-      params.fetch(:match, {})
-    end
+    # def match_params
+    #   params.fetch(:match, :mat_score, :score)
+    # end
+
+
+  def match_params
+    params.require(:match).permit(:match, :mat_score, :score, :team_id)
+  end
+
 end

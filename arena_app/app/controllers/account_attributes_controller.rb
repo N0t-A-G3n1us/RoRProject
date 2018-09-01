@@ -36,10 +36,10 @@ class AccountAttributesController < ApplicationController
              #di valori errati di reindirizzare nella edit. praticamente quando faccio la edit e faccio la submit mi entra sempre nella create invece di entrare nell'update.
           else
               if params[:account_attributes][:game_ids].count>4  #prima cella array '' quindi +1
-                 flash.now[:danger] = "more than 3 games selected"
+                 flash.now[:danger] = "More than 3 games selected"
                  render 'edit'
               elsif params[:account_attributes][:console_ids].count>2
-                 flash.now[:danger] = "more than 1 console selected"
+                 flash.now[:danger] = "More than 1 console selected"
                  render 'edit'
 
               elsif !request.location.country.nil? && params[:account_attributes][:nation] != request.location.country
