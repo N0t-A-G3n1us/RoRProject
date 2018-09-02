@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+    <th>Match<th>
       <th>Opponent</th>
       <th>Score</th>
       <th colspan="5"></th>
@@ -13,13 +14,17 @@
 
   <tbody>
     <%if !@matches.nil? %>
-    <% @matches.each do |match| %>
+    <% @matches.each_with_index do |match,i| %>
     <tr>
-      
-      <% if match.disputed %>
       <td>
-        <%="X "+match.matching_team.name+" " %>
+        <%=link_to '<i class="glyphicon glyphicon-arrow-right"></i>'.html_safe, team_match_path(@team,match),class: "btn btn-default btn-m btn-warning",style:"color:black" %>
       </td>
+        
+      <td>
+        <%=link_to match.matching_team.name, team_path(@team),class: "btn btn-default btn-m" %>
+      </td>
+      <% if match.disputed %>
+      
       <td>
         [
         <%= display_score(match.score)+" " %>|
@@ -27,15 +32,13 @@
         ]
       </td>
       <% else %>
-      <td>
-        <%=match.matching_team.name+" " %>
-      </td>
+      
       <td><%=display_no_score%></td>
       <td>
-        <%= link_to 'RageQuit',team_match_ragequit_path(match_id: match.id)%>
+        <%= link_to 'RageQuit',team_match_ragequit_path(match_id: match.id),class:"btn btn-default btn-l" %>
       </td>
       <td>
-        <%= link_to 'Register score', edit_team_match_path(id: match.id), data: { confirm: 'Are you sure? Match will be considered concluded' } %>
+        <%= link_to 'Register score', edit_team_match_path(id: match.id),class:"btn btn-default btn-l" , data: { confirm: 'Are you sure? Match will be considered concluded' } %>
       </td>
     </tr>
     <% end %>

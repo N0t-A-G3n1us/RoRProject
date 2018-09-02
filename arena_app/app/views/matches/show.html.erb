@@ -1,4 +1,35 @@
 <p id="notice"><%= notice %></p>
+<%= provide(:title,"Match")%>
 
-<%= link_to 'Edit', edit_match_path(@match) %> |
-<%= link_to 'Back', matches_path %>
+	<div class="container-fluid">
+	<%if !@match.nil? %>
+		<div class="row">
+		<div class="col-md-4 ">
+			<%= link_to @match.team.name, team_path(@match.team),class: "btn btn-default btn-block btn-warning", style: "color:black; font-size:40px;" %> 
+		</div>
+		<div class="col-md-1"><%= image_tag @match.team.avatar.url(:thumb),width: 100, class: "avatar-image "%></div>
+		<div class="col-md-4">
+			
+		</div>
+		</div>
+		<div class="row">
+		<div class="col-md-4" id="score"><% if @match.disputed %> <%=@match.score.to_s%> <%end%></div>
+		<div class="col-md-2">
+			<%= image_tag "versus.png",width:80 %>
+		</div>
+		<div class="col-md-4"  id="score"> <% if @match.disputed %> <%=@match.mat_score.to_s%><%end%></div>
+		
+		</div>
+		<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-1"><%= image_tag @match.matching_team.avatar.url(:thumb),width: 100, class: "avatar-image "%></div>
+		<div class="col-md-4" >
+			 <%= link_to @match.matching_team.name, team_path(@match.matching_team),class: "btn btn-default btn-block btn-danger"  , style: "color:black; font-size:40px;"%> 
+		</div>
+		
+		</div>
+	<% end %>
+	</div>
+
+<%= link_to 'Edit', edit_team_match_path(@team,@match),class: "btn btn-default btn-xs" %> 
+<%= link_to 'Back', team_matches_path(@team),class: "btn btn-default btn-xs" %>

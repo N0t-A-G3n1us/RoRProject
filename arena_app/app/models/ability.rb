@@ -44,7 +44,8 @@ class Ability
         !gamer.groups.nil? && gamer.groups.include?(group)
       end
       #Team                                                           #can join/leave just one team
-      can :join, Team do |team| 
+      
+      can :send_invite, Team do |team|
         gamer.team.nil? || gamer.team!= team 
       end
       can :leave, Team do |team|
@@ -64,11 +65,14 @@ class Ability
 
       #Team
 
-      can :create, Team 
+      
         
       can [:update,:destroy,:edit], Team do |team|
          team.boss==gamer
       end
+      
+      can :create, Team  do |t| gamer.team.nil? end
+
       can :send_invite, Team do |team|
         gamer.team.nil? || gamer.team!= team 
       end

@@ -11,6 +11,9 @@
 
   <tbody>
   <% if !@challenges.nil? %>
+    <% if @challenges.count==0 %>
+      <strong>No challenges at the moment.<strong>
+    <% end %>
     <% @team.challenges.each do |challenge|  %>
       <tr>
         
@@ -20,9 +23,10 @@
         <td><%= link_to 'Refuse', team_challenge_refuse_path(challenge_id: challenge.id), data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
+
     <%end%>
   </tbody>
 </table>
-<%= link_to 'Back', team_path(@team) %>
+<%= link_to 'Back', team_path(@team) ,class: "btn btn-default btn-xs" %>
 <br>
 

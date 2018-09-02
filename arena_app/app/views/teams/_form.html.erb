@@ -21,7 +21,7 @@
     <%= label :console_id, 'Choose your team console:' %>
 
         <div class="funkyradio">
-        <%= form.collection_radio_buttons( :console_id, Console.all, :id, :name) do |c|%>
+        <%= form.collection_radio_buttons( :console_id, Console.order(:name), :id, :name) do |c|%>
           <div class="funkyradio-primary">
             <%= c.radio_button %> <%= c.label %>
           </div>
@@ -33,7 +33,7 @@
  <%= label :game_id, 'Choose your team game :' %>
 
         <div class="funkyradio">
-        <%= form.collection_radio_buttons( :game_id, Game.all, :id, :name) do |c|%>
+        <%= form.collection_radio_buttons( :game_id, Game.order(:name), :id, :name) do |c|%>
           <div class="funkyradio-primary">
             <%= c.radio_button %> <%= c.label %>
           </div>
@@ -53,6 +53,6 @@
 
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Save Team", class: "btn btn-primary" %>
   </div>
 <% end %>

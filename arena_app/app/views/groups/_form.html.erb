@@ -22,14 +22,14 @@
   </div>
 
   <div class="field">
-  <%= form.collection_select :console_id, Console.all, :id, :name %>
+  <%= form.collection_select :console_id, Console.order(:name), :id, :name %>
 
 
   </div>
 
   <div class="field">
     <%= form.label :game %>
-    <% Game.all.each do |game| %>
+    <% Game.order(:name).each do |game| %>
       <%= game.name %>
 
       <%= check_box_tag "group[game_ids][]", game.id, false %>
@@ -44,6 +44,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Save Group", class: "btn btn-primary" %>
   </div>
 <% end %>

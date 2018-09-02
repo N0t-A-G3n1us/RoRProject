@@ -32,15 +32,19 @@
 <p>
   <strong>Matches:</strong>
   <% @team.matches.each do |mat| %>
-    <%= link_to mat, team_matches_path(@team) %>
+    <%if !mat.nil? && !mat.matching_team.nil? && !mat.team.nil? %>
+     <%= link_to "VS: " + mat.matching_team.name + " Date: "+mat.updated_at.inspect[0...-14], team_matches_path(@team) %><br>
+    <%end%>
   <% end %>
 </p>
 
 <p>
   <strong>Challenges:</strong>
-  <% @team.challenges.each do |cha| %>
-    <%= link_to cha, team_challenges_path(@team) %>
-  <% end %>
+  
+  [<% @team.challenges.each_with_index do |cha,i| %>
+    <%= link_to i+1, team_challenges_path(@team),class: "btn btn-default btn-sm bg-warning",style:"color:black" %>
+    <%= "|" unless i==0%> 
+  <% end %>]
 </p>
 <p>
   <strong>Members:</strong>
@@ -59,7 +63,7 @@
   <% else %>
   <div class= "btn btn-default btn-sm"><%= link_to 'Leave this team', team_leave_path(@team), data: { confirm: "You are leaving, are you sure?" } %></div>
   <% end %>
-<% elsif gamer_can_challenge?(@team)%>
+<% elsif gamer_can_challenge?(@team) %>
   <div class= "btn btn-default btn-sm"><%= link_to 'Send challenge to this team', team_add_challenge_path(@team) %></div>
 <% else %>
   <div class= "btn btn-default btn-sm"><%= link_to 'Join this team', team_send_invite_path(@team) %></div> </br>

@@ -2,6 +2,9 @@ class TeamsController < ApplicationController
   load_and_authorize_resource
   before_action :set_team, only: [:show, :edit, :update, :destroy]
   before_action :check_attributes
+  prepend_before_action :can_be_challenged,only: [:add_challenge] 
+    
+
   # GET /teams
   # GET /teams.json
   def index
@@ -29,10 +32,10 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
 
-    if ! current_gamer.team.nil?
-      flash[:danger]="You already have a team"
-      redirect_to teams_path
-    else 
+    # if ! current_gamer.team.nil?
+    #   flash[:danger]="You already have a team"
+    #   redirect_to teams_path
+    # else 
 
     respond_to do |format|
       if @team.save
@@ -48,7 +51,7 @@ class TeamsController < ApplicationController
       end
     end
   end
-end
+
 
   # PATCH/PUT /teams/1
   # PATCH/PUT /teams/1.json
@@ -123,14 +126,15 @@ end
     @team = Team.find(params[:team_id])
     if @team==current_gamer.team
       flash[:danger]="This is your team, you cannot challenge"
-    elsif (!@team.challenges.include? Challenge.find_by(challenging_team: current_gamer.team) )
+    #elsif (!@team.challenges.include? Challenge.find_by(challenging_team: current_gamer.team) )
     
-      @team.challenges.each do |t|
-        flash[:danger]= "---->"  + t.team.inspect + t.challenging_team.inspect + @team.challenges.class.inspect
-      end
+      # @team.challenges.each do |t|
+      #   #flash[:danger]= "---->"  + t.team.inspect + t.challenging_team.inspect + @team.challenges.class.inspect
+      # end
+    else
       @team.challenges << Challenge.create(team:@team,challenging_team: current_gamer.team )
-    else 
-      flash[:danger]="You have already sent a challenge request"
+    # else 
+    #   flash[:danger]="You have already sent a challenge request"
     end
     redirect_to team_path(@team)
   end 
@@ -151,5 +155,13 @@ end
            {:gamer_ids => []},:game_id  , :console_id,:game_id, :avatar )
     end
 
-  
+    def can_be_challenged
+      @team=Team.find(params[:team_id] )
+      if !gamer_can_challenge?(@team) 
+
+          flash[:danger]="Not compatible game/console"
+          redirect_to team_path(@team) 
+      end
+    end
+
 end

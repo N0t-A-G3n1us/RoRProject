@@ -44,8 +44,9 @@
 </table>
 
 <br>
-<% if current_gamer.admin? %>
-<div class= "btn btn-default btn-xs"><%= link_to 'New Team', new_team_path %></div>
+<% if current_gamer.team.nil? || current_gamer.admin? %>
+  <%= link_to 'New Team', new_team_path, class: "btn btn-danger btn-lg btn-block",style:"color:white;" %>
+
 <%end%>
 <br/>
 <div class= "btn btn-default btn-sm"><%= link_to 'Back', arena_path %></div>

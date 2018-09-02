@@ -42,12 +42,3 @@ class ApplicationController < ActionController::Base
     flash[:danger] = exception.message
     redirect_back fallback_location: root_path  end
   end
-
-
- def check_attributes
-       @gamer = current_gamer
-       if !@gamer.updated
-            flash[:danger] = "Please change your attributes#{@gamer.updated}"
-            redirect_to new_account_attribute_url(email: @gamer.email)
-       end
-    end
