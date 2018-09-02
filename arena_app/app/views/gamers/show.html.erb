@@ -52,7 +52,7 @@
   <%end%>
 </p>
 <% if current_gamer?(@gamer) %>
-    <%= link_to 'Edit', edit_gamer_path(@gamer) %> |
+    <%= link_to 'Edit', edit_gamer_path(@gamer) , class:"btn btn-sm btn-default" %>
 <% end %>
 
-<%= link_to 'Back', gamers_path %>
+<%= link_to 'Back', gamers_path , class:"btn btn-sm btn-default" %>
