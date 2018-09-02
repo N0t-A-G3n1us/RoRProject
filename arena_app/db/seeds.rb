@@ -30,12 +30,22 @@
 require 'csv'
 puts "Importing nations..."
 
-CSV.foreach(Rails.root.join("region_code.csv"), headers: true) do |row|
-  Nation.create! do |n|
-    n.name = row[0]
-    n.code = row[1]
-  end
+if Nation.count==0
+	CSV.foreach(Rails.root.join("region_code.csv"), headers: true) do |row|
+		Nation.create! do |n|
+		n.name = row[0]
+		n.code = row[1]
+	end
+	end
 end
+puts "Creating consoles..."
+if Console.count==0  
+  Console.create(name:'PS4')
+  Console.create(name:'XBOX ONE')
+  Console.create(name:'PC')
+  Console.create(name:'Mobile')
+end
+
 
 
 

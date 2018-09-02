@@ -71,6 +71,8 @@ class AccountAttributesController < ApplicationController
     end
 
     def update
+       
+
         @gamer = Gamer.find_by(email: params[:email].downcase)
         if @gamer
           if (params[:account_attributes][:console_ids].empty? || params[:account_attributes][:nickname].empty? || params[:account_attributes][:nation].empty? ||

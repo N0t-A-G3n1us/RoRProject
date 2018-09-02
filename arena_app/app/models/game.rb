@@ -1,5 +1,5 @@
 class Game < ApplicationRecord
-  belongs_to :team, optional: true
+  has_many :teams
   has_many :playings
   has_many :groups , through: :playings
 

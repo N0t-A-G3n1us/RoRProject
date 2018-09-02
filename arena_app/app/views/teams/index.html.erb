@@ -9,6 +9,8 @@
     <tr>
       <th>Name</th>
       <th>Boss</th>
+      <th>Game</th>
+      <th>Console</th>
       <th>Invite</th>
       <th>Match</th>
       <th>Challenge</th>
@@ -24,6 +26,8 @@
 </td>
         <td><%= team.name %></td>
         <td><%= team.boss.username unless team.boss.nil? %></td>
+        <td><%= team.console.name unless team.console.nil? %></td>
+        <td><%= team.game.name unless team.game.nil? %></td>
         <td><%= team.invites.map{|m| m.username} %></td>
         <td><%= team.matches.to_a %></td>
         <td><%= team.challenges.to_a %></td>

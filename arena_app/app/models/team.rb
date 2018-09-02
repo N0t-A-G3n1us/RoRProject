@@ -4,13 +4,13 @@ class Team < ApplicationRecord
   presence: true, uniqueness: true
 
 
-  has_many :chatrooms
+  has_many :chatrooms, dependent: :destroy
 
   has_one :boss, class_name: 'Gamer'
   has_many :gamers
   
-  has_one :console
-  has_one :game
+  belongs_to :console
+  belongs_to :game
 
   has_many :invite_requests , inverse_of: :team
   has_many :invites, through: :invite_requests, source: :gamer, dependent: :destroy

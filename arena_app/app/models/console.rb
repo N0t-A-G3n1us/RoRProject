@@ -1,6 +1,6 @@
 class Console < ApplicationRecord
     
-    belongs_to :team, optional: true
+    has_many :teams
     has_many :groups
     
     has_many :gamers_consoles

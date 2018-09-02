@@ -11,15 +11,16 @@
 
       <p>
 
-        <%= label :console_ids, 'Choose your  favourite console (just one):' %>
+      <%= label :console_ids, 'Choose your favourite console (just one):' %>
 
         <div class="funkyradio">
-        <%= f.collection_check_boxes( :console_ids, Console.all, :id, :name) do |c|%>
+        <%= f.collection_radio_buttons( :console_ids, Console.all, :id, :name) do |c|%>
           <div class="funkyradio-primary">
-            <%= c.check_box %> <%= c.label %>
+            <%= c.radio_button %> <%= c.label %>
           </div>
         <%end%>
         </div>
+  
 
       </p>
 

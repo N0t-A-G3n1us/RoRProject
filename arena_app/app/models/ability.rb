@@ -17,8 +17,7 @@ class Ability
     cannot :read , Message
 
     if gamer.nil? 
-      # can :create, Gamer 
-      # can :my_groups, Group
+       can :create, Gamer 
       # can [:destroy,:update,:edit], Gamer
     elsif gamer.admin?  # additional permissions for administrators
       can :manage, :all

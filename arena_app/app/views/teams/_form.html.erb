@@ -1,3 +1,4 @@
+<%= provide(:title,"New team")%>
 <%= form_with(model: team, local: true) do |form| %>
   <% if team.errors.any? %>
     <div id="error_explanation">
@@ -17,9 +18,39 @@
   </div>
   
   <div class="field">
+    <%= label :console_id, 'Choose your team console:' %>
+
+        <div class="funkyradio">
+        <%= form.collection_radio_buttons( :console_id, Console.all, :id, :name) do |c|%>
+          <div class="funkyradio-primary">
+            <%= c.radio_button %> <%= c.label %>
+          </div>
+        <%end%>
+        </div>
+  </div>
+  
+<div class="field">
+ <%= label :game_id, 'Choose your team game :' %>
+
+        <div class="funkyradio">
+        <%= form.collection_radio_buttons( :game_id, Game.all, :id, :name) do |c|%>
+          <div class="funkyradio-primary">
+            <%= c.radio_button %> <%= c.label %>
+          </div>
+        <%end%>
+        </div>
+  </div>
+  
+
+</div>
+
+
+  <div class="field">
     <p> Insert an Image Avatar for your team: <p>
    <%= form.file_field :avatar %>
   </div>
+
+
 
   <div class="actions">
     <%= form.submit %>

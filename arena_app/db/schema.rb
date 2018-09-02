@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_01_141952) do
+ActiveRecord::Schema.define(version: 2018_09_02_105306) do
 
   create_table "challenges", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 2018_09_01_141952) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "description"
-    t.integer "team_id"
     t.index ["name"], name: "index_consoles_on_name", unique: true
   end
 
@@ -98,7 +97,6 @@ ActiveRecord::Schema.define(version: 2018_09_01_141952) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "console_id"
-    t.integer "team_id"
     t.text "description"
     t.string "logo"
     t.index ["name"], name: "index_games_on_name"
@@ -180,6 +178,8 @@ ActiveRecord::Schema.define(version: 2018_09_01_141952) do
     t.text "description"
     t.string "avatar"
     t.integer "gamer_id"
+    t.integer "console_id"
+    t.integer "game_id"
     t.index ["challenge_id"], name: "index_teams_on_challenge_id"
     t.index ["invite_id"], name: "index_teams_on_invite_id"
     t.index ["match_id"], name: "index_teams_on_match_id"

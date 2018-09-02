@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
   load_and_authorize_resource
   before_action :set_team, only: [:show, :edit, :update, :destroy]
-  
+  before_action :check_attributes
   # GET /teams
   # GET /teams.json
   def index
@@ -148,7 +148,7 @@ end
     def team_params
       params.require(:team).permit(:name, :boss_id, {:invite_ids => []},
           {:match_ids => []} ,{ :challenge_ids => [] },
-           {:gamer_ids => []},:game_id , :console, :avatar )
+           {:gamer_ids => []},:game_id  , :console_id,:game_id, :avatar )
     end
 
   

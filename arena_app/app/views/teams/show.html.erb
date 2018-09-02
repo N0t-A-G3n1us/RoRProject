@@ -14,6 +14,15 @@
 </p>
 
 <p>
+<strong>Console:</strong>
+  <%= @team.console.name unless @team.console.nil? %>
+</p>
+<p>
+<strong>Game:</strong>
+  <%= @team.game.name unless @team.game.nil? %>
+  <%= image_tag(@team.game.logo ,class: "img-responsive img-thumbnail") unless @team.game.nil?  %>
+</p>
+<p>
   <strong>Invites:</strong>
   <% @team.invites.each do |inv| %>
       <%= inv.username %> -> <%= inv.email %> |
