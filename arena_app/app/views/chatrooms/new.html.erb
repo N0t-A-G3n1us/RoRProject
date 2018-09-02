@@ -4,8 +4,8 @@
 
 
 <% if @chatroom.group.nil? %>
- 	<%= link_to 'Back', team_chatrooms_path %>
+ 	<%= link_to 'Back', team_chatrooms_path, class:"btn btn-sm btn-default" %>
 <% else %>
- 	<%= link_to 'Back', group_chatrooms_path %>
+ 	<%= link_to 'Back', group_chatrooms_path, class:"btn btn-sm btn-default" %>
 <% end %>
 

@@ -3,11 +3,11 @@
 <%= render 'form', team: @parent, chatroom: @chatroom %>
 
 <% if @chatroom.group.nil? %>
- 	<%= link_to 'Back', team_path(@parent) %>
- 	<%= link_to 'Show', team_chatroom_path(@parent, @chatroom) %>
+ 	<%= link_to 'Back', team_path(@parent), class:"btn btn-sm btn-default" %>
+ 	<%= link_to 'Show', team_chatroom_path(@parent, @chatroom), class:"btn btn-sm btn-default" %>
 <% elsif @chatroom.team.nil? %>
- 	<%= link_to 'Back', group_path(@parent) %>
- 	<%= link_to 'Show', group_chatroom_path(@parent, @chatroom) %>
+ 	<%= link_to 'Back', group_path(@parent), class:"btn btn-sm btn-default" %>
+ 	<%= link_to 'Show', group_chatroom_path(@parent, @chatroom), class:"btn btn-sm btn-default" %>
 <%else%>
 	<%= flash[:danger]="not group nor team in chatroom" %>
 <% end %>

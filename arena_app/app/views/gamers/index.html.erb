@@ -3,7 +3,7 @@
 <% provide(:title, 'All gamers') %>
 
 
-<h1>Gamers</h1>
+<h1 class="center jumbotron">Gamers</h1>
 
 
 <table class="table">
@@ -23,7 +23,9 @@
     </tbody>
 </table>
 <br>
+<div class="center">
 <% if current_gamer.admin?  %>
-    <%= link_to 'New Gamer', new_gamer_path %>
+    <div class= "btn btn-default btn-sm"><%= link_to 'New Gamer', new_gamer_path %></div>
   <% end %>
-<%= link_to 'Back', arena_path %>
+<div class= "btn btn-default btn-sm"><%= link_to 'Back', arena_path %></div>
+</div>
