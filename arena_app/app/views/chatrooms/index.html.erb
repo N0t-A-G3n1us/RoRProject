@@ -14,10 +14,10 @@
     <% @chatrooms.each do |chatroom| %>
       <tr>
         <td><%= chatroom.name %></td>
-        <td><%= link_to 'Change name of chatroom', edit_group_chatroom_path(chatroom.group_id, chatroom) %></td>
-        
-        <td><%= link_to 'Join chatroom', group_chatroom_chatroom_users_path(chatroom.group_id, chatroom), method: :post %></td>
-        
+        <td><%= link_to 'Change name of chatroom', edit_group_chatroom_path(chatroom.group_id, chatroom), class:"btn btn-sm btn-default" %></td>
+
+        <td><div class="btn btn-sm btn-default"><%= link_to 'Join chatroom', group_chatroom_chatroom_users_path(chatroom.group_id, chatroom), method: :post %></div></td>
+
       </tr>
     <% end %>
   </tbody>
