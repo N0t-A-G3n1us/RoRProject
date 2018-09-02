@@ -26,6 +26,11 @@ Next, migrate the database:
 ```
 $ rails db:migrate
 ```
+Now we can initialize the db with needed value such as games and nations:
+```
+$ rails db:seed
+```
+
 
 Finally, run the test suite to verify that everything is working correctly:
 

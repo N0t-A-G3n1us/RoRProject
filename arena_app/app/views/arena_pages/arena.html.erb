@@ -1,33 +1,8 @@
 <% provide(:title, "Arena") %>
 
+<body class="arena-body">
 
-
-<div class="container">
-  <div class="row align-items-start">
-    <div class="col">
-
-
-   
-      
-    
-
-    </div>
-    <div class="col">
-      
-  
-   
-
-    </div>
-    <div class="col">
-      
-
-
-    </div>
-  </div>
-</div>
-
-
-<div class="center jumbotron">
+<div class="container center jumbotron " >
 
     <h1>Arena</h1>
     <p>Homepage Arena</p>
@@ -40,36 +15,40 @@
 
 
 <div class="row">
-  <div class="col-md-4"><iframe  src='https://player.twitch.tv/?channel=<%= @stream1 %>' frameborder="0" allowfullscreen="true" scrolling="no" height="189" width="310" ></iframe>
+  <div class="col-md-4">
 
-<a href='https://player.twitch.tv/?channel=<%= @stream1 %>' style="padding:2px 0px 4px; display:block; width:345px; font-weight:normal; font-size:10px; text-decoration:underline;">Watch live video from <%= @stream1 %> on www.twitch.tv</a>
-    </div>
+    <iframe  src='https://player.twitch.tv/?channel=<%= @stream1 %>' frameborder="0" allowfullscreen="true" scrolling="no" height="189" width="310" ></iframe>
+
+    <a href='https://player.twitch.tv/?channel=<%= @stream1 %>' class="center"  style="padding:2px 0px 4px; display:block; width:345px; font-weight:normal; font-size:10px; text-decoration:underline;">Watch live video from <%= @stream1 %> on www.twitch.tv</a></div>
   <div class="col-md-4">   
-<iframe src='https://player.twitch.tv/?channel=<%= @stream2 %>' frameborder="0" allowfullscreen="true" scrolling="no" height="189" width="310" ></iframe>
+    <iframe src='https://player.twitch.tv/?channel=<%= @stream2 %>' frameborder="0" allowfullscreen="true" scrolling="no" height="189" width="310" ></iframe>
 
-<a href='https://player.twitch.tv/?channel=<%= @stream2 %>' style="padding:2px 0px 4px; display:block; width:345px; font-weight:normal; font-size:10px; text-decoration:underline;">Watch live video from <%= @stream2 %> on www.twitch.tv</a></div>
+    <a href='https://player.twitch.tv/?channel=<%= @stream2 %>' class="center" style="padding:2px 0px 4px; display:block; width:345px; font-weight:normal; font-size:10px; text-decoration:underline;">Watch live video from <%= @stream2 %> on www.twitch.tv</a></div>
+  
   <div class="col-md-4">  
-<iframe src='https://player.twitch.tv/?channel=<%= @stream3 %>' frameborder="0" allowfullscreen="true" scrolling="no" height="189" width="310" ></iframe>
+    <iframe src='https://player.twitch.tv/?channel=<%= @stream3 %>' frameborder="0" allowfullscreen="true" scrolling="no" height="189" width="310" ></iframe>
 
-<a href='https://player.twitch.tv/?channel=<%= @stream3 %>' style="padding:2px 0px 4px; display:block; width:345px; font-weight:normal; font-size:10px; text-decoration:underline;">Watch live video from <%= @stream3 %> on www.twitch.tv</a>
-</div>
-</div>
+    <a href='https://player.twitch.tv/?channel=<%= @stream3 %>' class="center" style="padding:2px 0px 4px; display:block; width:345px; font-weight:normal; font-size:10px; text-decoration:underline;">Watch live video from <%= @stream3 %> on www.twitch.tv</a></div>
+
 
     
 
 
 
-<ul class="container-fluid">
-    <table >
+<div class="center ">
+    <table class="table" >
         <tr class="row">
-            <td class= "btn btn-primary btn-lg"><%= link_to "SearchGroup" , "/groups" %></td>
-            <td class= "btn btn-primary btn-lg"><%= link_to "CreateGroup" , "/groups/new" %></td>
-            <td class= "btn btn-primary btn-lg"><%= link_to "SearchTeam" , "/teams" %></td>
-            <td class= "btn btn-primary btn-lg"><%= link_to "CreateTeam" , "/teams/new" %></td>
-            <td class= "btn btn-primary btn-lg"><%= link_to "ChangeRole" , "/changerole" %></td>
+            <td ><%= link_to "SearchGroup" , "/groups", class: "ab btn btn-primary btn-lg " %></td>
+            <td ><%= link_to "CreateGroup" , "/groups/new" , class: "ab btn btn-primary btn-lg "%></td>
+            <td ><%= link_to "SearchTeam" , "/teams", class: "ab btn btn-primary btn-lg " %></td>
+            <td ><%= link_to "CreateTeam" , "/teams/new", class: "ab btn btn-primary btn-lg " %></td>
+            <td ><%= link_to "ChangeRole" , "/changerole", class: "ab btn btn-primary btn-lg " %></td>
         </tr>
     </table>
-</ul>
+</div>
+
 
 </div>
+
+</body>
 

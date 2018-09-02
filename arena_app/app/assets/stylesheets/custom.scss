@@ -2,6 +2,9 @@
 @import 'bootstrap';
 
 
+
+
+
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
@@ -39,6 +42,7 @@ textarea {
 
 .center{
     text-align: center;
+    margin: 0 auto;
 }
 
 .center h1{
@@ -116,6 +120,25 @@ input {
 
 /* arena */
 
+.ab:hover{
+
+  font-size: 13px;
+    color: yellow !important;
+}
+.ab:link{
+  font-size: 13px;
+    color: white !important;
+
+}
+
+.ab{
+
+  color:white !important;
+}
+
+.name-role:hover{ color: orange !important}
+.name-role{ color: red !important;}
+
 #arena-buttons{
   margin:auto;
   width: 50%;
@@ -123,9 +146,32 @@ input {
     padding: 10px;
 }
 
+
+.table {
+    border-radius: 5px;
+    width: 50%;
+    margin: 0px auto;
+    float: none;
+}
+
+.arena-body {
+       background-color: lightblue;
+}
+
 iframe{
     transform: translate3d(0,0,0);
 }
+
+
+.jumbotron{
+
+  background-image:url("bg.jpeg");
+  background-size: cover;
+  color:white;
+}
+
+
+
 
 /* account attributes edit  */ 
 
@@ -257,3 +303,7 @@ iframe{
         }
     }
 }
+
+
+/* general */
+
