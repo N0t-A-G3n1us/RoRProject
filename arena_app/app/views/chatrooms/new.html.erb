@@ -6,7 +6,7 @@
  <% if @chatroom.group.nil? %>
  	<%= link_to 'Back', team_path(current_gamer.team), class:"btn btn-sm btn-default" %>
 <% else %>
- 	<%= link_to 'Back', group_path(current_gamer.group), class:"btn btn-sm btn-default" %>
+ 	<%= link_to 'Back', group_path(current_gamer.groups), class:"btn btn-sm btn-default" %>
 <% end %>
 
 
