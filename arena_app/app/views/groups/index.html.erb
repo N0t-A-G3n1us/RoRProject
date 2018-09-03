@@ -22,8 +22,8 @@
         <td><%= group.name %></td>
         <td><%= group.region %></td>
         <td><%= group.console.name unless group.console.nil? %></td>
-        <td> [<% group.games.each do |g| %>
-      <%= g.name %>, <%end%>]</td>
+        <td> <% group.games.each do |g| %>
+      <%= g.name %> <%end%></td>
       <td>    <%= group.creator.username unless group.creator.nil? %></td>
         <td> <% group.members.each do |g| %>
       <%= g.username %> -> <%= g.email %> <%end%></td>

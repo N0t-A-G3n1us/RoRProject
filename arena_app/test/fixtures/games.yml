@@ -5,11 +5,11 @@ one:
   created_at: <%= Time.zone.now %>
   updated_at: <%= Time.zone.now %>
   console_id: 1
-  team_id: 1
+
 
 two:
   name: game2
   created_at: <%= Time.zone.now %>
   updated_at: <%= Time.zone.now %>
   console_id: 2
-  team_id: 2
+

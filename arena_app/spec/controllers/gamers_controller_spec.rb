@@ -24,7 +24,7 @@ require 'rails_helper'
 # `rails-controller-testing` gem.
 
 RSpec.describe GamersController, type: :controller do
-  include Helpers
+  #include Helpers
   fixtures :all
   
   before do
