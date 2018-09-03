@@ -1,7 +1,7 @@
 class InviteRequestsController < ApplicationController
   load_and_authorize_resource :team
   load_and_authorize_resource :invite_request, through: :team
-  
+
   before_action :set_invite_request, only: [:show, :edit, :update, :destroy]
 
   # GET /invite_requests
@@ -59,7 +59,7 @@ class InviteRequestsController < ApplicationController
   def destroy
     @invite_request.destroy
     render :index
-    
+
   end
 
   def accept
@@ -83,21 +83,18 @@ class InviteRequestsController < ApplicationController
     @inv=InviteRequest.find_by_id(params[:invite_request_id])
     if @team.nil?
       flash[:danger]="not found this team"
-      render :index
     elsif @team.gamers.include?(current_gamer)
       flash[:warning]="gamer already in team"
-      render :index
     elsif @inv.nil?
       flash[:danger]="not found this invite request"
-      render :index
     else
       @team.invites.delete(@inv.gamer)
       flash[:success]="removed invite"
       @inv.destroy
     end
-    render :index
+    render 'index'
   end
-  
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
