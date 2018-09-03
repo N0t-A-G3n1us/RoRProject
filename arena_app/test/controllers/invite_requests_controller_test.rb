@@ -34,7 +34,7 @@ class InviteRequestsControllerTest < ActionDispatch::IntegrationTest
     assert_difference('InviteRequest.count', -1) do
       delete team_invite_request_path((teams(:one)),@invite_request)
     end
-    assert_redirected_to team_invite_requests_url((teams(:one))
+    assert_redirected_to team_invite_requests_url((teams(:one)))
 
   end
 

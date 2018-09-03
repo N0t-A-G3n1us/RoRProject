@@ -85,11 +85,17 @@ module CucHelper
 
 
 	def attributes_dummy(gamer)
-		gamer.consoles << Console.create(name: "PS5")
-		gamer.games << Game.create(name: "Fortnite")
-        t = Team.create!(name: "ccc", gamer_id: gamer.id)
-        gamer.team=t
+        @c = Console.create!(name: "PS4")
+        @g = Game.create!(name: "Fortnite")
+        @c.save!
+        @g.save!
+        @t = Team.create!(name: "ccc", gamer_id: gamer.id,console: @c, game: @g)
+        #puts "000000000000000000000000000000000000000000"+ @t.inspect
+		gamer.consoles << @c
+		gamer.games << @g
+        gamer.team=@t
         gamer.save!
+       # puts "000000000000000000000000000000000000000000"+ gamer.inspect
 
 	end
 
@@ -109,9 +115,6 @@ module CucHelper
 end
 
 
-World(CucHelper)
-
-
 
 Before do
 	ActiveRecord::FixtureSet.reset_cache
@@ -119,3 +122,9 @@ Before do
 	fixtures = Dir[File.join(fixtures_folder, '*.yml')].map {|f| File.basename(f, '.yml') }
 	ActiveRecord::FixtureSet.create_fixtures(fixtures_folder, fixtures)
 end
+
+World(CucHelper)
+
+
+
+

@@ -3,7 +3,7 @@
  When("I click my team") do
    # Write code here that turns the phrase above into concrete actions
 
-   click_on("Your Team")
+   click_link("Your Team")
  end
 
  Then("I should be redirected to team page") do

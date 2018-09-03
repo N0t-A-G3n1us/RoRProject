@@ -14,9 +14,9 @@ Given("As a CASUAL GAMER") do
 
  Then("I should be redirected to groups index page") do
    # Write code here that turns the phrase above into concrete actions
-   
+
    #Group.all.each do |g| puts g.inspect end
-   
+
     current_path.should == "/groups"
 
  end
@@ -49,7 +49,7 @@ Then("I should be redirected to group new form") do
 end
 
 Given("As a LEADER") do
-  
+
     complete_log_in
     current_gamer.leader!
    expect(current_gamer.role).to eq("leader")
@@ -57,11 +57,16 @@ Given("As a LEADER") do
 end
 
 When("I click CreateTeam") do
+
   click_link("CreateTeam") # Write code here that turns the phrase above into concrete actions
 end
 
 Then("I should be redirected to team new form") do
-  current_path.should == "/teams/new"# Write code here that turns the phrase above into concrete actions
+  if current_gamer.team.nil?
+     current_path.should == "/teams/new"# Write code here that turns the phrase above into concrete actions
+  else
+      current_path.should == "/arena"
+  end
 end
 
 When("I click ChangeRole") do
