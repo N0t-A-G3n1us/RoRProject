@@ -100,7 +100,7 @@ class Ability
       #Match
       can :read, Match, team: { boss: gamer}
       can [:accept,:refuse], Match, team: {boss: gamer}
-      can [:register,:ragequit], Match, team: {boss: gamer}
+      can [:edit,:update,:ragequit], Match, team: {boss: gamer}
 
 
       #Group

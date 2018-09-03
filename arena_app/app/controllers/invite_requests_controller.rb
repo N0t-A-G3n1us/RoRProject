@@ -69,11 +69,13 @@ class InviteRequestsController < ApplicationController
       flash[:danger]="not found this team"
     elsif @inv.nil?
       flash[:danger]="not found this invite request"
-    else
+    elsif @inv.gamer.team.nil?
       @team.gamers << @inv.gamer
       flash[:success]="added gamer"
       @team.invites.delete(@inv.gamer)
       @inv.destroy
+    else 
+      flash[:danger]="Impossible: the gamer is altready member of a team"
     end
     render :index
   end

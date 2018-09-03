@@ -1,7 +1,7 @@
 <%= provide(:title, "My group list") %>
 <p id="notice"><%= notice %></p>
 
-<h1>Groups</h1>
+<h1>These are your groups </h1>
 
 <table>
   <thead>
@@ -20,7 +20,7 @@
       <tr>
         <td><%= group.name %></td>
         <td><%= group.region %></td>
-        <td><%= group.console %></td>
+        <td><%= group.console.name %></td>
         <td> <% group.games.each do |g| %>
       <%= g.name %> <%end%></td>
         <td> <% group.members.each do |g| %>
