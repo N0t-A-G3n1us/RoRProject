@@ -41,7 +41,7 @@ class ArenaPagesController < ApplicationController
            @stream1=body["streams"][0]["channel"]["display_name"]
             @stream2=body["streams"][1]["channel"]["display_name"]
             @stream3=body["streams"][2]["channel"]["display_name"]
-    
+
       else #no games for player
           #rimanda a setting
           flash[:danger]="You have not selected any game!"
@@ -75,14 +75,6 @@ class ArenaPagesController < ApplicationController
 	end
 
   end
-
-  def check_attributes
-       @gamer = current_gamer
-       if !@gamer.updated
-            flash[:danger] = "Please change your attributes#{@gamer.updated}"
-            redirect_to new_account_attribute_url(email: @gamer.email)
-       end
-    end
 
 
 

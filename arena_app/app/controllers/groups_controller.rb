@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
   load_and_authorize_resource
   before_action :set_group, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_attributes
   # GET /groups
   # GET /groups.json
   def index
@@ -30,8 +30,8 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     #salvo il gruppo nel gamer
     @group.creator=current_gamer
-    
-    @group.members << current_gamer 
+
+    @group.members << current_gamer
 
     respond_to do |format|
       if @group.save

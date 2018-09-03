@@ -36,11 +36,13 @@
       <%= g.username %> -> <%= g.email %>
     <%end%>
 </p>
-<div class= "btn btn-default btn-sm"><%= link_to 'Join this group', group_join_path(@group) %></div>
+<% if !@group.members.include?(current_gamer)%>
+<%= link_to 'Join this group', group_join_path(@group) ,class: "btn btn-default btn-sm"%>
+<% end %>
 <% if @group.creator == current_gamer %>
   <div class= "btn btn-default btn-sm"><%= link_to 'Leave this group', group_leave_path(@group), data: { confirm: "Group will be deleted, are you sure?" } %></div>
   <% else %>
-  <div class= "btn btn-default btn-sm"><%= link_to 'Leave this group', group_leave_path(@group) %></div>
+  <%= link_to 'Leave this group', group_leave_path(@group),class: "btn btn-default btn-sm" %>
   <% end %>
 <% if can? :edit, @group %>
   <div class= "btn btn-default btn-sm"><%= link_to 'Edit', edit_group_path(@group) %></div>

@@ -27,7 +27,7 @@
       <%= f.text_field :nickname, class: 'form-control' %>
 
       <%= f.label :nation %>
-<!--       <%= f.collection_select :code, Nation.order(:name),:id, :name,class: "form-control" %> 
+<!--       <%= f.collection_select :code, Nation.order(:name),:id, :name,class: "form-control" %>
  -->
       <%= render partial:"region_code", locals:{f: f }%>
       <p>

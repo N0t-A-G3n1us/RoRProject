@@ -27,7 +27,7 @@
       <%= f.text_field :nickname, class: 'form-control' %>
 
       <%= f.label :nation %>
-      <%= f.text_field :nation, class: 'form-control' %>
+       <%= render partial:"region_code", locals:{f: f }%>
 
       <p>
 

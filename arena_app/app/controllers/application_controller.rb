@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include TeamsHelper
   protect_from_forgery with: :exception
-  before_action :cookie_set 
+  before_action :cookie_set
 
 
   def cookie_set
@@ -10,8 +10,8 @@ class ApplicationController < ActionController::Base
     return unless current_gamer
     cookies[:user_name] = @gamer.id
   end
-  
-  
+
+
 
   #def remote_ip
    # if request.remote_ip == '127.0.0.1'
@@ -30,6 +30,14 @@ class ApplicationController < ActionController::Base
       redirect_to root_url
     end
   end
+
+    def check_attributes
+       @gamer = current_gamer
+       if !@gamer.updated
+            flash[:danger] = "Please change your attributes#{@gamer.updated}"
+            redirect_to new_account_attribute_url(email: @gamer.email)
+       end
+    end
 
 
   #override cancancan method
