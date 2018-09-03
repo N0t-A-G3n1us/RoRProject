@@ -82,9 +82,12 @@ class TeamsController < ApplicationController
 
   def send_invite
     @team = Team.find(params[:team_id])
-    if (!@team.invites.include? current_gamer)
+    
+    if !current_gamer.team.nil?
+      flash[:danger]="You are already member of a team"
+    elsif (!@team.invites.include? current_gamer)
       InviteRequest.create(gamer_id: current_gamer.id,team_id: @team.id) 
-    else
+    else 
       flash[:danger]="You already have sent this invite"
     end
     redirect_to @team

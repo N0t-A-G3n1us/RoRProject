@@ -13,33 +13,38 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-control"  %>
   </div>
 
   <div class="field">
     <%= form.label :region %>
-    <%= form.text_field :region %>
+    <%= form.select( :region,Nation.order(:name).collect {|n| [n.name,n.code]} ) %>
+
   </div>
 
   <div class="field">
+  
   <%= form.collection_select :console_id, Console.order(:name), :id, :name %>
 
 
+
   </div>
 
   <div class="field">
-    <%= form.label :game %>
-    <% Game.order(:name).each do |game| %>
-      <%= game.name %>
+    <%= form.label :game_ids %>
+    
 
-      <%= check_box_tag "group[game_ids][]", game.id, false %>
+        <div class="funkyradio">
+        <%= form.collection_check_boxes( :game_ids, Game.order(:name), :id, :name) do |c|%>
+          <div class="funkyradio-primary">
+            <%= c.check_box %> <%= c.label %>
+          </div>
+        <%end%>
+        </div>
 
-    <%end%>
-
-  </div>
   <div class="field">
   <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, class: "form-control" %>
 
   </div>
 

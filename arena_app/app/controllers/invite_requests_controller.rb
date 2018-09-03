@@ -66,12 +66,12 @@ class InviteRequestsController < ApplicationController
     @team = Team.find_by_id(params[:team_id])
     @inv=InviteRequest.find_by_id(params[:invite_request_id])
     if @team.nil?
-      flash[:danger]="not found this team"
+      flash[:danger]="Not found this team"
     elsif @inv.nil?
-      flash[:danger]="not found this invite request"
+      flash[:danger]="Not found this invite request"
     elsif @inv.gamer.team.nil?
       @team.gamers << @inv.gamer
-      flash[:success]="added gamer"
+      flash[:success]="Added gamer"
       @team.invites.delete(@inv.gamer)
       @inv.destroy
     else 
@@ -84,14 +84,14 @@ class InviteRequestsController < ApplicationController
     @team = Team.find_by_id(params[:team_id])
     @inv=InviteRequest.find_by_id(params[:invite_request_id])
     if @team.nil?
-      flash[:danger]="not found this team"
-    elsif @team.gamers.include?(current_gamer)
-      flash[:warning]="gamer already in team"
+      flash[:danger]="Not found this team"
+    elsif @team.gamers.include?(@inv.gamer)
+      flash[:warning]="Gamer already in team"
     elsif @inv.nil?
-      flash[:danger]="not found this invite request"
+      flash[:danger]="Not found this invite request"
     else
       @team.invites.delete(@inv.gamer)
-      flash[:success]="removed invite"
+      flash[:success]="Removed invite"
       @inv.destroy
     end
     render 'index'
