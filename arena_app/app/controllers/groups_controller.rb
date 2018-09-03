@@ -28,19 +28,25 @@ class GroupsController < ApplicationController
   # POST /groups.json
   def create
     @group = Group.new(group_params)
+
     #salvo il gruppo nel gamer
     @group.creator=current_gamer
+    if @group.region != @group.creator.nation
+               flash.now[:danger] = "different nation selected: #{@group.creator.nation}  #{@group.region}"
+               render 'new'
+    else
 
     @group.members << current_gamer
 
     respond_to do |format|
-      if @group.save
-        format.html { redirect_to @group, notice: 'Group was successfully created.' }
-        format.json { render :show, status: :created, location: @group }
-      else
-        format.html { render :new }
-        format.json { render json: @group.errors, status: :unprocessable_entity }
-      end
+       if @group.save
+            format.html { redirect_to @group, notice: 'Group was successfully created.' }
+            format.json { render :show, status: :created, location: @group }
+       else
+          format.html { render :new }
+          format.json { render json: @group.errors, status: :unprocessable_entity }
+       end
+    end
     end
   end
 
@@ -49,8 +55,13 @@ class GroupsController < ApplicationController
   def update
     respond_to do |format|
       if @group.update(group_params)
-        format.html { redirect_to @group, notice: 'Group was successfully updated.' }
-        format.json { render :show, status: :ok, location: @group }
+        if @group.region != @group.creator.nation
+           flash.now[:danger] = "different nation selected: #{@group.creator.nation} #{@group.region}"
+           format.html { render :edit }
+        else
+            format.html { redirect_to @group, notice: 'Group was successfully updated.' }
+            format.json { render :show, status: :ok, location: @group }
+        end
       else
         format.html { render :edit }
         format.json { render json: @group.errors, status: :unprocessable_entity }
