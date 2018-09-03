@@ -2,10 +2,10 @@
 
 one:
   name: eheh
-  invite_id: one
-  match_id: one
-  challenge_id: one
-  gamer_id: one
+  invite_id: 1
+  match_id: 1
+  challenge_id: 1
+  gamer_id: 1
   description: sfdfsdfs
   avatar: sdffsd
   created_at: <%= Time.zone.now %>
@@ -13,10 +13,10 @@ one:
 
 two:
   name: MyString
-  invite_id: two
-  match_id: two
-  challenge_id: two
-  gamer_id: two
+  invite_id: 2
+  match_id: 1
+  challenge_id: 2
+  gamer_id: 2
   description: shsfsgs
   avatar: dggsd
   created_at: <%= Time.zone.now %>
@@ -26,7 +26,7 @@ two:
 three:
   name: MyString
   invite_id: three
-  match_id: three
+  match_id: 3
   challenge_id: three
   gamer_id: three
   description: shsfsgs

@@ -16,7 +16,8 @@ class MatchesController < ApplicationController
 
   # GET /matches/new
   def new
-    @match = Match.new
+    @team=Team.find([:team_id])
+    @match = @team.matches.build
   end
 
   # GET /matches/1/edit

@@ -20,7 +20,7 @@
 <p>
 <strong>Game:</strong>
   <%= @team.game.name unless @team.game.nil? %>
-  <%= image_tag(@team.game.logo ,class: "img-responsive img-thumbnail") unless @team.game.nil?  %>
+  <%= image_tag(@team.game.logo ,class: "img-responsive img-thumbnail") unless @team.game.logo.nil?  %>
 </p>
 <p>
   <strong>Invites:</strong>
