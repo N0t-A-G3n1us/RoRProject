@@ -44,7 +44,7 @@
 </table>
 
 <br>
-<% if current_gamer.team.nil? || current_gamer.admin? %>
+<% if (current_gamer.team.nil? && current_gamer.leader?) || current_gamer.admin? %>
   <%= link_to 'New Team', new_team_path, class: "btn btn-danger btn-lg btn-block",style:"color:white;" %>
 
 <%end%>

@@ -47,9 +47,16 @@ class Ability
       can :my_groups , Group
       #Team                                                           #can join/leave just one team
 
+      can :read, Match do |m|
+        !gamer.team.nil? && m.team==gamer.team 
+      end
+
+
       can :send_invite, Team do |team|
         gamer.team.nil? || gamer.team!= team
       end
+
+
       can :leave, Team do |team|
         !gamer.team.nil? && gamer.team==team && team.boss != gamer
       end
@@ -57,8 +64,10 @@ class Ability
       can :create, ChatroomUser do |jointb|
         gamer.chatroom == jointb.chatroom
       end
-
-
+      ###
+       can [:create,:destroy], Chatroom do |ch|
+        (!Chatroom.team.nil? && Chatroom.team.boss==gamer ) || (!Chatroom.group.nil? && Chatroom.group.boss==gamer )
+      end
 
 
     elsif gamer.leader?
@@ -98,7 +107,9 @@ class Ability
       can [:accept,:refuse], InviteRequest, team: {boss: gamer}
 
       #Match
-      can :read, Match, team: { boss: gamer}
+      can :read, Match do |m|
+        !gamer.team.nil? && m.team==gamer.team 
+      end
       can [:accept,:refuse], Match, team: {boss: gamer}
       can [:edit,:update,:ragequit], Match, team: {boss: gamer}
 
@@ -117,6 +128,7 @@ class Ability
       can :create, ChatroomUser do |jointb|
         gamer.chatroom == jointb.chatroom
       end
+      ###
       can [:create,:destroy], Chatroom do |ch|
         (!Chatroom.team.nil? && Chatroom.team.boss==gamer ) || (!Chatroom.group.nil? && Chatroom.group.boss==gamer )
       end
