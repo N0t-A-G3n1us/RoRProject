@@ -6,6 +6,8 @@ one:
   match_id: 1
   challenge_id: 1
   gamer_id: 1
+  game: one 
+  console: one
   description: sfdfsdfs
   avatar: sdffsd
   created_at: <%= Time.zone.now %>

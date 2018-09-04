@@ -3,6 +3,8 @@ require 'test_helper'
 class TeamsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @team = teams(:one)
+    @con=consoles(:one)
+    @game=games(:one)
     log_in_as(gamers(:michael))
     get upgrade_url
     get upgrade_path
@@ -28,7 +30,8 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show team" do
-    get team_url(@team)
+    #@team.save!
+    get team_path(@team)
     assert_response :success
   end
 
