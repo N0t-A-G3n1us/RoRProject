@@ -12,15 +12,15 @@ class ArenaPagesController < ApplicationController
             @game_selected=Game.find_by(id: @gamer_games[i]).name
            response=HTTParty.get("https://api.twitch.tv/kraken/streams/?game=#{@game_selected}&limit=1&language=en",:headers => { 'Accept' => 'application/vnd.twitchtv.v5+json' , 'Client-ID' => 'zhlt7sm2fz1tg5z7w5rfv4zb8lybxx'})
             body=JSON.parse(response.body)
-            
+
 
             if i==0
-               @stream1=body["streams"][0]["channel"]["display_name"] 
+               @stream1=check_video_json(body,0)
             else
                if i==1
-                 @stream2=body["streams"][0]["channel"]["display_name"]
+                 @stream2=check_video_json(body,0)
                else
-                   @stream3=body["streams"][0]["channel"]["display_name"]
+                   @stream3=check_video_json(body,0)
                end
            end
          end
@@ -30,10 +30,10 @@ class ArenaPagesController < ApplicationController
                 response=HTTParty.get("https://api.twitch.tv/kraken/streams/?game=#{@game_selected}&limit=2&language=en",:headers => { 'Accept' => 'application/vnd.twitchtv.v5+json' , 'Client-ID' => 'zhlt7sm2fz1tg5z7w5rfv4zb8lybxx'})
                 body=JSON.parse(response.body)
                 if i==1
-                  @stream1=body["streams"][0]["channel"]["display_name"]
-                   @stream2=body["streams"][1]["channel"]["display_name"]
+                  @stream1=check_video_json(body,0)
+                   @stream2=check_video_json(body,1)
                 else
-                   @stream3=body["streams"][0]["channel"]["display_name"]
+                   @stream3=check_video_json(body,0)
                 end
             end
     elsif @gamer_games.to_a.count==1
