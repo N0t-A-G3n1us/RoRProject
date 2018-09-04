@@ -16,21 +16,32 @@
 
 <div class="row">
   <div class="col-md-4">
-
+  <%if !@stream1.nil? %>
     <iframe  src='https://player.twitch.tv/?channel=<%= @stream1 %>' frameborder="0" allowfullscreen="true" scrolling="no" height="189" width="310" ></iframe>
 
     <a href='https://player.twitch.tv/?channel=<%= @stream1 %>' class="center"  style="padding:2px 0px 4px; display:block; width:345px; font-weight:normal; font-size:10px; text-decoration:underline;">Watch live video from <%= @stream1 %> on www.twitch.tv</a></div>
+    <%else%>
+    <p>No Twitch stream found</p>
+    <%end%>
   <div class="col-md-4">   
+    <%if !@stream2.nil? %>
+
     <iframe src='https://player.twitch.tv/?channel=<%= @stream2 %>' frameborder="0" allowfullscreen="true" scrolling="no" height="189" width="310" ></iframe>
 
     <a href='https://player.twitch.tv/?channel=<%= @stream2 %>' class="center" style="padding:2px 0px 4px; display:block; width:345px; font-weight:normal; font-size:10px; text-decoration:underline;">Watch live video from <%= @stream2 %> on www.twitch.tv</a></div>
-  
+ <%else%>
+    <p>No Twitch stream found</p>
+
+<%end%>  
   <div class="col-md-4">  
+  <%if !@stream3.nil? %>
+
     <iframe src='https://player.twitch.tv/?channel=<%= @stream3 %>' frameborder="0" allowfullscreen="true" scrolling="no" height="189" width="310" ></iframe>
 
     <a href='https://player.twitch.tv/?channel=<%= @stream3 %>' class="center" style="padding:2px 0px 4px; display:block; width:345px; font-weight:normal; font-size:10px; text-decoration:underline;">Watch live video from <%= @stream3 %> on www.twitch.tv</a></div>
-
-
+ <%else%>
+    <p>No Twitch stream found</p>
+<%end%>
     
 
 
