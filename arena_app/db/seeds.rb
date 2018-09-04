@@ -46,6 +46,21 @@ if Console.count==0
   Console.create(name:'Mobile')
 end
 
+puts "Creating games..."
+if Game.count==0 #initialize games db
+        response=HTTParty.get("https://api.twitch.tv/kraken/games/top",
+          :headers => { 'Accept' => 'application/vnd.twitchtv.v5+json' ,
+           'Client-ID' => 'zhlt7sm2fz1tg5z7w5rfv4zb8lybxx'},query:{'limit'=>100})
+        parsed=JSON.parse(response.body)
+        if parsed.nil?
+          flash[:danger]="Error intiliazing games database. Contact Administrators"
+          redirect_to root_url
+        else
 
-
+          parsed["top"].each do |p| 
+            game=p["game"]
+            Game.create(name: game["name"],logo:game["box"]["medium"] ) 
+          end
+        end
+      end
 
