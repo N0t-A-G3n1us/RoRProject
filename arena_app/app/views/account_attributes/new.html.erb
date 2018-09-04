@@ -14,7 +14,7 @@
       <%= label :console_ids, 'Choose your favourite console (just one):' %>
 
         <div class="funkyradio">
-        <%= f.collection_check_boxes( :console_ids, Console.all, :id, :name) do |c|%>
+        <%= f.collection_check_boxes( :console_ids, Console.order(:name), :id, :name) do |c|%>
           <div class="funkyradio-primary">
             <%= c.check_box %> <%= c.label %>
           </div>
@@ -36,7 +36,7 @@
 
 
         <div class="funkyradio">
-        <%= f.collection_check_boxes( :game_ids, Game.all, :id, :name) do |c|%>
+        <%= f.collection_check_boxes( :game_ids, Game.order(:name), :id, :name) do |c|%>
           <div class="funkyradio-primary">
             <%= c.check_box %> <%= c.label %>
           </div>
