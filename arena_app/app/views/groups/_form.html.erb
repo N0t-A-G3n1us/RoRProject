@@ -17,13 +17,13 @@
   </div>
 
   <div class="field">
-    <%= form.label :region %>
+    <%= form.label :region,"Choose your nation (same of sign up):" %>
     <%= form.select( :region,Nation.order(:name).collect {|n| [n.name,n.code]} ) %>
 
   </div>
 
   <div class="field">
-  
+  <%= form.label :console_id,"Choose your console:" %>
   <%= form.collection_select :console_id, Console.order(:name), :id, :name %>
 
 
@@ -31,7 +31,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :game_ids %>
+    <%= form.label :game_ids,"Choose your games:" %>
     
 
         <div class="funkyradio">

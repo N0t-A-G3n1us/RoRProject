@@ -2,6 +2,7 @@ class ChatroomUsersController < ApplicationController
 	before_action :set_parent
 	before_action :set_chatroom
 	
+	
 
 	def create
 		@chatroom_user = @chatroom.chatroom_users.where(gamer_id: current_gamer.id).first_or_create

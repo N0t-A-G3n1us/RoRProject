@@ -1,12 +1,23 @@
 class ChatroomsController < ApplicationController
+  # load_and_authorize_resource :team
+  # load_and_authorize_resource :chatroom , through: :team
   before_action :set_chatroom, only: [:show, :edit, :update, :destroy]
   include ChatroomsHelper
+
+  #before_action :wanna_auth
+
+     load_resource :team
+     load_resource :group
+     load_and_authorize_resource :chatroom, through: [:team,:group]
+
+
+
 
   # GET /chatrooms
   # GET /chatrooms.json
   def index
     @chatrooms = Chatroom.all
-      if (params[:group_id].present?)
+    if (params[:group_id].present?)
       @parent = Group.find(params[:group_id])
     else 
       @parent = Team.find(params[:team_id])
@@ -23,6 +34,7 @@ class ChatroomsController < ApplicationController
 
   # GET /chatrooms/new
   def new
+    
     if (params[:group_id].present?)
       @parent = Group.find(params[:group_id])
     else 
@@ -41,7 +53,7 @@ class ChatroomsController < ApplicationController
   # POST /chatrooms
   # POST /chatrooms.json
   def create
-    
+
     if (params[:group_id].present?)
       @parent = Group.find(params[:group_id])
 
@@ -101,13 +113,13 @@ class ChatroomsController < ApplicationController
     parent_check
     @chatroom.destroy
     respond_to do |format|
-        if (params[:group_id].present?)
-          format.html { redirect_to group_url(@parent), notice: 'Chatroom was successfully destroyed.' }
-          format.json { render :show, status: :created, location: @chatroom }
-        else
-          format.html { redirect_to team_url(@parent), notice: 'Chatroom was successfully destroyed.' }
-          format.json { render :show, status: :created, location: @chatroom }
-        end
+      if (params[:group_id].present?)
+        format.html { redirect_to group_url(@parent), notice: 'Chatroom was successfully destroyed.' }
+        format.json { render :show, status: :created, location: @chatroom }
+      else
+        format.html { redirect_to team_url(@parent), notice: 'Chatroom was successfully destroyed.' }
+        format.json { render :show, status: :created, location: @chatroom }
+      end
     end
   end
 
@@ -125,4 +137,6 @@ class ChatroomsController < ApplicationController
     def chatroom_params
       params.require(:chatroom).permit(:name, :team_id, :group_id)
     end
-end
+
+    
+  end

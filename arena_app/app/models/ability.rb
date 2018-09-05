@@ -32,6 +32,9 @@ class Ability
         !gamer.groups.nil? && gamer.groups.include?(group)
       end
       can :my_groups , Group
+       can :read, Chatroom do |ch|
+          !ch.group.nil? && ch.group.members.include?(gamer) 
+       end 
     elsif gamer.pro?
       can [:destroy,:update,:edit], Gamer
 
@@ -65,10 +68,13 @@ class Ability
         gamer.chatroom == jointb.chatroom
       end
       ###
-       can [:create,:destroy], Chatroom do |ch|
-        (!Chatroom.team.nil? && Chatroom.team.boss==gamer ) || (!Chatroom.group.nil? && Chatroom.group.boss==gamer )
-      end
+       can [:new,:create,:update,:destroy], Chatroom  do |ch|
+          !ch.group.nil? && ch.group.creator==gamer 
+       end
 
+       can :read, Chatroom do |ch|
+          (!ch.team.nil? && ch.team.gamers.include?(gamer) ) || (!ch.group.nil? && ch.group.members.include?(gamer) )
+       end 
 
     elsif gamer.leader?
 
@@ -129,12 +135,16 @@ class Ability
         gamer.chatroom == jointb.chatroom
       end
       ###
-      can [:create,:destroy], Chatroom do |ch|
-        (!Chatroom.team.nil? && Chatroom.team.boss==gamer ) || (!Chatroom.group.nil? && Chatroom.group.boss==gamer )
-      end
+       can [:new,:create,:update,:destroy], Chatroom  do |ch|
+         (!ch.team.nil? && ch.team.boss==gamer ) || (!ch.group.nil? && ch.group.creator==gamer )
+       end
 
+       can :read, Chatroom do |ch|
+          (!ch.team.nil? && ch.team.gamers.include?(gamer) ) || (!ch.group.nil? && ch.group.members.include?(gamer) )
+       end 
     end
 
   end
+
 end
 
