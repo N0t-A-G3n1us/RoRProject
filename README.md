@@ -5,7 +5,7 @@ Heroku free service is been used to deploy the application.
 
 The app is accessible at this link: https://playersarena.herokuapp.com/  
 
-Sapienza University of Rome, project made by three students check [Contacts](#Contacts) section for more info.
+Sapienza University of Rome, project made by three students check [Contacts](#contacts) section for more info.
 
 #Install and start
 
