@@ -5,7 +5,7 @@ Heroku free service is been used to deploy the application.
 
 The app is accessible at this link: https://playersarena.herokuapp.com/  
 
-Sapienza University of Rome, project made by three students check Contact section for more info.
+Sapienza University of Rome, project made by three students check [Contacts](#Contacts) section for more info.
 
 #Install and start
 
@@ -85,31 +85,38 @@ And run in an other shell:
 $ redis-server
 ```
 
-You can access the app at: http://localhost:3000/
+You can now access the app at: http://localhost:3000/
 
 
 
 
-Things you may want to cover:
+# General info
 
 ## Ruby version
 The app uses Ruby 2.3.0
 
-* System dependencies
+## System dependencies
+ Not more than gem in gemfile, and redis-server to make chat working.
 
-* Configuration
+## Deployment istruction
+ To deploy the app you need to use git subtree.
 
-* Database creation
 
-* Database initialization
+# Contacts
+Not-a-genius: https://github.com/not-a-genius
+Linguaggio-scalabile: https://github.com/LinguaggioScalabile
+Salva-95: https://github.com/salva-95
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
 
-* ...
+
+
+
+
+
+
+
 
 
 
