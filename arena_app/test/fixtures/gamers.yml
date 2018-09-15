@@ -2,7 +2,7 @@
 
 michael:
   username: Michael Example
-  email: michael@example.com
+  email: railsbiar@gmail.com
   password_digest: <%= Gamer.digest('password') %>
   activated: true
   activated_at: <%= Time.zone.now %>
