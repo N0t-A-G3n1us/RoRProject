@@ -36,6 +36,10 @@ gem 'geocoder'
 #to generate erd
 gem 'rails-erd', group: :development
 
+# to generate uml
+group :development, :test do
+    gem 'railroady'
+end
 
 #gems to upload avatar image
 gem 'carrierwave', '~> 1.0'
