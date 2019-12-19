@@ -96,7 +96,7 @@ You can now access the app at: http://localhost:3000/
 The app uses Ruby 2.3.0
 
 ## System dependencies
- Not more than gem in gemfile, and redis-server to make chat working.
+ Not more that gems in Gemfile and redis-server to let chat works.
 
 ## Deployment istruction
  To deploy the app you need to use git subtree.
