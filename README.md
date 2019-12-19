@@ -7,7 +7,7 @@ The app is accessible at this link: https://playersarena.herokuapp.com/
 
 Sapienza University of Rome, project made by three students check [Contacts](#contacts) section for more info.
 
-#Install and start
+# Install and start
 
 
 ## Getting started
