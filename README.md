@@ -62,7 +62,7 @@ Or just using
 
 ```
 
-$ sudo make install.
+$ sudo make install
 
 ```
 
