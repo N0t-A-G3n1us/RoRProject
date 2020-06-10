@@ -126,7 +126,7 @@ GEM
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.11.3)
-    geocoder (1.5.0)
+    geocoder (1.6.1)
     gherkin (5.1.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
